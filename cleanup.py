@@ -3,4 +3,4 @@ import fileinput
 
 file = fileinput.FileInput('docs/index.html', inplace=True, backup='.bak')
 for line in file:
-    print(line.replace('</script', '<script '), end='')
+    print(line.replace('src="/', ' src="'), end='')
