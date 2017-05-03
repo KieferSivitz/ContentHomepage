@@ -1,19 +1,19 @@
 <template>
     <div class="homePage">
         <div class ="componentContainer">
-            <twitterFeed />
-            <streamComponent />
+            <twitterComponent />
+            <twitchComponent />
         </div>
     </div>
 </template>
 
 <script>
-import twitterFeed from './twitterFeed'
-import streamComponent from './streamComponent'
+import twitterComponent from './twitterComponent'
+import twitchComponent from './twitchComponent'
 
 export default {
     name: 'homePage',
-    components: {twitterFeed, streamComponent},
+    components: {twitterComponent, twitchComponent},
     data () {
         return {
             msg: 'Welcome to the social media aggregator!'

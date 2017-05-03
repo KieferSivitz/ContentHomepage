@@ -2,8 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import twitterFeed from './components/twitterFeed'
-// import streamComponent from './components/streamComponent'
+import twitterComponent from './components/twitterComponent'
+import twitchComponent from './components/twitchComponent'
 import router from './router'
 
 Vue.config.productionTip = false
@@ -20,10 +20,19 @@ new Vue({
 })
 
 Vue.component({
-    el: '#twitterFeed',
+    el: '#twitterComponent',
     router,
-    template: '<twitterFeed/>',
+    template: '<twitterComponent/>',
     components: {
-        'twitterFeed': twitterFeed
+        'twitterComponent': twitterComponent
+    }
+})
+
+Vue.component({
+    el: '#twitchComponent',
+    router,
+    template: '<twitchComponent/>',
+    components: {
+        'twitchComponent': twitchComponent
     }
 })

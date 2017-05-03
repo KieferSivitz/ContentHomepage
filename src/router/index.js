@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import streamComponent from '@/components/streamComponent'
-import twitterFeed from '@/components/twitterFeed'
-import homePage from '@/components/homePage'
+import twitchComponent from '@/components/twitchComponent'
+import twitterComponent from '@/components/twitterComponent'
+import homeComponent from '@/components/homeComponent'
 
 Vue.use(Router)
 
@@ -10,18 +10,18 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'homePage',
-            component: homePage
+            name: 'homeComponent',
+            component: homeComponent
         },
         {
             path: '/twitter',
-            name: 'twitterFeed',
-            component: twitterFeed
+            name: 'twitterComponent',
+            component: twitterComponent
         },
         {
-            path: '/streamComponent',
-            name: 'streamComponent',
-            component: streamComponent
+            path: '/twitchComponent',
+            name: 'twitchComponent',
+            component: twitchComponent
         }
     ]
 })

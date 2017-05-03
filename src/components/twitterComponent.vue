@@ -1,5 +1,5 @@
 <template>
-    <div id= "twitterFeed" class="twitterFeed">
+    <div id= "twitterComponent" class="twitterComponent">
         <div id="twitter-feed">
         </div>
     </div>
@@ -7,7 +7,7 @@
 
 <script>
 export default {
-    name: 'twitterFeed',
+    name: 'twitterComponent',
     data () {
         return {
             msg: 'Welcome to twitter!'
@@ -55,7 +55,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.twitterFeed {
+.twitterComponent {
     margin: 20px;
     padding: 20px;
     border: 2px solid #00D8FF;

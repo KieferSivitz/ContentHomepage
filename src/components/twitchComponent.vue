@@ -1,5 +1,5 @@
 <template>
-    <div class="streamComponent">
+    <div class="twitchComponent">
         <div id="streamWindow"></div>
     </div>
 </template>
@@ -8,7 +8,7 @@
 import 'twitch-embed'; // eslint-disable-line
 
 export default {
-    name: 'streamComponent',
+    name: 'twitchComponent',
     data () {
         return {
             msg: 'Welcome to the social media aggregator!'
@@ -41,7 +41,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.streamComponent {
+.twitchComponent {
     margin: 20px;
     padding: 20px;
     border: 2px solid #00D8FF;
