@@ -1,5 +1,5 @@
 <template>
-    <div class="homePage">
+    <div class="homeComponent">
         <div class ="componentContainer">
             <twitterComponent />
             <twitchComponent />
@@ -12,7 +12,7 @@ import twitterComponent from './twitterComponent'
 import twitchComponent from './twitchComponent'
 
 export default {
-    name: 'homePage',
+    name: 'homeComponent',
     components: {twitterComponent, twitchComponent},
     data () {
         return {
@@ -25,7 +25,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.homePage {
+.homeComponent {
     margin: 20px;
     padding: 20px;
     border: 2px solid #00D8FF;
