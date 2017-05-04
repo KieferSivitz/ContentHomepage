@@ -1,6 +1,6 @@
 <template>
     <div class="twitchComponent">
-        <div id="streamWindow"></div>
+        <div id="twitchElement"></div>
     </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
         renderPlayer: (channelID) => {
             var windowWidth = 854
             var windowHeight = 480
-            var target = 'streamWindow'
+            var target = 'twitchElement'
 
             var options = {
                 width: windowWidth,

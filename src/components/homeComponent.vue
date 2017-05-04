@@ -1,6 +1,6 @@
 <template>
     <div class="homeComponent">
-        <div class ="componentContainer">
+        <div class ="homeElement">
             <twitterComponent />
             <twitchComponent />
         </div>
@@ -32,7 +32,7 @@ export default {
     background: #DDEEFF;
 }
 
-.componentContainer {
+.homeElement {
     display:  flex;
     justify-content: space-around;
 }

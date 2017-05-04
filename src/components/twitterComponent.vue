@@ -1,6 +1,6 @@
 <template>
-    <div id= "twitterComponent" class="twitterComponent">
-        <div id="twitter-feed">
+    <div id="twitterComponent" class="twitterComponent">
+        <div id="twitterElement">
         </div>
     </div>
 </template>
@@ -41,7 +41,7 @@ export default {
                         ownerScreenName: 'KieferSivitz',
                         slug: 'Smash'
                     },
-                    document.getElementById('twitter-feed')
+                    document.getElementById('twitterElement')
                 )
             })
         })
