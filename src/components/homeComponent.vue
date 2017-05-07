@@ -25,13 +25,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.homeComponent {
-    margin: 20px;
-    padding: 20px;
-    border: 2px solid #00D8FF;
-    background: #DDEEFF;
-}
-
 .componentContainer {
     display:  flex;
     justify-content: space-around;
