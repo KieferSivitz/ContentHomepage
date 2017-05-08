@@ -41,14 +41,17 @@ export default {
                         ownerScreenName: 'KieferSivitz',
                         slug: 'Smash'
                     },
-                    document.getElementById('twitter-feed')
+                    document.getElementById('twitter-feed'),
+                    {
+                        height: (window.innerHeight),
+                        related: 'twitterdev,twitterapi'
+                    }
                 )
             })
         })
     },
 
     mounted () {
-        this.createFeed;
     }
 }
 </script>
