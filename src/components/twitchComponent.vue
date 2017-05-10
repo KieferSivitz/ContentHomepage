@@ -1,6 +1,7 @@
 <template>
     <div class="twitchComponent">
-        <div id="streamWindow"></div>
+        <div id="streamWindow">
+        </div>
     </div>
 </template>
 
@@ -36,12 +37,7 @@ export default {
 
     mounted () {
         this.renderPlayer('RiotGames')
-        window.addEventListener('resize', function (event) {
-            let width = document.getElementById('streamWindow').clientWidth
-            let height = (document.getElementById('streamWindow').clientWidth * (9 / 16))
-            document.getElementById('streamWindow').firstChild.width = width
-            document.getElementById('streamWindow').firstChild.height = height
-        })
+        document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
     }
 
 
@@ -52,8 +48,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .twitchComponent {
-    width:  70%;
-    margin: 20px;
     padding: 20px;
     border: 2px solid #00D8FF;
     background: #DDEEFF;
