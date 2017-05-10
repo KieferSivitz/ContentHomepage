@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import twitterComponent from './components/twitterComponent'
 import twitchComponent from './components/twitchComponent'
+import twitchChatComponent from './components/twitchChatComponent'
 import router from './router'
 
 Vue.config.productionTip = false
@@ -34,5 +35,14 @@ Vue.component({
     template: '<twitchComponent/>',
     components: {
         'twitchComponent': twitchComponent
+    }
+})
+
+Vue.component({
+    el: '#twitchChatComponent',
+    router,
+    template: '<twitchChatComponent/>',
+    components: {
+        'twitchChatComponent': twitchChatComponent
     }
 })

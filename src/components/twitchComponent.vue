@@ -35,7 +35,7 @@ export default {
     },
 
     mounted () {
-        this.renderPlayer('RiotGames')
+        this.renderPlayer('tradechat')
         window.addEventListener('resize', function (event) {
             let width = document.getElementById('streamWindow').clientWidth
             let height = (document.getElementById('streamWindow').clientWidth * (9 / 16))
@@ -53,7 +53,6 @@ export default {
 <style>
 .twitchComponent {
     width:  70%;
-    margin: 20px;
     padding: 20px;
     border: 2px solid #00D8FF;
     background: #DDEEFF;

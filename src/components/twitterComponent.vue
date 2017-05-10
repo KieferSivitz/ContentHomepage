@@ -43,7 +43,7 @@ export default {
                     },
                     document.getElementById('twitter-feed'),
                     {
-                        height: (window.innerHeight),
+                        height: (window.innerHeight * 0.9),
                         related: 'twitterdev,twitterapi'
                     }
                 )
@@ -60,7 +60,6 @@ export default {
 <style>
 .twitterComponent {
     width:  20%;
-    margin: 20px;
     padding: 20px;
     border: 2px solid #00D8FF;
     background: #DDEEFF;

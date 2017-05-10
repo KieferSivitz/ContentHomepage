@@ -3,6 +3,7 @@
         <div class ="componentContainer">
             <twitterComponent />
             <twitchComponent />
+            <twitchChatComponent />
         </div>
     </div>
 </template>
@@ -10,10 +11,11 @@
 <script>
 import twitterComponent from './twitterComponent'
 import twitchComponent from './twitchComponent'
+import twitchChatComponent from './twitchChatComponent'
 
 export default {
     name: 'homeComponent',
-    components: {twitterComponent, twitchComponent},
+    components: {twitterComponent, twitchComponent, twitchChatComponent},
     data () {
         return {
             msg: 'Welcome to the social media aggregator!'
