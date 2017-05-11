@@ -46,7 +46,7 @@ export default {
         window.addEventListener('resize', function () {
             let width = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - 40
             let height = width * (9 / 16)
-
+            console.log(width, height)
             document.getElementById('twitchPlayer').width = width
             document.getElementById('twitchPlayer').height = height
         })
