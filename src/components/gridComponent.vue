@@ -49,28 +49,32 @@ export default {
         return {
             msg: 'Welcome to the social media aggregator!',
             layout: [
-                {'x': 0, 'y': 0, 'w': 3, 'h': 40, 'i': 'twitterComponent', 'id': 'gridComponent0'},
-                {'x': 3, 'y': 0, 'w': 9, 'h': 30, 'i': 'twitchComponent', 'id': 'gridComponent1'}
+                {'x': 0, 'y': 0, 'w': 3, 'h': 20, 'i': 'twitterComponent', 'id': 'gridComponent0'},
+                {'x': 3, 'y': 0, 'w': 9, 'h': 20, 'i': 'twitchComponent', 'id': 'gridComponent1'}
                 // {'x': 3, 'y': 0, 'w': 9, 'h': 30, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}
             ],
             resizedEvent: function (i, newH, newW, newWPx, newHPx) {
-                let width = Number(newWPx) - 40
-                let height = width * (9 / 16)
+                // I know this is the same as the event listener in the twitchComponent but
+                // I want to keep the components separate, the grid component deals with
+                // The resizing events of the grid items only.
+                switch (i) {
+                case 'twitchComponent':
+                    let width = Number(newWPx) - 40
+                    let height = width * (9 / 16)
 
-                if (height > Number(newHPx)) {
-                    console.log('conditional')
-                    height = Number(newHPx) - 40
+                    if (height > Number(newHPx)) {
+                        height = Number(newHPx) - 40
+                    }
+
+                    document.getElementById('twitchPlayer').width = width
+                    document.getElementById('twitchPlayer').height = height
+                    break;
+                default:
+                    // Resizing non twitch components logic goes here / in it's own case
                 }
-
-                // TODO, resized is tracking every component,
-                // changes should only affect changed component
-
-                document.getElementById('twitchPlayer').width = width
-                document.getElementById('twitchPlayer').height = height
             }
         }
     }
-
 
 }
 </script>
