@@ -21,6 +21,7 @@ export default {
         renderPlayer: (channelID) => {
             var windowWidth = (window.innerWidth * 0.68)
             var windowHeight = windowWidth * (9 / 16)
+
             var target = 'streamWindow'
 
             var options = {
@@ -54,9 +55,6 @@ export default {
             document.getElementById('twitchPlayer').height = height
         })
     }
-
-
-
 }
 </script>
 
