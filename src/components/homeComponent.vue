@@ -27,6 +27,7 @@
 <script>
 import twitterComponent from './twitterComponent'
 import twitchComponent from './twitchComponent'
+<<<<<<< HEAD
 import VueGridLayout from 'vue-grid-layout'
 
 var GridLayout = VueGridLayout.GridLayout;
@@ -40,6 +41,11 @@ export default {
         GridLayout,
         GridItem
     },
+import twitchChatComponent from './twitchChatComponent'
+
+export default {
+    name: 'homeComponent',
+    components: {twitterComponent, twitchComponent, twitchChatComponent},
     data () {
         return {
             msg: 'Welcome to the social media aggregator!',

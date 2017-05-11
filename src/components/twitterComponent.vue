@@ -43,7 +43,11 @@ export default {
                     },
                     document.getElementById('twitter-feed'),
                     {
+<<<<<<< HEAD
                         height: (window.innerHeight * 0.8),
+=======
+                        height: (window.innerHeight * 0.9),
+>>>>>>> development
                         related: 'twitterdev,twitterapi'
                     }
                 )
@@ -59,7 +63,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .twitterComponent {
+<<<<<<< HEAD
     margin: 20px;
+=======
+    width:  20%;
+>>>>>>> development
     padding: 20px;
     border: 2px solid #00D8FF;
     background: #DDEEFF;
