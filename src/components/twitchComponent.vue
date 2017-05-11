@@ -18,7 +18,7 @@ export default {
 
     methods: {
         renderPlayer: (channelID) => {
-            var windowWidth = (document.getElementById('gridComponent1').clientWidth - 40)
+            var windowWidth = (document.getElementById('streamWindow').clientWidth - 40)
             var windowHeight = windowWidth * (9 / 16)
             var target = 'streamWindow'
 
@@ -49,8 +49,7 @@ export default {
 <style>
 .twitchComponent {
     padding: 10px;
-    border: 2px solid #00D8FF;
-    background: #DDEEFF;
+    background: #72129b !important;
 }
 
 </style>

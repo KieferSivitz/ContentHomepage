@@ -1,30 +1,28 @@
 <template>
     <div class="gridComponent">
-        <div id="streamWindow">
-            <div class="layout">
-                <grid-layout
-                    :layout="layout"
-                    :col-num="12"
-                    :row-height="30"
-                    :is-draggable="true"
-                    :is-resizable="true"
-                    :vertical-compact="true"
-                    :margin="[10, 10]"
-                    :use-css-transforms="true">
-                <grid-item class="gridItems"
-                            v-bind:id="item.id"
-                            v-for="item in layout"
-                            v-bind:key="item.id"
-                           :x="item.x"
-                           :y="item.y"
-                           :w="item.w"
-                           :h="item.h"
-                           :i="item.i"
-                            @resized="resizedEvent">
-                        <component :is="item.i" class="componentContainer"></component>
-                </grid-item>
-                </grid-layout>
-            </div>
+        <div class="layout">
+            <grid-layout
+                :layout="layout"
+                :col-num="12"
+                :row-height="30"
+                :is-draggable="true"
+                :is-resizable="true"
+                :vertical-compact="true"
+                :margin="[10, 10]"
+                :use-css-transforms="true">
+            <grid-item class="gridItems"
+                        v-bind:id="item.id"
+                        v-for="item in layout"
+                        v-bind:key="item.id"
+                       :x="item.x"
+                       :y="item.y"
+                       :w="item.w"
+                       :h="item.h"
+                       :i="item.i"
+                        @resized="resizedEvent">
+                    <component :is="item.i" class="componentContainer"></component>
+            </grid-item>
+            </grid-layout>
         </div>
     </div>
 </template>
@@ -71,32 +69,7 @@ export default {
                 document.getElementById('twitchPlayer').height = height
             }
         }
-    },
-
-    methods: {
-        renderPlayer: (channelID) => {
-            var windowWidth = (document.getElementById('gridComponent1').clientWidth - 40)
-            var windowHeight = windowWidth * (9 / 16)
-            var target = 'streamWindow'
-
-            var options = {
-                width: windowWidth,
-                height: windowHeight,
-                channel: channelID,
-                autoplay: false
-            }
-
-            var player = new window.Twitch.Player(target, options)
-            player.setVolume(0.5)
-        }
-
-    },
-
-    mounted () {
-        this.renderPlayer('RiotGames')
-        document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
     }
-
 
 
 }
@@ -104,11 +77,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.componentContainer {
-    margin: 5px;
-}
 
 .gridItems {
     background: white;
 }
+
 </style>

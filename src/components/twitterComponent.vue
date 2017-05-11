@@ -61,8 +61,7 @@ export default {
 .twitterComponent {
     margin: 20px;
     padding: 20px;
-    border: 2px solid #00D8FF;
-    background: #DDEEFF;
+    background: #72129b !important;
 }
 
 
