@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import twitterComponent from './components/twitterComponent'
 import twitchComponent from './components/twitchComponent'
+import gridComponent from './components/gridComponent'
 import twitchChatComponent from './components/twitchChatComponent'
 import router from './router'
 
@@ -44,5 +45,14 @@ Vue.component({
     template: '<twitchChatComponent/>',
     components: {
         'twitchChatComponent': twitchChatComponent
+    }
+})
+
+Vue.component({
+    el: '#gridComponent',
+    router,
+    template: '<gridComponent/>',
+    components: {
+        'gridComponent': gridComponent
     }
 })
