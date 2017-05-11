@@ -9,6 +9,7 @@
 import 'twitch-embed'; // eslint-disable-line
 
 export default {
+    initialWidthModifier: 0.68,
     name: 'twitchComponent',
     data () {
         return {
@@ -18,7 +19,7 @@ export default {
 
     methods: {
         renderPlayer: (channelID) => {
-            var windowWidth = (document.getElementById('gridComponent1').clientWidth - 40)
+            var windowWidth = (window.innerWidth * 0.68)
             var windowHeight = windowWidth * (9 / 16)
             var target = 'streamWindow'
 
@@ -36,8 +37,19 @@ export default {
     },
 
     mounted () {
+        // I know this is the same as the resizedEvent in the gridComponent but
+        // I want to keep the components separate, the grid component deals with
+        // The resizing events of the grid items only.
         this.renderPlayer('RiotGames')
         document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
+
+        window.addEventListener('resize', function () {
+            let width = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - 40
+            let height = width * (9 / 16)
+
+            document.getElementById('twitchPlayer').width = width
+            document.getElementById('twitchPlayer').height = height
+        })
     }
 
 
@@ -49,8 +61,7 @@ export default {
 <style>
 .twitchComponent {
     padding: 10px;
-    border: 2px solid #00D8FF;
-    background: #DDEEFF;
+    background: #72129b !important;
 }
 
 </style>

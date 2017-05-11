@@ -59,10 +59,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .twitterComponent {
-    margin: 20px;
-    padding: 20px;
-    border: 2px solid #00D8FF;
-    background: #DDEEFF;
+    padding: 10px;
+    background: #72129b !important;
 }
 
 
