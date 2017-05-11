@@ -36,18 +36,8 @@ export default {
     },
 
     mounted () {
-<<<<<<< HEAD
         this.renderPlayer('RiotGames')
         document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
-=======
-        this.renderPlayer('tradechat')
-        window.addEventListener('resize', function (event) {
-            let width = document.getElementById('streamWindow').clientWidth
-            let height = (document.getElementById('streamWindow').clientWidth * (9 / 16))
-            document.getElementById('streamWindow').firstChild.width = width
-            document.getElementById('streamWindow').firstChild.height = height
-        })
->>>>>>> development
     }
 
 
@@ -58,12 +48,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .twitchComponent {
-<<<<<<< HEAD
     padding: 10px;
-=======
-    width:  70%;
-    padding: 20px;
->>>>>>> development
     border: 2px solid #00D8FF;
     background: #DDEEFF;
 }

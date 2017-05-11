@@ -10,7 +10,10 @@
                 :vertical-compact="true"
                 :margin="[10, 10]"
                 :use-css-transforms="true">
-            <grid-item class="gridItems" v-bind:id="item.id" v-for="item in layout"
+            <grid-item class="gridItems"
+                        v-bind:id="item.id"
+                        v-for="item in layout"
+                        v-bind:key="item.id"
                        :x="item.x"
                        :y="item.y"
                        :w="item.w"
@@ -27,8 +30,8 @@
 <script>
 import twitterComponent from './twitterComponent'
 import twitchComponent from './twitchComponent'
-<<<<<<< HEAD
 import VueGridLayout from 'vue-grid-layout'
+import twitchChatComponent from './twitchChatComponent'
 
 var GridLayout = VueGridLayout.GridLayout;
 var GridItem = VueGridLayout.GridItem;
@@ -39,19 +42,16 @@ export default {
         twitterComponent,
         twitchComponent,
         GridLayout,
-        GridItem
+        GridItem,
+        twitchChatComponent
     },
-import twitchChatComponent from './twitchChatComponent'
-
-export default {
-    name: 'homeComponent',
-    components: {twitterComponent, twitchComponent, twitchChatComponent},
     data () {
         return {
             msg: 'Welcome to the social media aggregator!',
             layout: [
                 {'x': 0, 'y': 0, 'w': 3, 'h': 40, 'i': 'twitterComponent', 'id': 'gridComponent0'},
-                {'x': 3, 'y': 0, 'w': 9, 'h': 30, 'i': 'twitchComponent', 'id': 'gridComponent1'}
+                {'x': 3, 'y': 0, 'w': 9, 'h': 30, 'i': 'twitchComponent', 'id': 'gridComponent1'},
+                {'x': 3, 'y': 0, 'w': 9, 'h': 30, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}
             ],
             resizedEvent: function (i, newH, newW, newWPx, newHPx) {
                 let width = Number(newWPx) - 40
