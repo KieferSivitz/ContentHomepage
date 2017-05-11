@@ -18,8 +18,8 @@ export default {
 
     methods: {
         renderPlayer: (channelID) => {
-            var windowWidth = document.getElementById('streamWindow').clientWidth
-            var windowHeight = (document.getElementById('streamWindow').clientWidth * (9 / 16))
+            var windowWidth = (document.getElementById('gridComponent1').clientWidth - 40)
+            var windowHeight = windowWidth * (9 / 16)
             var target = 'streamWindow'
 
             var options = {
@@ -48,7 +48,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .twitchComponent {
-    padding: 20px;
+    padding: 10px;
     border: 2px solid #00D8FF;
     background: #DDEEFF;
 }

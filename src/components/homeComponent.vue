@@ -17,7 +17,7 @@
                        :h="item.h"
                        :i="item.i"
                         @resized="resizedEvent">
-                    <component :is="item.i"></component>
+                    <component :is="item.i" class="componentContainer"></component>
             </grid-item>
             </grid-layout>
         </div>
@@ -45,12 +45,16 @@ export default {
             msg: 'Welcome to the social media aggregator!',
             layout: [
                 {'x': 0, 'y': 0, 'w': 3, 'h': 40, 'i': 'twitterComponent', 'id': 'gridComponent0'},
-                {'x': 3, 'y': 0, 'w': 9, 'h': 30, 'i': 'twitchComponent', 'id': 'gridComponent1'},
-                {'x': 3, 'y': 0, 'w': 9, 'h': 10, 'i': 'gridComponent2', 'id': 'gridComponent2'}
+                {'x': 3, 'y': 0, 'w': 9, 'h': 30, 'i': 'twitchComponent', 'id': 'gridComponent1'}
             ],
-            resizedEvent: function (i, newH, newW, newHPx, newWPx) {
-                let width = Number(newHPx) - 40
+            resizedEvent: function (i, newH, newW, newWPx, newHPx) {
+                let width = Number(newWPx) - 40
                 let height = width * (9 / 16)
+
+                if (height > Number(newHPx)) {
+                    console.log('conditional')
+                    height = Number(newHPx) - 40
+                }
 
                 document.getElementById('twitchPlayer').width = width
                 document.getElementById('twitchPlayer').height = height
@@ -69,8 +73,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .componentContainer {
-    display:  flex;
-    justify-content: space-around;
+    margin: 5px;
 }
 
 .homeComponent {
