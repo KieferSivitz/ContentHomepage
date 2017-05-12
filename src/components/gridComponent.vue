@@ -69,6 +69,9 @@ export default {
                     document.getElementById('twitchPlayer').width = width
                     document.getElementById('twitchPlayer').height = height
                     break;
+                case 'twitterComponent':
+                    document.getElementById('twitter-widget-0').style.height = String((newHPx - 40) + 'px')
+                    break;
                 default:
                     // Resizing non twitch components logic goes here / in it's own case
                 }

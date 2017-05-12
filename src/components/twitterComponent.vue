@@ -43,7 +43,7 @@ export default {
                     },
                     document.getElementById('twitter-feed'),
                     {
-                        height: (window.innerHeight * 0.8),
+                        height: (window.innerHeight * 0.57),
                         related: 'twitterdev,twitterapi'
                     }
                 )
@@ -52,6 +52,7 @@ export default {
     },
 
     mounted () {
+        document.getElementById('twitter-widget-0').style.height = String((document.getElementById('gridComponent0').innerHeight - 40) + 'px')
     }
 }
 </script>
