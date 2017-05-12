@@ -1,5 +1,6 @@
 <template>
     <div id= "twitterComponent" class="twitterComponent">
+        <input type="text" id="twitterInput"> </input>
         <div id="twitter-feed">
         </div>
     </div>
@@ -43,7 +44,7 @@ export default {
                     },
                     document.getElementById('twitter-feed'),
                     {
-                        height: (window.innerHeight * 0.57),
+                        height: (window.innerHeight * 0.54),
                         related: 'twitterdev,twitterapi'
                     }
                 )

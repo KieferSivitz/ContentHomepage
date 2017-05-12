@@ -1,5 +1,6 @@
 <template>
     <div class="twitchComponent">
+        <input type="text" id="twitchInput"> </input>
         <div id="streamWindow">
         </div>
     </div>
@@ -9,7 +10,6 @@
 import 'twitch-embed'; // eslint-disable-line
 
 export default {
-    initialWidthModifier: 0.68,
     name: 'twitchComponent',
     data () {
         return {
@@ -32,7 +32,7 @@ export default {
             }
 
             var player = new window.Twitch.Player(target, options)
-            player.setVolume(0.5)
+            return player;
         }
 
     },
@@ -41,9 +41,12 @@ export default {
         // I know this is the same as the resizedEvent in the gridComponent but
         // I want to keep the components separate, the grid component deals with
         // The resizing events of the grid items only.
-        this.renderPlayer('vgbootcamp')
+
+        var twitchComponent = this
+        var twitchPlayer = twitchComponent.renderPlayer('vgbootcamp')
         document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
 
+        // Listener for window resizing
         window.addEventListener('resize', function () {
             let width = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - 40
             let height = width * (9 / 16)
@@ -53,6 +56,14 @@ export default {
             }
             document.getElementById('twitchPlayer').width = width
             document.getElementById('twitchPlayer').height = height
+        })
+
+        // Listener for
+        document.getElementById('twitchInput').addEventListener('keydown', function (e) {
+            if (e.keyCode === 13) {
+                let text = e.target.value
+                twitchPlayer.setChannel(text)
+            }
         })
     }
 }
