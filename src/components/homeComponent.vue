@@ -28,7 +28,6 @@ export default {
 <style>
 .componentContainer {
     margin: 5px;
-    background: #0ff
 }
 
 </style>
