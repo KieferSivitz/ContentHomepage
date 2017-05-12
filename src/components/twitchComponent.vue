@@ -62,7 +62,6 @@ export default {
 <style>
 .twitchComponent {
     padding: 10px;
-    background: #72129b !important;
 }
 
 </style>

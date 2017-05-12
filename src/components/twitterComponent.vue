@@ -60,7 +60,6 @@ export default {
 <style>
 .twitterComponent {
     padding: 10px;
-    background: #72129b !important;
 }
 
 
