@@ -49,10 +49,6 @@ export default {
                 )
             })
         })
-    },
-
-    mounted () {
-        document.getElementById('twitter-widget-0').style.height = String((document.getElementById('gridComponent0').innerHeight - 40) + 'px')
     }
 }
 </script>
