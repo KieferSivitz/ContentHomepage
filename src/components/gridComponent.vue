@@ -83,7 +83,7 @@ export default {
 <style>
 
 .gridItems {
-    background: white;
+    background: #555;
 }
 
 </style>
