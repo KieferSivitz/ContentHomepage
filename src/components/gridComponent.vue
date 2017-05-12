@@ -57,20 +57,21 @@ export default {
                 // I know this is the same as the event listener in the twitchComponent but
                 // I want to keep the components separate, the grid component deals with
                 // The resizing events of the grid items only.
+                let offset = 70
                 switch (i) {
                 case 'twitchComponent':
-                    let width = Number(newWPx) - 40
+                    let width = Number(newWPx) - offset
                     let height = width * (9 / 16)
 
                     if (height > Number(newHPx)) {
-                        height = Number(newHPx) - 40
+                        height = Number(newHPx) - offset
                     }
 
                     document.getElementById('twitchPlayer').width = width
                     document.getElementById('twitchPlayer').height = height
                     break;
                 case 'twitterComponent':
-                    //document.getElementById('twitter-widget-0').style.height = String((newHPx - 70) + 'px')
+                    // document.getElementById('twitter-widget-0').style.height = String((newHPx - offset) + 'px')
                     document.getElementById('twitter-widget-0').style.height = String((newHPx - 40) + 'px')
                     break;
                 default:

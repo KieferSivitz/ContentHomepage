@@ -44,7 +44,7 @@ export default {
                     },
                     document.getElementById('twitter-feed'),
                     {
-                        //height: (window.innerHeight * 0.54),
+                        // height: (window.innerHeight * 0.54),
                         height: (window.innerHeight * 0.6),
                         related: 'twitterdev,twitterapi'
                     }
