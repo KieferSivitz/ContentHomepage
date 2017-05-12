@@ -41,7 +41,7 @@ export default {
         // I know this is the same as the resizedEvent in the gridComponent but
         // I want to keep the components separate, the grid component deals with
         // The resizing events of the grid items only.
-        this.renderPlayer('RiotGames')
+        this.renderPlayer('vgbootcamp')
         document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
 
         window.addEventListener('resize', function () {
