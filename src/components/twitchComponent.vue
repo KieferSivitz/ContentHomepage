@@ -58,7 +58,7 @@ export default {
             document.getElementById('twitchPlayer').height = height
         })
 
-        // Listener for
+        // Listener for channel changing
         document.getElementById('twitchInput').addEventListener('keydown', function (e) {
             if (e.keyCode === 13) {
                 let text = e.target.value
