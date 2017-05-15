@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Social media aggregator focused on integrating streaming channels with communities",
   "author": "Kiefer Sivitz",
-  "homepage": "https://kiefersivitz.github.io/Upstairs/",
+  "homepage": "www.contenthomepage.com",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

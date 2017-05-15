@@ -2,7 +2,7 @@
     <div class="componentContainer">
         <div class="page-title">
             <h1>
-                Welcome to the Content Aggregator!
+                Welcome to the Content Homepage!
             </h1>
             <h3>
                 Currently combining Twitch and Twitter for Super Smash Brothers Melee!
@@ -27,7 +27,7 @@ export default {
     },
     data () {
         return {
-            msg: 'Welcome to the social media aggregator!'
+            msg: 'Welcome to the content homepage!'
 
         }
     }
