@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view>
+    </router-view>
   </div>
 </template>
 
@@ -24,6 +25,13 @@ html, body {
     padding: 0;
 }
 
+
+.page-title {
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+}
+
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -41,4 +49,6 @@ input {
     border-radius: 3px;
     background: #fff;
 }
+
+
 </style>
