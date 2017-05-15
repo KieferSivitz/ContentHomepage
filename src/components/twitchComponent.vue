@@ -1,6 +1,6 @@
 <template>
     <div class="twitchComponent">
-        <input type="text" id="twitchInput"> </input>
+        <span style="color: white;">Change the channel: &nbsp;</span> <input type="text" id="twitchInput"></input>
         <div id="streamWindow">
         </div>
     </div>
