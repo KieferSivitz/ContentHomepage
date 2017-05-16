@@ -50,8 +50,8 @@ export default {
             msg: 'Welcome to the social media aggregator!',
             layout: [
                 {'x': 0, 'y': 0, 'w': 3, 'h': 20, 'i': 'twitterComponent', 'id': 'gridComponent0'},
-                {'x': 3, 'y': 0, 'w': 9, 'h': 20, 'i': 'twitchComponent', 'id': 'gridComponent1'}
-                // {'x': 3, 'y': 0, 'w': 9, 'h': 30, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}
+                {'x': 3, 'y': 0, 'w': 9, 'h': 20, 'i': 'twitchComponent', 'id': 'gridComponent1'},
+                {'x': 3, 'y': 0, 'w': 9, 'h': 30, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}
             ]
         }
     },
