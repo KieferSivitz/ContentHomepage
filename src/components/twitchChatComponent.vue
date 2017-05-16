@@ -5,7 +5,7 @@
                 id="twitchChat"
                 src="https://www.twitch.tv/tradechat/chat"
                 height="640"
-                width="300"
+                width="250"
                 allowfullscreen="true">
         </iframe>
     </div>
