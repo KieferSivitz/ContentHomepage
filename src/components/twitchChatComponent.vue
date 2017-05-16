@@ -5,7 +5,7 @@
                 id="twitchChat"
                 src="https://www.twitch.tv/twitch_scar/chat"
                 height="640"
-                width="300"
+                width="480"
                 allowfullscreen="true">
         </iframe>
     </div>

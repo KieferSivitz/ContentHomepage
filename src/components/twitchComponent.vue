@@ -19,7 +19,7 @@ export default {
 
     methods: {
         renderPlayer: (channelID) => {
-            var windowWidth = (window.innerWidth * 0.68)
+            var windowWidth = (window.innerWidth * 0.47)
             var windowHeight = windowWidth * (9 / 16)
 
             if (windowHeight >= (20 * 30)) {
@@ -32,7 +32,7 @@ export default {
                 width: windowWidth,
                 height: windowHeight,
                 channel: channelID,
-                autoplay: false
+                autoplay: true
             }
 
             var player = new window.Twitch.Player(target, options)
@@ -42,7 +42,7 @@ export default {
     },
 
     mounted () {
-        var twitchPlayer = this.renderPlayer('vgbootcamp')
+        var twitchPlayer = this.renderPlayer('twitch_scar')
         document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
 
         // Listener for window resizing
