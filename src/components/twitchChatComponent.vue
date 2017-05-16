@@ -3,7 +3,7 @@
         <iframe frameborder="0"
                 scrolling="no"
                 id="twitchChat"
-                src="https://www.twitch.tv/twitch_scar/chat"
+                src="https://www.twitch.tv/tradechat/chat"
                 height="640"
                 width="300"
                 allowfullscreen="true">
@@ -26,6 +26,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .twitchChatComponent {
-    margin: 10px, 10px, 10px, 10px;
+    margin: 10px;
 }
 </style>

@@ -42,7 +42,7 @@ export default {
     },
 
     mounted () {
-        var twitchPlayer = this.renderPlayer('twitch_scar')
+        var twitchPlayer = this.renderPlayer('tradechat')
         document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
 
         // Listener for window resizing
