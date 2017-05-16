@@ -1,5 +1,5 @@
 <template>
-    <div id= "twitterComponent" class="twitterComponent">
+    <div id="twitterComponent" class="twitterComponent">
         <!--<input type="text" id="twitterInput"> </input>-->
         <div id="twitter-feed">
         </div>

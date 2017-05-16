@@ -48,17 +48,23 @@ export default {
     data () {
         return {
             msg: 'Welcome to the social media aggregator!',
-            layout: [
-                {'x': 0, 'y': 0, 'w': 3, 'h': 20, 'i': 'twitterComponent', 'id': 'gridComponent0'},
-                {'x': 3, 'y': 0, 'w': 6, 'h': 20, 'i': 'twitchComponent', 'id': 'gridComponent1'},
-                {'x': 9, 'y': 0, 'w': 3, 'h': 17, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}
-            ]
+            layout: (() => {
+                let tmpLayout = [
+                    {'x': 0, 'y': 0, 'w': 3, 'h': 20, 'i': 'twitterComponent', 'id': 'gridComponent0'},
+                    {'x': 3, 'y': 0, 'w': 6, 'h': 20, 'i': 'twitchComponent', 'id': 'gridComponent1'},
+                    {'x': 9, 'y': 0, 'w': 3, 'h': 17, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}
+                ]
+                if (localStorage.getItem('layout')) {
+                    return JSON.parse(localStorage.getItem('layout'))
+                }
+                return tmpLayout
+            })()
+
         }
     },
 
     methods: {
-        resizeWithContainer: function (i, newH, newW, newWPx, newHPx, element) { // eslint-disable-line
-            let offset = 80
+        resizeWithContainer: function (i, newH, newW, newWPx, newHPx, element, offset) { // eslint-disable-line
             let width = Number(newWPx) - offset
             let height = Number(newHPx) - offset
 
@@ -66,9 +72,8 @@ export default {
             document.getElementById(element).height = height
         },
 
-        resizeWithContainerWidescreen: function (i, newH, newW, newWPx, newHPx, element) { // eslint-disable-line
-            let offset = 70
-            let width = Number(newWPx) - offset
+        resizeWithContainerWidescreen: function (i, newH, newW, newWPx, newHPx, element, offset) { // eslint-disable-line
+            let width = Number(newWPx) - 20
             let height = width * (9 / 16)
 
             if (height > Number(newHPx) - offset) {
@@ -80,22 +85,29 @@ export default {
         },
 
         resizedEvent: function (i, newH, newW, newWPx, newHPx) {
-            // I know this is the same as the event listener in the twitchComponent but
-            // I want to keep the components separate, the grid component deals with
-            // The resizing events of the grid items only.
             switch (i) {
             case 'twitchComponent':
-                this.resizeWithContainerWidescreen(i, newH, newW, newWPx, newHPx, 'twitchPlayer')
+                this.storeItemProperties()
+                this.resizeWithContainerWidescreen(i, newH, newW, newWPx, newHPx, 'twitchPlayer', 70)
                 break;
+
             case 'twitterComponent':
                 document.getElementById('twitter-widget-0').style.height = String((newHPx - 70) + 'px')
                 break;
+
             case 'twitchChatComponent':
-                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchChat')
+                this.storeItemProperties()
+                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchChat', 20)
                 break;
+
             default:
-                // Resizing non twitch components logic goes here / in it's own case
+                break;
             }
+        },
+
+        storeItemProperties: function () {
+            let layoutSaved = this.layout
+            localStorage.setItem('layout', JSON.stringify(layoutSaved))
         }
     }
 

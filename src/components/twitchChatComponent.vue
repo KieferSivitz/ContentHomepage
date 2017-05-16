@@ -26,6 +26,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .twitchChatComponent {
-    padding: 10px, 10px, 10px, 10px;
+    margin: 10px, 10px, 10px, 10px;
 }
 </style>
