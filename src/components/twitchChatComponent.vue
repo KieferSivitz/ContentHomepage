@@ -3,7 +3,7 @@
         <iframe frameborder="0"
                 scrolling="no"
                 id="twitchChat"
-                src="https://www.twitch.tv/tradechat/chat"
+                src="https://www.twitch.tv/twitch_scar/chat"
                 height="640"
                 width="480"
                 allowfullscreen="true">

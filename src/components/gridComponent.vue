@@ -57,7 +57,7 @@ export default {
     },
 
     methods: {
-        resizeWithContainer: function (i, newH, newW, newWPx, newHPx) { // eslint-disable-line
+        resizeWithContainer: function (i, newH, newW, newWPx, newHPx, element) { // eslint-disable-line
             let offset = 70
             let width = Number(newWPx) - offset
             let height = width * (9 / 16)
@@ -66,8 +66,8 @@ export default {
                 height = Number(newHPx) - offset
             }
 
-            document.getElementById('twitchPlayer').width = width
-            document.getElementById('twitchPlayer').height = height
+            document.getElementById(element).width = width
+            document.getElementById(element).height = height
         },
 
         resizedEvent: function (i, newH, newW, newWPx, newHPx) {
@@ -76,10 +76,13 @@ export default {
             // The resizing events of the grid items only.
             switch (i) {
             case 'twitchComponent':
-                this.resizeWithContainer(i, newH, newW, newWPx, newHPx)
+                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchPlayer')
                 break;
             case 'twitterComponent':
                 document.getElementById('twitter-widget-0').style.height = String((newHPx - 70) + 'px')
+                break;
+            case 'twitchChatComponent':
+                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchChat')
                 break;
             default:
                 // Resizing non twitch components logic goes here / in it's own case
