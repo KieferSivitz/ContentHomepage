@@ -48,11 +48,12 @@ export default {
 
         // Listener for window resizing
         window.addEventListener('resize', function () {
-            let width = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - 40
+            let offset = 70
+            let width = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - offset
             let height = width * (9 / 16)
             let maxHeight = document.getElementById('gridComponent1').getBoundingClientRect().height
             if (height > maxHeight) {
-                height = maxHeight - 40
+                height = maxHeight - offset
             }
             document.getElementById('twitchPlayer').width = width
             document.getElementById('twitchPlayer').height = height
