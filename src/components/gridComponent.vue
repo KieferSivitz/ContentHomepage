@@ -50,14 +50,23 @@ export default {
             msg: 'Welcome to the social media aggregator!',
             layout: [
                 {'x': 0, 'y': 0, 'w': 3, 'h': 20, 'i': 'twitterComponent', 'id': 'gridComponent0'},
-                {'x': 3, 'y': 0, 'w': 9, 'h': 20, 'i': 'twitchComponent', 'id': 'gridComponent1'},
-                {'x': 3, 'y': 0, 'w': 9, 'h': 30, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}
+                {'x': 3, 'y': 0, 'w': 6, 'h': 20, 'i': 'twitchComponent', 'id': 'gridComponent1'},
+                {'x': 9, 'y': 0, 'w': 3, 'h': 17, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}
             ]
         }
     },
 
     methods: {
         resizeWithContainer: function (i, newH, newW, newWPx, newHPx, element) { // eslint-disable-line
+            let offset = 80
+            let width = Number(newWPx) - offset
+            let height = Number(newHPx) - offset
+
+            document.getElementById(element).width = width
+            document.getElementById(element).height = height
+        },
+
+        resizeWithContainerWidescreen: function (i, newH, newW, newWPx, newHPx, element) { // eslint-disable-line
             let offset = 70
             let width = Number(newWPx) - offset
             let height = width * (9 / 16)
@@ -76,7 +85,7 @@ export default {
             // The resizing events of the grid items only.
             switch (i) {
             case 'twitchComponent':
-                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchPlayer')
+                this.resizeWithContainerWidescreen(i, newH, newW, newWPx, newHPx, 'twitchPlayer')
                 break;
             case 'twitterComponent':
                 document.getElementById('twitter-widget-0').style.height = String((newHPx - 70) + 'px')

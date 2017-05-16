@@ -5,7 +5,7 @@
                 id="twitchChat"
                 src="https://www.twitch.tv/twitch_scar/chat"
                 height="640"
-                width="480"
+                width="300"
                 allowfullscreen="true">
         </iframe>
     </div>
@@ -20,14 +20,12 @@ export default {
             msg: 'Welcome to the social media aggregator!'
         }
     }
-
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.componentContainer {
-    display:  block;
+.twitchChatComponent {
+    padding: 10px, 10px, 10px, 10px;
 }
-
 </style>
