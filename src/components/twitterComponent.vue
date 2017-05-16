@@ -45,7 +45,7 @@ export default {
                     document.getElementById('twitter-feed'),
                     {
                         // height: (window.innerHeight * 0.54),
-                        height: (window.innerHeight * 0.6),
+                        height: document.getElementById('gridComponent0').getBoundingClientRect().height - 40,
                         related: 'twitterdev,twitterapi'
                     }
                 )

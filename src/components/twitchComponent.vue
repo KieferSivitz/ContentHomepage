@@ -33,21 +33,9 @@ export default {
 
             var player = new window.Twitch.Player(target, options)
             return player;
-        }
+        },
 
-    },
-
-    mounted () {
-        // I know this is the same as the resizedEvent in the gridComponent but
-        // I want to keep the components separate, the grid component deals with
-        // The resizing events of the grid items only.
-
-        var twitchComponent = this
-        var twitchPlayer = twitchComponent.renderPlayer('vgbootcamp')
-        document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
-
-        // Listener for window resizing
-        window.addEventListener('resize', function () {
+        resizedEvent: function (i, newH, newW, newWPx, newHPx) {
             let offset = 70
             let width = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - offset
             let height = width * (9 / 16)
@@ -57,6 +45,17 @@ export default {
             }
             document.getElementById('twitchPlayer').width = width
             document.getElementById('twitchPlayer').height = height
+        }
+
+    },
+
+    mounted () {
+        var twitchPlayer = this.renderPlayer('vgbootcamp')
+        document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
+
+        // Listener for window resizing
+        window.addEventListener('resize', function () {
+            this.resizedEvent()
         })
 
         // Listener for channel changing
