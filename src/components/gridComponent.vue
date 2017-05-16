@@ -52,31 +52,37 @@ export default {
                 {'x': 0, 'y': 0, 'w': 3, 'h': 20, 'i': 'twitterComponent', 'id': 'gridComponent0'},
                 {'x': 3, 'y': 0, 'w': 9, 'h': 20, 'i': 'twitchComponent', 'id': 'gridComponent1'}
                 // {'x': 3, 'y': 0, 'w': 9, 'h': 30, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}
-            ],
-            resizedEvent: function (i, newH, newW, newWPx, newHPx) {
-                // I know this is the same as the event listener in the twitchComponent but
-                // I want to keep the components separate, the grid component deals with
-                // The resizing events of the grid items only.
-                let offset = 70
-                switch (i) {
-                case 'twitchComponent':
-                    let width = Number(newWPx) - offset
-                    let height = width * (9 / 16)
+            ]
+        }
+    },
 
-                    if (height > Number(newHPx)) {
-                        height = Number(newHPx) - offset
-                    }
+    methods: {
+        resizeWithContainer: function (i, newH, newW, newWPx, newHPx) { // eslint-disable-line
+            let offset = 70
+            let width = Number(newWPx) - offset
+            let height = width * (9 / 16)
 
-                    document.getElementById('twitchPlayer').width = width
-                    document.getElementById('twitchPlayer').height = height
-                    break;
-                case 'twitterComponent':
-                    // document.getElementById('twitter-widget-0').style.height = String((newHPx - offset) + 'px')
-                    document.getElementById('twitter-widget-0').style.height = String((newHPx - 40) + 'px')
-                    break;
-                default:
-                    // Resizing non twitch components logic goes here / in it's own case
-                }
+            if (height > Number(newHPx) - offset) {
+                height = Number(newHPx) - offset
+            }
+
+            document.getElementById('twitchPlayer').width = width
+            document.getElementById('twitchPlayer').height = height
+        },
+
+        resizedEvent: function (i, newH, newW, newWPx, newHPx) {
+            // I know this is the same as the event listener in the twitchComponent but
+            // I want to keep the components separate, the grid component deals with
+            // The resizing events of the grid items only.
+            switch (i) {
+            case 'twitchComponent':
+                this.resizeWithContainer(i, newH, newW, newWPx, newHPx)
+                break;
+            case 'twitterComponent':
+                document.getElementById('twitter-widget-0').style.height = String((newHPx - 70) + 'px')
+                break;
+            default:
+                // Resizing non twitch components logic goes here / in it's own case
             }
         }
     }
