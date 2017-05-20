@@ -108,6 +108,13 @@ export default {
         storeItemProperties: function () {
             let layoutSaved = this.layout
             localStorage.setItem('layout', JSON.stringify(layoutSaved))
+        },
+
+        // In your component or mixin:
+        created () { // would work in 'ready', 'attached', etc.
+            window.addEventListener('load', () => {
+                console.log('Loaded')
+            })
         }
     }
 

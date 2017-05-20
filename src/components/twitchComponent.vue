@@ -19,12 +19,10 @@ export default {
 
     methods: {
         renderPlayer: (channelID) => {
-            var windowWidth = (window.innerWidth * 0.47)
-            var windowHeight = windowWidth * (9 / 16)
-
-            if (windowHeight >= (20 * 30)) {
-                windowHeight = 20 * 36
-            }
+            let heightOffset = 70
+            let widthOffset = 40
+            var windowWidth = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - widthOffset
+            var windowHeight = Number(document.getElementById('gridComponent1').getBoundingClientRect().height) - heightOffset
 
             var target = 'streamWindow'
 
@@ -42,28 +40,30 @@ export default {
     },
 
     mounted () {
-        var twitchPlayer = this.renderPlayer('tradechat')
-        document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
+        window.addEventListener('load', () => {
+            var twitchPlayer = this.renderPlayer('tradechat')
+            document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
 
-        // Listener for window resizing
-        window.addEventListener('resize', function () {
-            let offset = 70
-            let width = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - offset
-            let height = width * (9 / 16)
-            let maxHeight = document.getElementById('gridComponent1').getBoundingClientRect().height
-            if (height > (maxHeight - offset)) {
-                height = maxHeight - offset
-            }
-            document.getElementById('twitchPlayer').width = width
-            document.getElementById('twitchPlayer').height = height
-        })
+            // Listener for window resizing
+            window.addEventListener('resize', function () {
+                let offset = 70
+                let width = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - offset
+                let height = width * (9 / 16)
+                let maxHeight = document.getElementById('gridComponent1').getBoundingClientRect().height
+                if (height > (maxHeight - offset)) {
+                    height = maxHeight - offset
+                }
+                document.getElementById('twitchPlayer').width = width
+                document.getElementById('twitchPlayer').height = height
+            })
 
-        // Listener for channel changing
-        document.getElementById('twitchInput').addEventListener('keydown', function (e) {
-            if (e.keyCode === 13) {
-                let text = e.target.value
-                twitchPlayer.setChannel(text)
-            }
+            // Listener for channel changing
+            document.getElementById('twitchInput').addEventListener('keydown', function (e) {
+                if (e.keyCode === 13) {
+                    let text = e.target.value
+                    twitchPlayer.setChannel(text)
+                }
+            })
         })
     }
 }
