@@ -17,6 +17,9 @@ module.exports = {
             .waitForElementVisible('#gridComponent0', 1000)
             .waitForElementVisible('#gridComponent1', 1000)
             .waitForElementVisible('#gridComponent2', 1000)
+            .waitForElementVisible('#twitchPlayer', 1000)
+            .waitForElementVisible('#twitchChat', 1000)
+            .waitForElementVisible('#twitter-widget-0', 1000)
             .end();
     }
 }
