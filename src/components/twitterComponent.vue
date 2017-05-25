@@ -38,7 +38,7 @@ export default {
             twttr.ready(function (twttr) { // eslint-disable-line
                 window.twttr.widgets.createTimeline(
                     {
-                        sourceType: 'list',
+                        sourceType: 'profile',
                         ownerScreenName: 'KieferSivitz',
                         slug: 'Smash'
                     },
