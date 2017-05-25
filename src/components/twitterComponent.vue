@@ -14,9 +14,6 @@ export default {
             msg: 'Welcome to twitter!'
         }
     },
-
-
-
     beforeMount () {
         window.twttr = (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; // eslint-disable-line
@@ -38,7 +35,7 @@ export default {
             twttr.ready(function (twttr) { // eslint-disable-line
                 window.twttr.widgets.createTimeline(
                     {
-                        sourceType: 'profile',
+                        sourceType: 'list',
                         ownerScreenName: 'KieferSivitz',
                         slug: 'Smash'
                     },
