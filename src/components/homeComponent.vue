@@ -27,7 +27,7 @@ export default {
     },
     data () {
         return {
-            msg: 'Welcome to the content homepage!'
+            msg: 'Welcome to your Content Homepage!'
 
         }
     }
