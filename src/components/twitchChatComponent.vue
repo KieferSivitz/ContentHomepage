@@ -1,5 +1,6 @@
 <template>
     <div class="twitchChatComponent">
+        <span style="color: white;">Change the chat channel: </span><input type="text" id="twitchChatInput"></input>
         <iframe frameborder="0"
                 scrolling="no"
                 id="twitchChat"
@@ -33,12 +34,20 @@ export default {
         window.addEventListener('load', () => {
             let chat = document.getElementById('twitchChat')
             let container = document.getElementById('gridComponent2').getBoundingClientRect()
-            let newheight = Number(container.height) - 40;
+            let newheight = Number(container.height) - 70;
             let newwidth = Number(container.width) - 40
 
             chat.height = newheight
             chat.width = newwidth
             chat.style.visibility = 'visible'
+        })
+
+        // Listener for channel changing
+        document.getElementById('twitchChatInput').addEventListener('keydown', function (e) {
+            if (e.keyCode === 13) {
+                let text = e.target.value
+                document.getElementById('twitchChat').setAttribute('src', 'https://www.twitch.tv/' + text + '/chat')
+            }
         })
     }
 }

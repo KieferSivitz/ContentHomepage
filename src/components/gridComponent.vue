@@ -64,20 +64,20 @@ export default {
     },
 
     methods: {
-        resizeWithContainer: function (i, newH, newW, newWPx, newHPx, element, offset) { // eslint-disable-line
-            let width = Number(newWPx) - offset
-            let height = Number(newHPx) - offset
+        resizeWithContainer: function (i, newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
+            let width = Number(newWPx) - offsetW
+            let height = Number(newHPx) - offsetH
 
             document.getElementById(element).width = width
             document.getElementById(element).height = height
         },
 
-        resizeWithContainerWidescreen: function (i, newH, newW, newWPx, newHPx, element, offset) { // eslint-disable-line
+        resizeWithContainerWidescreen: function (i, newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
             let width = Number(newWPx) - 20
             let height = width * (9 / 16)
 
-            if (height > Number(newHPx) - offset) {
-                height = Number(newHPx) - offset
+            if (height > Number(newHPx) - offsetH) {
+                height = Number(newHPx) - offsetH
             }
 
             document.getElementById(element).width = width
@@ -88,7 +88,7 @@ export default {
             switch (i) {
             case 'twitchComponent':
                 this.storeItemProperties()
-                this.resizeWithContainerWidescreen(i, newH, newW, newWPx, newHPx, 'twitchPlayer', 70)
+                this.resizeWithContainerWidescreen(i, newH, newW, newWPx, newHPx, 'twitchPlayer', 70, 70)
                 break;
 
             case 'twitterComponent':
@@ -97,7 +97,7 @@ export default {
 
             case 'twitchChatComponent':
                 this.storeItemProperties()
-                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchChat', 40)
+                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchChat', 40, 70)
                 break;
 
             default:
