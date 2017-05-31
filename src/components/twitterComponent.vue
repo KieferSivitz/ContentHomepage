@@ -1,6 +1,6 @@
 <template>
     <div id="twitterComponent" class="twitterComponent">
-        <!--<input type="text" id="twitterInput"> </input>-->
+        <!--<span style="color: white;">Use your own twitter list!: </span><input type="text" id="twitterInput"></input>-->
         <div id="twitter-feed">
         </div>
     </div>
@@ -14,6 +14,29 @@ export default {
             msg: 'Welcome to twitter!'
         }
     },
+
+    methods: {
+        createTimeline: (twitterUser, listName) => {
+            console.log('ayy')
+            document.getElementById('twitter-wjs').addEventListener('load', function () {
+                twttr.ready(function (twttr) { // eslint-disable-line
+                    window.twttr.widgets.createTimeline(
+                        {
+                            sourceType: 'list',
+                            ownerScreenName: twitterUser,
+                            slug: listName
+                        },
+                        document.getElementById('twitter-feed'),
+                        {
+                            // height: (window.innerHeight * 0.54),
+                            height: document.getElementById('gridComponent0').getBoundingClientRect().height - 70
+                        }
+                    )
+                })
+            })
+        }
+    },
+
     beforeMount () {
         window.twttr = (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; // eslint-disable-line
@@ -31,22 +54,18 @@ export default {
             return t;
         }(document, 'script', 'twitter-wjs'));
 
-        document.getElementById('twitter-wjs').addEventListener('load', function () {
-            twttr.ready(function (twttr) { // eslint-disable-line
-                window.twttr.widgets.createTimeline(
-                    {
-                        sourceType: 'list',
-                        ownerScreenName: 'KieferSivitz',
-                        slug: 'Smash'
-                    },
-                    document.getElementById('twitter-feed'),
-                    {
-                        // height: (window.innerHeight * 0.54),
-                        height: document.getElementById('gridComponent0').getBoundingClientRect().height - 40
-                    }
-                )
-            })
-        })
+        this.createTimeline('KieferSivitz', 'Smash')
+    },
+
+    mounted () {
+        // Listener for channel changing
+        // let self = this;
+        // document.getElementById('twitterInput').addEventListener('keydown', function (e) {
+        //     if (e.keyCode === 13) {
+        //         let text = e.target.value
+        //         self.createTimeline('KieferSivitz', text) // eslint-disable-line
+        //     }
+        // })
     }
 }
 </script>
