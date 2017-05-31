@@ -1,6 +1,6 @@
 <template>
     <div id="twitterComponent" class="twitterComponent">
-        <!--<span style="color: white;">Use your own twitter list!: </span><input type="text" id="twitterInput"></input>-->
+        <span style="color: white;">Use your own twitter list!: </span><input type="text" id="twitterInput"></input>
         <div id="twitter-feed">
         </div>
     </div>
@@ -16,8 +16,23 @@ export default {
     },
 
     methods: {
+        createTwitterFeed: (twitterUser, listName) => {
+            document.querySelector('iframe[id^="twitter-widget-"]').remove()
+            window.twttr.widgets.createTimeline(
+                {
+                    sourceType: 'list',
+                    ownerScreenName: twitterUser,
+                    slug: listName
+                },
+                document.getElementById('twitter-feed'),
+                {
+                    theme: 'dark',
+                    // height: (window.innerHeight * 0.54),
+                    height: document.getElementById('gridComponent0').getBoundingClientRect().height - 70
+                }
+            )
+        },
         createTimeline: (twitterUser, listName) => {
-            console.log('ayy')
             document.getElementById('twitter-wjs').addEventListener('load', function () {
                 twttr.ready(function (twttr) { // eslint-disable-line
                     window.twttr.widgets.createTimeline(
@@ -28,6 +43,7 @@ export default {
                         },
                         document.getElementById('twitter-feed'),
                         {
+                            theme: 'dark',
                             // height: (window.innerHeight * 0.54),
                             height: document.getElementById('gridComponent0').getBoundingClientRect().height - 70
                         }
@@ -58,14 +74,15 @@ export default {
     },
 
     mounted () {
+        let self = this;
         // Listener for channel changing
-        // let self = this;
-        // document.getElementById('twitterInput').addEventListener('keydown', function (e) {
-        //     if (e.keyCode === 13) {
-        //         let text = e.target.value
-        //         self.createTimeline('KieferSivitz', text) // eslint-disable-line
-        //     }
-        // })
+        document.getElementById('twitterInput').addEventListener('keydown', function (e) {
+            if (e.keyCode === 13) {
+                let text = e.target.value
+                // let twitterFeed = document.getElementById('twitter-widget-0')
+                self.createTwitterFeed('KieferSivitz', text)
+            }
+        })
     }
 }
 </script>

@@ -92,7 +92,7 @@ export default {
                 break;
 
             case 'twitterComponent':
-                document.getElementById('twitter-widget-0').style.height = String((newHPx - 70) + 'px')
+                document.querySelector('iframe[id^="twitter-widget-"]').style.height = String((newHPx - 70) + 'px')
                 break;
 
             case 'twitchChatComponent':
