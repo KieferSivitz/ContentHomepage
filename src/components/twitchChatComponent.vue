@@ -1,6 +1,6 @@
 <template>
     <div class="twitchChatComponent">
-        <span style="color: white;">Change the chat channel: </span><input type="text" id="twitchChatInput"></input>
+        <span class="input-descriptor" style="color: white;">Change the chat channel: </span><input type="text" id="twitchChatInput"></input>
         <iframe frameborder="0"
                 scrolling="no"
                 id="twitchChat"
@@ -34,7 +34,7 @@ export default {
         window.addEventListener('load', () => {
             let chat = document.getElementById('twitchChat')
             let container = document.getElementById('gridComponent2').getBoundingClientRect()
-            let newheight = Number(container.height) - 70;
+            let newheight = Number(container.height) - 100;
             let newwidth = Number(container.width) - 40
 
             chat.height = newheight
@@ -57,5 +57,9 @@ export default {
 <style>
 .twitchChatComponent {
     margin: 10px;
+}
+
+.input-descriptor {
+    line-height: 1.6em;
 }
 </style>

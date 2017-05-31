@@ -40,4 +40,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 
+body {
+    padding-bottom: 0.2em;
+}
+
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div id="twitterComponent" class="twitterComponent">
-        <span style="color: white;">Use your own twitter list!: </span><input type="text" id="twitterInput"></input>
+        <span class="input-descriptor" style="color: white;">Use your own twitter list!: </span><input type="text" id="twitterInput"></input>
         <div id="twitter-feed">
         </div>
     </div>
