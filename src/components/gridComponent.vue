@@ -98,7 +98,7 @@ export default {
 
             case 'twitchChatComponent':
                 this.storeItemProperties()
-                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchChat', 40, 100)
+                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchChat', 20, 100)
                 break;
 
             default:

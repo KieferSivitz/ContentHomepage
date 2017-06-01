@@ -31,7 +31,7 @@ export default {
     },
 
     mounted () {
-        resizeItem.methods.hello('twitchChat', 'gridComponent2', 100, 40)
+        resizeItem.methods.hello('twitchChat', 'gridComponent2', 100, 20)
         inputListener.methods.createListener('twitchChatInput')
     }
 }

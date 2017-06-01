@@ -20,7 +20,7 @@ export default {
     methods: {
         renderPlayer: (channelID) => {
             let heightOffset = 70
-            let widthOffset = 40
+            let widthOffset = 20
             var windowWidth = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - widthOffset
             var windowHeight = Number(document.getElementById('gridComponent1').getBoundingClientRect().height) - heightOffset
 
