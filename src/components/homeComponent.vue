@@ -2,11 +2,8 @@
     <div class="componentContainer">
         <div class="page-title">
             <h1>
-                Welcome to the Content Homepage!
+                Welcome to your Content Homepage!
             </h1>
-            <h3>
-                Currently combining Twitch and Twitter for Super Smash Brothers Melee!
-            </h3>
         </div>
         <gridComponent />
         <div class="page-title">
