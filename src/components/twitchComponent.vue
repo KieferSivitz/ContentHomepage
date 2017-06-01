@@ -30,7 +30,7 @@ export default {
                 width: windowWidth,
                 height: windowHeight,
                 channel: channelID,
-                autoplay: true
+                autoplay: false
             }
 
             var player = new window.Twitch.Player(target, options)

@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'twitterComponent',
     data () {
@@ -27,7 +28,7 @@ export default {
                 document.getElementById('twitter-feed'),
                 {
                     theme: 'dark',
-                    // height: (window.innerHeight * 0.54),
+                    dnt: true,
                     height: document.getElementById('gridComponent0').getBoundingClientRect().height - 70
                 }
             )

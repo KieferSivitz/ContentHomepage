@@ -14,9 +14,12 @@
 </template>
 
 <script>
+import inputListener from '../mixins/inputListener.js'
+import resizeItem from '../mixins/resizeItem.js'
 
 export default {
     name: 'twitchChatComponent',
+    mixins: [resizeItem, inputListener],
     data () {
         return {
             msg: 'Welcome to the social media aggregator!',
@@ -27,28 +30,9 @@ export default {
         }
     },
 
-    methods: {
-    },
-
     mounted () {
-        window.addEventListener('load', () => {
-            let chat = document.getElementById('twitchChat')
-            let container = document.getElementById('gridComponent2').getBoundingClientRect()
-            let newheight = Number(container.height) - 100;
-            let newwidth = Number(container.width) - 40
-
-            chat.height = newheight
-            chat.width = newwidth
-            chat.style.visibility = 'visible'
-        })
-
-        // Listener for channel changing
-        document.getElementById('twitchChatInput').addEventListener('keydown', function (e) {
-            if (e.keyCode === 13) {
-                let text = e.target.value
-                document.getElementById('twitchChat').setAttribute('src', 'https://www.twitch.tv/' + text + '/chat')
-            }
-        })
+        resizeItem.methods.hello('twitchChat', 'gridComponent2', 100, 40)
+        inputListener.methods.createListener('twitchChatInput')
     }
 }
 </script>

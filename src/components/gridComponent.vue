@@ -85,6 +85,7 @@ export default {
         },
 
         resizedEvent: function (i, newH, newW, newWPx, newHPx) {
+            // TODO: Calculate input height and stuff here
             switch (i) {
             case 'twitchComponent':
                 this.storeItemProperties()
@@ -108,13 +109,6 @@ export default {
         storeItemProperties: function () {
             let layoutSaved = this.layout
             localStorage.setItem('layout', JSON.stringify(layoutSaved))
-        },
-
-        // In your component or mixin:
-        created () { // would work in 'ready', 'attached', etc.
-            window.addEventListener('load', () => {
-                console.log('Loaded')
-            })
         }
     }
 
