@@ -51,8 +51,9 @@ export default {
             layout: (() => {
                 let tmpLayout = [
                     {'x': 0, 'y': 0, 'w': 3, 'h': 20, 'i': 'twitterComponent', 'id': 'gridComponent0'},
-                    {'x': 3, 'y': 0, 'w': 9, 'h': 12, 'i': 'twitchComponent', 'id': 'gridComponent1'},
-                    {'x': 3, 'y': 12, 'w': 9, 'h': 8, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}
+                    {'x': 6, 'y': 0, 'w': 6, 'h': 12, 'i': 'twitchComponent', 'id': 'gridComponent1'},
+                    {'x': 3, 'y': 0, 'w': 3, 'h': 20, 'i': 'twitchChatComponent', 'id': 'gridComponent2'},
+                    {'x': 6, 'y': 12, 'w': 6, 'h': 6, 'i': 'adsenseComponent', 'id': 'gridComponent3'}
                 ]
                 if (localStorage.getItem('layout')) {
                     return JSON.parse(localStorage.getItem('layout'))
