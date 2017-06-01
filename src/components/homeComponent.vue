@@ -11,7 +11,7 @@
         <gridComponent />
         <div class="page-title">
             <h5>
-                More sites and functionality coming in the near future! (Twitch chat, personalized twitter feed, twitch channel options)
+                More features coming in the near future!
             </h5>
         </div>
     </div>

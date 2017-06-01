@@ -32,6 +32,7 @@ import twitterComponent from './twitterComponent'
 import twitchComponent from './twitchComponent'
 import VueGridLayout from 'vue-grid-layout'
 import twitchChatComponent from './twitchChatComponent'
+import adsenseComponent from './adsenseComponent'
 
 var GridLayout = VueGridLayout.GridLayout;
 var GridItem = VueGridLayout.GridItem;
@@ -43,7 +44,8 @@ export default {
         twitchComponent,
         GridLayout,
         GridItem,
-        twitchChatComponent
+        twitchChatComponent,
+        adsenseComponent
     },
     data () {
         return {

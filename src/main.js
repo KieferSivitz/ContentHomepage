@@ -6,6 +6,7 @@ import twitterComponent from './components/twitterComponent'
 import twitchComponent from './components/twitchComponent'
 import gridComponent from './components/gridComponent'
 import twitchChatComponent from './components/twitchChatComponent'
+import adsenseComponent from './components/adsenseComponent'
 import router from './router'
 
 Vue.config.productionTip = false
@@ -44,6 +45,15 @@ Vue.component({
     template: '<twitchChatComponent/>',
     components: {
         'twitchChatComponent': twitchChatComponent
+    }
+})
+
+Vue.component({
+    el: '#adsenseComponent',
+    router,
+    template: '<adsenseComponent/>',
+    components: {
+        'adsenseComponent': adsenseComponent
     }
 })
 
