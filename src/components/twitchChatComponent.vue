@@ -1,10 +1,10 @@
 <template>
     <div class="twitchChatComponent">
         <span class="input-descriptor" style="color: white;">Change the chat channel: </span><input type="text" id="twitchChatInput"></input>
-        <iframe frameborder="0"
+        <iframe v-bind:src="twitchSource"
+                frameborder="0"
                 scrolling="no"
                 id="twitchChat"
-                src="https://www.twitch.tv/tradechat/chat"
                 :width="props.width"
                 :height="props.height"
                 allowfullscreen="true"
@@ -17,12 +17,14 @@
 import inputListener from '../mixins/inputListener.js'
 import resizeItem from '../mixins/resizeItem.js'
 
+
 export default {
     name: 'twitchChatComponent',
     mixins: [resizeItem, inputListener],
     data () {
         return {
             msg: 'Welcome to the social media aggregator!',
+            twitchSource: 'https://www.twitch.tv/' + localStorage.getItem('twitchChatChannel') + '/chat',
             props: {
                 width: 40,
                 height: 40
@@ -32,7 +34,7 @@ export default {
 
     mounted () {
         resizeItem.methods.hello('twitchChat', 'gridComponent2', 100, 20)
-        inputListener.methods.createListener('twitchChatInput')
+        inputListener.methods.createListener('twitchChatInput', 'twitchChatChannel')
     }
 }
 </script>

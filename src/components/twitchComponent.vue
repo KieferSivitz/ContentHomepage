@@ -41,7 +41,8 @@ export default {
 
     mounted () {
         window.addEventListener('load', () => {
-            var twitchPlayer = this.renderPlayer('tradechat')
+            let channelID = localStorage.getItem('twitchChatChannel') || 'vgbootcamp'
+            var twitchPlayer = this.renderPlayer(channelID)
             document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
 
             // Listener for window resizing
@@ -62,6 +63,11 @@ export default {
             document.getElementById('twitchInput').addEventListener('keydown', function (e) {
                 if (e.keyCode === 13) {
                     let text = e.target.value
+                    localStorage.setItem('twitchChannel', text)
+                    if (true) {  // eslint-disable-line
+                        // TODO: Check if user wants these linked
+                        localStorage.setItem('twitchChatChannel', text)
+                    }
                     twitchPlayer.setChannel(text)
                 }
             })
