@@ -96,12 +96,12 @@ export default {
                 break;
 
             case 'twitterComponent':
-                document.querySelector('iframe[id^="twitter-widget-"]').style.height = String((newHPx - 70) + 'px')
+                document.querySelector('iframe[id^="twitter-widget-"]').style.height = String((newHPx - 100) + 'px')
                 break;
 
             case 'twitchChatComponent':
                 this.storeItemProperties()
-                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchChat', 20, 100)
+                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchChat', 20, 75)
                 break;
 
             default:

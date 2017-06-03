@@ -1,6 +1,9 @@
 <template>
     <div id="twitterComponent" class="twitterComponent">
-        <span class="input-descriptor" style="color: white;">Use your own twitter list!: </span><input type="text" id="twitterInput"></input>
+        <span class="input-descriptor" style="color: white;">Use your own twitter list!: </span>
+        <br />
+        <input type="text" id="twitterUserInput" value="Twitter Username"></input>
+        <input type="text" id="twitterListInput" value="Twitter List"></input>
         <div id="twitter-feed">
         </div>
     </div>
@@ -29,7 +32,7 @@ export default {
                 {
                     theme: 'dark',
                     dnt: true,
-                    height: document.getElementById('gridComponent0').getBoundingClientRect().height - 70
+                    height: document.getElementById('gridComponent0').getBoundingClientRect().height - 100
                 }
             )
         },
@@ -46,7 +49,7 @@ export default {
                         {
                             theme: 'dark',
                             // height: (window.innerHeight * 0.54),
-                            height: document.getElementById('gridComponent0').getBoundingClientRect().height - 70
+                            height: document.getElementById('gridComponent0').getBoundingClientRect().height - 100
                         }
                     )
                 })
@@ -55,6 +58,13 @@ export default {
     },
 
     beforeMount () {
+        if (!localStorage.getItem('twitterUser')) {
+            localStorage.setItem('twitterUser', 'KieferSivitz')
+        }
+        if (!localStorage.getItem('twitterList')) {
+            localStorage.setItem('twitterList', 'Smash')
+        }
+
         window.twttr = (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; // eslint-disable-line
             if (d.getElementById(id)) return t;
@@ -71,17 +81,25 @@ export default {
             return t;
         }(document, 'script', 'twitter-wjs'));
 
-        this.createTimeline('KieferSivitz', 'Smash')
+        this.createTimeline(localStorage.getItem('twitterUser'), localStorage.getItem('twitterList'))
     },
 
     mounted () {
         let self = this;
-        // Listener for channel changing
-        document.getElementById('twitterInput').addEventListener('keydown', function (e) {
+        // Listener for user changing
+        document.getElementById('twitterUserInput').addEventListener('keydown', function (e) {
             if (e.keyCode === 13) {
                 let text = e.target.value
-                // let twitterFeed = document.getElementById('twitter-widget-0')
-                self.createTwitterFeed('KieferSivitz', text)
+                self.createTwitterFeed(text, localStorage.getItem('twitterList'))
+                localStorage.setItem('twitterUser', text)
+            }
+        })
+        // Listener for list changing
+        document.getElementById('twitterListInput').addEventListener('keydown', function (e) {
+            if (e.keyCode === 13) {
+                let text = e.target.value
+                self.createTwitterFeed(localStorage.getItem('twitterUser'), text)
+                localStorage.setItem('twitterList', text)
             }
         })
     }
