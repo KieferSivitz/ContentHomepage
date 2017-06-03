@@ -14,6 +14,16 @@ export default {
                 root.width = newwidth
                 root.style.visibility = 'visible'
             })
+
+            window.addEventListener('resize', () => {
+                let root = document.getElementById(rootElement)
+                let container = document.getElementById(gridElement).getBoundingClientRect()
+                let newheight = Number(container.height) - heightPadding;
+                let newwidth = Number(container.width) - widthPadding
+
+                root.height = newheight
+                root.width = newwidth
+            })
         }
     }
 }
