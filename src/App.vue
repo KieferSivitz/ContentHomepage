@@ -29,12 +29,14 @@ export default {
 
 <style>
 html {
+    background-color: #334D5C;
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
 body {
+    background-color: #334D5C;
     margin: 0;
     padding: 0;
 
