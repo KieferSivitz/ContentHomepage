@@ -64,10 +64,6 @@ export default {
                 if (e.keyCode === 13) {
                     let text = e.target.value
                     localStorage.setItem('twitchChannel', text)
-                    if (true) {  // eslint-disable-line
-                        // TODO: Check if user wants these linked
-                        localStorage.setItem('twitchChatChannel', text)
-                    }
                     twitchPlayer.setChannel(text)
                 }
             })

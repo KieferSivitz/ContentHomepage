@@ -1,5 +1,14 @@
 <template>
   <div id="app">
+      <div id="navbar">
+          <ul>
+            <li><a href="#" class="active">Content Homepage</a></li>
+            <li><a href="#">Smash</a></li>
+            <li><a href="#">LoL</a></li>
+            <li><a href="#">DotA</a></li>
+            <li style="float:right"><a href="#">About</a></li>
+        </ul>
+      </div>
     <router-view>
     </router-view>
   </div>
@@ -23,13 +32,11 @@ html {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #2c3e50;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: #2c3e50;
 
 }
 
@@ -46,8 +53,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     height: 100%;
-    color: #2c3e50;
-    background-color: #2c3e50;
+    background-color: #334D5C;
 }
 input {
     text-align: center;
@@ -57,6 +63,33 @@ input {
     border-radius: 3px;
     background: #fff;
 }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #45B29D;
+}
 
+li {
+    float: left;
+}
 
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+.active {
+    background-color: #334D5C;
+}
 </style>

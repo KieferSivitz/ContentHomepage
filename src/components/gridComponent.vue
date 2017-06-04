@@ -122,7 +122,8 @@ export default {
 <style>
 
 .gridItems {
-    background: #555;
+    background: #4A484C;
+    border-radius: 5px
 }
 
 </style>

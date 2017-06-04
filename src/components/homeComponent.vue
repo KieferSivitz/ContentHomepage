@@ -1,9 +1,6 @@
 <template>
     <div class="componentContainer">
         <div class="page-title">
-            <h1>
-                Welcome to your Content Homepage!
-            </h1>
         </div>
         <gridComponent />
         <div class="page-title">
