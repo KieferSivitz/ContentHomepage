@@ -2,10 +2,15 @@
   <div id="app">
       <div id="navbar">
           <ul>
-            <li><a href="#" class="active">Content Homepage</a></li>
-            <li><a href="#">Smash</a></li>
-            <li><a href="#">LoL</a></li>
+            <li><a href="#" class="active" id="icon"><img src="../img/icon.png"></img></a></li>
+            <li><a href="#">CS:GO</a></li>
             <li><a href="#">DotA</a></li>
+            <li><a href="#">Hearthstone</a></li>
+            <li><a href="#">LoL</a></li>
+            <li><a href="#">Overwatch</a></li>
+            <li><a href="#">Smash</a></li>
+            <li><a href="#">Starcraft</a></li>
+            <li><a href="#">Custom</a></li>
             <li style="float:right"><a href="#">About</a></li>
         </ul>
       </div>
@@ -57,6 +62,7 @@ body {
     height: 100%;
     background-color: #334D5C;
 }
+
 input {
     text-align: center;
     margin-bottom: 10px;
@@ -65,6 +71,8 @@ input {
     border-radius: 3px;
     background: #fff;
 }
+
+/* N A V B A R */
 ul {
     list-style-type: none;
     margin: 0;
@@ -93,5 +101,16 @@ li a:hover {
 
 .active {
     background-color: #334D5C;
+}
+
+#icon {
+    height: 18px;
+    width: 18px;
+}
+
+#icon img {
+    position: absolute;
+    left: 10px;
+    top: 10px;
 }
 </style>
