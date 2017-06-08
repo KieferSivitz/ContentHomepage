@@ -8,3 +8,6 @@ This project began because I wanted to have a clean interface to have twitter an
 
 The current vision for the site is to have many different community hubs playing top streams for each and twitter lists curated for each community.
 Additionally I would like to integrate brackets or other such relevant information in the near future.
+
+
+![Site preview](./img/preview.PNG "Logo Title Text 1")
