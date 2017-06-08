@@ -8,39 +8,12 @@ import gridComponent from './components/gridComponent'
 import twitchChatComponent from './components/twitchChatComponent'
 import adsenseComponent from './components/adsenseComponent'
 import router from './router'
-import Vuex from 'vuex'
-
-// Vuex State Management
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
-    // State variables
-    state: {
-        count: 0
-    },
-    // State modification functions, behave like getters and setters would, accessing essentially private variables
-    mutations: {
-        increment (state) {
-            state.count++
-        },
-        decrement (state) {
-            state.count--
-        }
-    }
-})
-
-store.commit('increment')
-
-store.commit('decrement')
-// End of Vuex Code
-
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
-    store,
     router,
     template: '<App/>',
     components: {
