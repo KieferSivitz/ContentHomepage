@@ -96,6 +96,7 @@ export default {
                 break;
 
             case 'twitterComponent':
+                this.storeItemProperties()
                 document.querySelector('iframe[id^="twitter-widget-"]').style.height = String((newHPx - 100) + 'px')
                 break;
 
