@@ -102,8 +102,6 @@ export default {
                 localStorage.setItem('twitterList', text)
             }
         })
-
-        console.log(this.$store.state.count)
     }
 }
 </script>

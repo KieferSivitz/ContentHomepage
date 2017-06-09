@@ -51,12 +51,7 @@ export default {
         return {
             msg: 'Welcome to the social media aggregator!',
             layout: (() => {
-                let tmpLayout = [
-                    {'x': 0, 'y': 0, 'w': 3, 'h': 20, 'i': 'twitterComponent', 'id': 'gridComponent0'},
-                    {'x': 6, 'y': 0, 'w': 6, 'h': 12, 'i': 'twitchComponent', 'id': 'gridComponent1'},
-                    {'x': 3, 'y': 0, 'w': 3, 'h': 20, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}
-                    // {'x': 6, 'y': 12, 'w': 6, 'h': 6, 'i': 'adsenseComponent', 'id': 'gridComponent3'}
-                ]
+                let tmpLayout = this.$store.state.gridLayout
                 if (localStorage.getItem('layout')) {
                     return JSON.parse(localStorage.getItem('layout'))
                 }
@@ -96,6 +91,7 @@ export default {
                 break;
 
             case 'twitterComponent':
+                this.storeItemProperties()
                 document.querySelector('iframe[id^="twitter-widget-"]').style.height = String((newHPx - 100) + 'px')
                 break;
 
@@ -110,8 +106,7 @@ export default {
         },
 
         storeItemProperties: function () {
-            let layoutSaved = this.layout
-            localStorage.setItem('layout', JSON.stringify(layoutSaved))
+            this.$store.commit('saveLayout', this.layout)
         }
     }
 
