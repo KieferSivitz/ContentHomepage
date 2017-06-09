@@ -50,14 +50,7 @@ export default {
     data () {
         return {
             msg: 'Welcome to the social media aggregator!',
-            layout: (() => {
-                let tmpLayout = this.$store.state.gridLayout
-                if (localStorage.getItem('layout')) {
-                    return JSON.parse(localStorage.getItem('layout'))
-                }
-                return tmpLayout
-            })()
-
+            layout: this.$store.state.gridLayout
         }
     },
 
@@ -70,24 +63,12 @@ export default {
             document.getElementById(element).height = height
         },
 
-        resizeWithContainerWidescreen: function (i, newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
-            let width = Number(newWPx) - 20
-            let height = width * (9 / 16)
-
-            if (height > Number(newHPx) - offsetH) {
-                height = Number(newHPx) - offsetH
-            }
-
-            document.getElementById(element).width = width
-            document.getElementById(element).height = height
-        },
-
         resizedEvent: function (i, newH, newW, newWPx, newHPx) {
             // TODO: Calculate input height and stuff here
             switch (i) {
             case 'twitchComponent':
                 this.storeItemProperties()
-                this.resizeWithContainerWidescreen(i, newH, newW, newWPx, newHPx, 'twitchPlayer', 70, 70)
+                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchPlayer', 20, 70)
                 break;
 
             case 'twitterComponent':
