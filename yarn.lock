@@ -5997,12 +5997,13 @@ vue-add-globals@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/vue-add-globals/-/vue-add-globals-1.0.1.tgz#151f241426e70cbc790a1f31bb0f4435d7575efc"
 
-vue-gh-pages@~1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/vue-gh-pages/-/vue-gh-pages-1.2.0.tgz#16257fcbc9a194e66abe613ac0d4770b766aedd2"
+vue-gh-pages@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/vue-gh-pages/-/vue-gh-pages-1.4.0.tgz#2ab14891409e5124ef323aae2c00c75ddf1ab0a3"
   dependencies:
     mkdirp "^0.5.1"
     ncp "^2.0.0"
+    rimraf "^2.6.1"
 
 vue-grid-layout@^2.1.6:
   version "2.1.6"
