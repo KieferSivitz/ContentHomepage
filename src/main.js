@@ -2,11 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import twitterComponent from './components/twitterComponent'
-import twitchComponent from './components/twitchComponent'
-import gridComponent from './components/gridComponent'
-import twitchChatComponent from './components/twitchChatComponent'
-import adsenseComponent from './components/adsenseComponent'
 import router from './router'
 import Vuex from 'vuex'
 
@@ -27,13 +22,23 @@ if (!localStorage.getItem('layout')) {
 const store = new Vuex.Store({
     // State variables
     state: {
-        gridLayout: tmpLayout
+        gridLayout: tmpLayout,
+        smashLayout: [{'x': 0, 'y': 12, 'w': 6, 'h': 20, 'i': 'twitterComponent', 'id': 'gridComponent0'},
+                        {'x': 0, 'y': 0, 'w': 12, 'h': 12, 'i': 'twitchComponent', 'id': 'gridComponent1'},
+                        {'x': 6, 'y': 12, 'w': 6, 'h': 20, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}]
     },
     // State modification functions, behave like getters and setters would, accessing essentially private variables
     mutations: {
+        modifyLayout (state, newLayout) {
+            state.gridLayout = newLayout
+        },
         saveLayout (state, currentLayout) {
             let layoutSaved = currentLayout
             localStorage.setItem('layout', JSON.stringify(layoutSaved))
+        },
+        smashLayout (state) {
+            state.gridLayout = store.state.smashLayout
+            localStorage.setItem('layout', JSON.stringify(state.gridLayout))
         }
     }
 })
@@ -50,50 +55,5 @@ new Vue({
     template: '<App/>',
     components: {
         'App': App
-    }
-})
-
-Vue.component({
-    el: '#twitterComponent',
-    router,
-    template: '<twitterComponent/>',
-    components: {
-        'twitterComponent': twitterComponent
-    }
-})
-
-Vue.component({
-    el: '#twitchComponent',
-    router,
-    template: '<twitchComponent/>',
-    components: {
-        'twitchComponent': twitchComponent
-    }
-})
-
-Vue.component({
-    el: '#twitchChatComponent',
-    router,
-    template: '<twitchChatComponent/>',
-    components: {
-        'twitchChatComponent': twitchChatComponent
-    }
-})
-
-Vue.component({
-    el: '#adsenseComponent',
-    router,
-    template: '<adsenseComponent/>',
-    components: {
-        'adsenseComponent': adsenseComponent
-    }
-})
-
-Vue.component({
-    el: '#gridComponent',
-    router,
-    template: '<gridComponent/>',
-    components: {
-        'gridComponent': gridComponent
     }
 })

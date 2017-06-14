@@ -32,7 +32,6 @@ import twitterComponent from './twitterComponent'
 import twitchComponent from './twitchComponent'
 import VueGridLayout from 'vue-grid-layout'
 import twitchChatComponent from './twitchChatComponent'
-// import adsenseComponent from './adsenseComponent'
 
 var GridLayout = VueGridLayout.GridLayout;
 var GridItem = VueGridLayout.GridItem;
@@ -55,7 +54,7 @@ export default {
     },
 
     methods: {
-        resizeWithContainer: function (i, newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
+        resizeWithContainer: function (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
             let width = Number(newWPx) - offsetW
             let height = Number(newHPx) - offsetH
 
@@ -68,7 +67,7 @@ export default {
             switch (i) {
             case 'twitchComponent':
                 this.storeItemProperties()
-                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchPlayer', 20, 70)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchPlayer', 20, 70)
                 break;
 
             case 'twitterComponent':
@@ -78,7 +77,7 @@ export default {
 
             case 'twitchChatComponent':
                 this.storeItemProperties()
-                this.resizeWithContainer(i, newH, newW, newWPx, newHPx, 'twitchChat', 20, 75)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChat', 20, 75)
                 break;
 
             default:

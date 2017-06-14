@@ -8,7 +8,7 @@
             <li><a href="#">Hearthstone</a></li>
             <li><a href="#">LoL</a></li>
             <li><a href="#">Overwatch</a></li>
-            <li><a href="#">Smash</a></li>
+            <li><a href="#" id="navSmash">Smash</a></li>
             <li><a href="#">Starcraft</a></li>
             <li><a href="#">Custom</a></li>
             <li style="float:right"><a href="#">About</a></li>
@@ -26,6 +26,18 @@ export default {
         return {
             msg: 'Welcome to the social media aggregator!'
         }
+    },
+
+    methods: {
+        changeLayout () {
+            this.$store.commit('smashLayout')
+        }
+    },
+
+    mounted () {
+        // Iterate through list adding listners
+        document.getElementById('navSmash').onclick = this.changeLayout
+        // Pass down layout information to children
     }
 
 
