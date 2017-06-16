@@ -14,7 +14,7 @@ let tmpLayout = []
 
 if (!localStorage.getItem('layout')) {
     // Load default layout and store it
-    tmpLayout = defaultConfigs.data.defaultLayout
+    tmpLayout = defaultConfigs.defaultLayout
     localStorage.setItem('layout', JSON.stringify(tmpLayout))
 } else {
     // Load user layout
@@ -25,7 +25,7 @@ const store = new Vuex.Store({
     // State variables
     state: {
         gridLayout: tmpLayout,
-        smashLayout: defaultConfigs.data.smashLayout
+        smashLayout: defaultConfigs.smashLayout
     },
     // State modification functions, behave like getters and setters would, accessing essentially private variables
     mutations: {
