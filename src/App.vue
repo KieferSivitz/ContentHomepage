@@ -31,6 +31,7 @@ export default {
     methods: {
         changeLayout () {
             this.$store.commit('smashLayout')
+            this.$store.commit('changeTwitchChannel', 'tradechat')
         }
     },
 

@@ -12,7 +12,7 @@
                 :use-css-transforms="true">
             <grid-item class="gridItems"
                         v-bind:id="item.id"
-                        v-for="item in layout"
+                        v-for="item in myLayout"
                         v-bind:key="item.id"
                        :x="item.x"
                        :y="item.y"
@@ -38,6 +38,7 @@ var GridItem = VueGridLayout.GridItem;
 
 export default {
     name: 'gridComponent',
+    props: ['myLayout'],
     components: {
         twitterComponent,
         twitchComponent,
@@ -48,10 +49,9 @@ export default {
     data () {
         return {
             msg: 'Welcome to the social media aggregator!',
-            layout: this.$store.state.gridLayout
+            layout: this.myLayout
         }
     },
-
     methods: {
         resizeWithContainer: function (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
             let width = Number(newWPx) - offsetW
@@ -85,7 +85,7 @@ export default {
         },
 
         storeItemProperties: function () {
-            this.$store.commit('saveLayout', this.layout)
+            this.$store.commit('saveLayout', this.myLayout)
         }
     }
 

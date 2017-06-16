@@ -11,12 +11,21 @@ import 'twitch-embed'; // eslint-disable-line
 
 export default {
     name: 'twitchComponent',
+    twitchPlayer: undefined,
     data () {
         return {
+            twitchChannel: this.$store.state.twitchChannel,
             msg: 'Welcome to the social media aggregator!'
         }
     },
-
+    watch: {
+        'twitchChannel': {
+            deep: true,
+            handler: function (val) {
+                console.log('Hi')
+            }
+        }
+    },
     methods: {
         renderPlayer: (channelID) => {
             let heightOffset = 70
@@ -33,15 +42,15 @@ export default {
                 autoplay: false
             }
 
-            var player = new window.Twitch.Player(target, options)
-            return player;
+            return new window.Twitch.Player(target, options)
         }
 
     },
 
     mounted () {
+        var that = this
         window.addEventListener('load', () => {
-            let channelID = localStorage.getItem('twitchChatChannel') || 'vgbootcamp'
+            let channelID = localStorage.getItem('twitchChatChannel') || this.twitchChannel
             var twitchPlayer = this.renderPlayer(channelID)
             document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
 
@@ -63,8 +72,8 @@ export default {
             document.getElementById('twitchInput').addEventListener('keydown', function (e) {
                 if (e.keyCode === 13) {
                     let text = e.target.value
-                    localStorage.setItem('twitchChannel', text)
                     twitchPlayer.setChannel(text)
+                    that.$store.commit('changeTwitchChannel', text)
                 }
             })
         })

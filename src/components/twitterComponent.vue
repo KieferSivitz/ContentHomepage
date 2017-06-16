@@ -85,21 +85,21 @@ export default {
     },
 
     mounted () {
-        let self = this;
+        let that = this;
         // Listener for user changing
         document.getElementById('twitterUserInput').addEventListener('keydown', function (e) {
             if (e.keyCode === 13) {
                 let text = e.target.value
-                self.createTwitterFeed(text, localStorage.getItem('twitterList'))
-                localStorage.setItem('twitterUser', text)
+                that.$store.commit('changeTwitterUser', text)
+                that.createTwitterFeed(text, localStorage.getItem('twitterList'))
             }
         })
         // Listener for list changing
         document.getElementById('twitterListInput').addEventListener('keydown', function (e) {
             if (e.keyCode === 13) {
                 let text = e.target.value
-                self.createTwitterFeed(localStorage.getItem('twitterUser'), text)
-                localStorage.setItem('twitterList', text)
+                that.$store.commit('changeTwitterList', text)
+                that.createTwitterFeed(localStorage.getItem('twitterUser'), text)
             }
         })
     }

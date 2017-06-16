@@ -25,7 +25,10 @@ const store = new Vuex.Store({
     // State variables
     state: {
         gridLayout: tmpLayout,
-        smashLayout: defaultConfigs.smashLayout
+        twitchChannel: 'tradechat',
+        twitchChatChannel: 'tradechat',
+        twitterUser: 'kiefersivitz',
+        twitterList: 'Smash'
     },
     // State modification functions, behave like getters and setters would, accessing essentially private variables
     mutations: {
@@ -37,8 +40,21 @@ const store = new Vuex.Store({
             localStorage.setItem('layout', JSON.stringify(layoutSaved))
         },
         smashLayout (state) {
-            state.gridLayout = store.state.smashLayout
+            state.gridLayout = defaultConfigs.smashLayout
             localStorage.setItem('layout', JSON.stringify(state.gridLayout))
+        },
+        changeTwitchChannel (state, channel) {
+            state.twitchChannel = channel
+            localStorage.setItem('twitchChannel', channel)
+            state.twitchPlayer.setChannel(channel)
+        },
+        changeTwitterUser (state, user) {
+            state.twitterUser = user
+            localStorage.setItem('twitterUser', user)
+        },
+        changeTwitterList (state, list) {
+            state.twitterList = list
+            localStorage.setItem('twitterList', list)
         }
     }
 })

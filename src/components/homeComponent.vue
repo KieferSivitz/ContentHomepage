@@ -2,7 +2,7 @@
     <div class="componentContainer">
         <div class="page-title">
         </div>
-        <gridComponent />
+        <gridComponent :my-layout="savelayout"/>
         <div class="page-title">
             <h5>
                 More features coming in the near future!
@@ -25,7 +25,8 @@ export default {
     },
     data () {
         return {
-            msg: 'Welcome to your Content Homepage!'
+            msg: 'Welcome to your Content Homepage!',
+            savelayout: this.$store.state.gridLayout
         }
     }
 
