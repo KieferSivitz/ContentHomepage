@@ -44,7 +44,6 @@ export default {
         GridLayout,
         GridItem,
         twitchChatComponent
-        // adsenseComponent
     },
     data () {
         return {
