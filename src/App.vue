@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <div id="navbar">
+      <div class="nav" id="navbar">
           <ul>
             <li><a href="#" class="active" id="icon"><img src="../src/assets/icon.png"></img></a></li>
             <li><a href="#" id="navCS">CS:GO</a></li>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+var $ = require('jquery')
 export default {
     name: 'app',
     data () {
@@ -41,6 +42,18 @@ export default {
         // Iterate through list adding listners
         document.getElementById('navSmash').onclick = this.changeLayout
         // Pass down layout information to children
+
+        $(document).ready(function () {
+            $('.nav li a').click(function (e) {
+                $('.nav li').removeClass('active');
+
+                var $parent = $(this).parent();
+                if (!$parent.hasClass('active')) {
+                    $parent.addClass('active');
+                }
+                e.preventDefault();
+            });
+        });
     }
 
 
