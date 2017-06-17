@@ -10,7 +10,7 @@
 </template>
 
 <script>
-
+window.twttr = require('../vendor/twitter.js')
 export default {
     name: 'twitterComponent',
     data () {
@@ -58,48 +58,25 @@ export default {
     },
 
     beforeMount () {
-        if (!localStorage.getItem('twitterUser')) {
-            localStorage.setItem('twitterUser', 'KieferSivitz')
-        }
-        if (!localStorage.getItem('twitterList')) {
-            localStorage.setItem('twitterList', 'Smash')
-        }
-
-        window.twttr = (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; // eslint-disable-line
-            if (d.getElementById(id)) return t;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = 'https://platform.twitter.com/widgets.js';
-            fjs.parentNode.insertBefore(js, fjs);
-
-            t._e = [];
-            t.ready = function (f) {
-                t._e.push(f);
-            };
-
-            return t;
-        }(document, 'script', 'twitter-wjs'));
-
-        this.createTimeline(localStorage.getItem('twitterUser'), localStorage.getItem('twitterList'))
+        this.createTimeline(this.$store.state.twitterUser, this.$store.state.twitterList)
     },
 
     mounted () {
-        let that = this;
+        var _this = this;
         // Listener for user changing
         document.getElementById('twitterUserInput').addEventListener('keydown', function (e) {
             if (e.keyCode === 13) {
                 let text = e.target.value
-                that.$store.commit('changeTwitterUser', text)
-                that.createTwitterFeed(text, localStorage.getItem('twitterList'))
+                _this.createTwitterFeed(text, _this.$store.state.twitterList)
+                _this.$store.commit('updateTwitterUser', text)
             }
         })
         // Listener for list changing
         document.getElementById('twitterListInput').addEventListener('keydown', function (e) {
             if (e.keyCode === 13) {
                 let text = e.target.value
-                that.$store.commit('changeTwitterList', text)
-                that.createTwitterFeed(localStorage.getItem('twitterUser'), text)
+                _this.createTwitterFeed(_this.$store.state.twitterUser, text)
+                _this.$store.commit('updateTwitterList', text)
             }
         })
     }

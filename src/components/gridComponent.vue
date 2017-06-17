@@ -2,7 +2,7 @@
     <div class="gridComponent">
         <div class="layout">
             <grid-layout
-                :layout="layout"
+                :layout="myLayout"
                 :col-num="12"
                 :row-height="30"
                 :is-draggable="true"

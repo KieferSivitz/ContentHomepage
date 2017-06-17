@@ -19,11 +19,8 @@ export default {
         }
     },
     watch: {
-        'twitchChannel': {
-            deep: true,
-            handler: function (val) {
-                console.log('Hi')
-            }
+        twitchChannel: function (value) {
+            this.twitchPlayer.setChannel(value)
         }
     },
     methods: {
@@ -48,10 +45,10 @@ export default {
     },
 
     mounted () {
-        var that = this
+        var _this = this
         window.addEventListener('load', () => {
-            let channelID = localStorage.getItem('twitchChatChannel') || this.twitchChannel
-            var twitchPlayer = this.renderPlayer(channelID)
+            let channelID = _this.$store.state.twitchChannel || this.twitchChannel
+            _this.twitchPlayer = this.renderPlayer(channelID)
             document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
 
             // Listener for window resizing
@@ -72,8 +69,8 @@ export default {
             document.getElementById('twitchInput').addEventListener('keydown', function (e) {
                 if (e.keyCode === 13) {
                     let text = e.target.value
-                    twitchPlayer.setChannel(text)
-                    that.$store.commit('changeTwitchChannel', text)
+                    _this.twitchPlayer.setChannel(text)
+                    _this.$store.commit('changeTwitchChannel', text)
                 }
             })
         })

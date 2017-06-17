@@ -17,7 +17,6 @@
 import inputListener from '../mixins/inputListener.js'
 import resizeItem from '../mixins/resizeItem.js'
 
-var twitchSource = localStorage.getItem('twitchChatChannel') || 'vgbootcamp'
 
 export default {
     name: 'twitchChatComponent',
@@ -25,7 +24,7 @@ export default {
     data () {
         return {
             msg: 'Welcome to the social media aggregator!',
-            twitchSource: 'https://www.twitch.tv/' + twitchSource + '/chat',
+            twitchSource: 'https://www.twitch.tv/' + this.$store.state.twitchChatChannel + '/chat',
             props: {
                 width: 40,
                 height: 40

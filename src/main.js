@@ -5,56 +5,57 @@ import App from './App'
 import router from './router'
 import Vuex from 'vuex'
 var defaultConfigs = require('./configuration/layouts.json')
-
 // Vuex State Management
 Vue.use(Vuex)
 
-// Check localstorage for a layout, otherwise use the default
-let tmpLayout = []
-
-if (!localStorage.getItem('layout')) {
-    // Load default layout and store it
-    tmpLayout = defaultConfigs.defaultLayout
-    localStorage.setItem('layout', JSON.stringify(tmpLayout))
-} else {
-    // Load user layout
-    tmpLayout = JSON.parse(localStorage.getItem('layout'))
-}
-
 const store = new Vuex.Store({
+    strict: true,
     // State variables
     state: {
-        gridLayout: tmpLayout,
+        gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
         twitchChannel: 'tradechat',
         twitchChatChannel: 'tradechat',
-        twitterUser: 'kiefersivitz',
+        twitterUser: 'KieferSivitz',
         twitterList: 'Smash'
     },
-    // State modification functions, behave like getters and setters would, accessing essentially private variables
     mutations: {
-        modifyLayout (state, newLayout) {
+        saveLayout (state, newLayout) {
             state.gridLayout = newLayout
-        },
-        saveLayout (state, currentLayout) {
-            let layoutSaved = currentLayout
-            localStorage.setItem('layout', JSON.stringify(layoutSaved))
+            localStorage.setItem('layout', JSON.stringify(newLayout))
         },
         smashLayout (state) {
             state.gridLayout = defaultConfigs.smashLayout
-            localStorage.setItem('layout', JSON.stringify(state.gridLayout))
         },
         changeTwitchChannel (state, channel) {
             state.twitchChannel = channel
-            localStorage.setItem('twitchChannel', channel)
-            state.twitchPlayer.setChannel(channel)
         },
-        changeTwitterUser (state, user) {
-            state.twitterUser = user
-            localStorage.setItem('twitterUser', user)
+        changeTwitchChatChannel (state, channel) {
+            document.getElementById('twitchChat').setAttribute('src', 'https://www.twitch.tv/' + channel + '/chat')
+            state.twitchChannel = channel
         },
-        changeTwitterList (state, list) {
+        updateTwitterList (state, list) {
             state.twitterList = list
-            localStorage.setItem('twitterList', list)
+        },
+        updateTwitterUser (state, user) {
+            state.twitterUser = user
+        },
+        changeTwitterFeed (state, info) {
+            let user = info.user
+            let list = info.list
+            document.querySelector('iframe[id^="twitter-widget-"]').remove()
+            window.twttr.widgets.createTimeline(
+                {
+                    sourceType: 'list',
+                    ownerScreenName: user,
+                    slug: list
+                },
+                document.getElementById('twitter-feed'),
+                {
+                    theme: 'dark',
+                    dnt: true,
+                    height: document.getElementById('gridComponent0').getBoundingClientRect().height - 100
+                }
+            )
         }
     }
 })
