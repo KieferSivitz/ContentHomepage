@@ -11,7 +11,6 @@ import 'twitch-embed'; // eslint-disable-line
 
 export default {
     name: 'twitchComponent',
-    twitchPlayer: undefined,
     data () {
         return {
             twitchChannel: this.$store.state.twitchChannel,
@@ -72,6 +71,10 @@ export default {
                     _this.twitchPlayer.setChannel(text)
                     _this.$store.commit('changeTwitchChannel', text)
                 }
+            })
+            document.getElementById('navSmash').addEventListener('click', function (e) {
+                _this.twitchPlayer.setChannel('vgbootcamp')
+                _this.$store.commit('changeTwitchChannel', 'vgbootcamp')
             })
         })
     }
