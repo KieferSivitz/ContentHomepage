@@ -1,0 +1,36 @@
+{
+    "hubList": [
+        {
+            "twitchChannel": "csgo",
+            "twitterList": "CS:GO"
+        },
+        {
+            "twitchChannel": "csgo",
+            "twitterList": "CS:GO"
+        },
+        {
+            "twitchChannel": "csgo",
+            "twitterList": "CS:GO"
+        },
+        {
+            "twitchChannel": "riotgames",
+            "twitterList": "LoL"
+        },
+        {
+            "twitchChannel": "csgo",
+            "twitterList": "Overwatch"
+        },
+        {
+            "twitchChannel": "vgbootcamp",
+            "twitterList": "Smash"
+        },
+        {
+            "twitchChannel": "csgo",
+            "twitterList": "Starcraft"
+        },
+        {
+            "twitchChannel": "tradechat",
+            "twitterList": "WoW"
+        }]
+    
+}

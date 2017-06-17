@@ -2,7 +2,7 @@
     <div class="gridComponent">
         <div class="layout">
             <grid-layout
-                :layout="myLayout"
+                :layout="layout"
                 :col-num="12"
                 :row-height="30"
                 :is-draggable="true"
@@ -12,7 +12,7 @@
                 :use-css-transforms="true">
             <grid-item class="gridItems"
                         v-bind:id="item.id"
-                        v-for="item in myLayout"
+                        v-for="item in layout"
                         v-bind:key="item.id"
                        :x="item.x"
                        :y="item.y"
@@ -38,7 +38,6 @@ var GridItem = VueGridLayout.GridItem;
 
 export default {
     name: 'gridComponent',
-    props: ['myLayout'],
     components: {
         twitterComponent,
         twitchComponent,
@@ -49,7 +48,7 @@ export default {
     data () {
         return {
             msg: 'Welcome to the social media aggregator!',
-            layout: this.myLayout
+            layout: this.$store.state.gridLayout
         }
     },
     methods: {
@@ -83,7 +82,9 @@ export default {
                 break;
             }
         },
-
+        updateLayout: function () {
+            GridLayout.methods.layoutUpdate()
+        },
         storeItemProperties: function () {
             this.$store.commit('saveLayout', this.myLayout)
         }

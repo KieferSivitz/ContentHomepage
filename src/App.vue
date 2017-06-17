@@ -3,13 +3,13 @@
       <div id="navbar">
           <ul>
             <li><a href="#" class="active" id="icon"><img src="../src/assets/icon.png"></img></a></li>
-            <li><a href="#">CS:GO</a></li>
-            <li><a href="#">DotA</a></li>
-            <li><a href="#">Hearthstone</a></li>
-            <li><a href="#">LoL</a></li>
-            <li><a href="#">Overwatch</a></li>
+            <li><a href="#" id="navCS">CS:GO</a></li>
+            <li><a href="#" id="navDota">DotA</a></li>
+            <li><a href="#" id="navHS">Hearthstone</a></li>
+            <li><a href="#" id="navLoL">LoL</a></li>
+            <li><a href="#" id="navOverwatch">Overwatch</a></li>
             <li><a href="#" id="navSmash">Melee</a></li>
-            <li><a href="#">Starcraft</a></li>
+            <li><a href="#" id="navStarcraft">Starcraft</a></li>
             <li><a href="#">Custom</a></li>
             <li style="float:right"><a href="#">About</a></li>
         </ul>

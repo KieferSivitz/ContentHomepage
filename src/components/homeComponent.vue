@@ -20,6 +20,7 @@ import gridComponent from './gridComponent'
 
 export default {
     name: 'homeComponent',
+    props: ['myLayout'],
     components: {
         gridComponent
     },

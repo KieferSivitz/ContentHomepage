@@ -8,6 +8,7 @@
 
 <script>
 import 'twitch-embed'; // eslint-disable-line
+var defaultHubs = require('../configuration/hubs.json')
 
 export default {
     name: 'twitchComponent',
@@ -15,11 +16,6 @@ export default {
         return {
             twitchChannel: this.$store.state.twitchChannel,
             msg: 'Welcome to the social media aggregator!'
-        }
-    },
-    watch: {
-        twitchChannel: function (value) {
-            this.twitchPlayer.setChannel(value)
         }
     },
     methods: {
@@ -72,10 +68,21 @@ export default {
                     _this.$store.commit('changeTwitchChannel', text)
                 }
             })
-            document.getElementById('navSmash').addEventListener('click', function (e) {
-                _this.twitchPlayer.setChannel('vgbootcamp')
-                _this.$store.commit('changeTwitchChannel', 'vgbootcamp')
-            })
+
+            // All Listeners for Navigation
+            var nums = document.getElementById('navbar');
+            var listItem = nums.getElementsByTagName('li');
+
+            var i = 0
+            for (i = 0; i < listItem.length; i++) {
+                let index = i - 1
+                listItem[i].addEventListener('click', function (e) {
+                    let hub = defaultHubs.hubList[index] // eslint-disable-line
+                    console.log(hub, index)
+                    _this.twitchPlayer.setChannel(hub.twitchChannel)
+                    _this.$store.commit('changeTwitchChannel', hub.twitchChannel)
+                })
+            }
         })
     }
 }

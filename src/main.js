@@ -9,7 +9,6 @@ var defaultConfigs = require('./configuration/layouts.json')
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-    strict: true,
     // State variables
     state: {
         gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,

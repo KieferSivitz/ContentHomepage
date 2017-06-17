@@ -48,7 +48,6 @@ export default {
                         document.getElementById('twitter-feed'),
                         {
                             theme: 'dark',
-                            // height: (window.innerHeight * 0.54),
                             height: document.getElementById('gridComponent0').getBoundingClientRect().height - 100
                         }
                     )
