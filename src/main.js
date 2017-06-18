@@ -20,16 +20,11 @@ if (!localStorage.getItem('layout')) {
 const store = new Vuex.Store({
     // State variables
     state: {
-<<<<<<< HEAD
-        count: 0,
-        gridLayout: tmpLayout
-=======
         gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
         twitchChannel: 'tradechat',
         twitchChatChannel: 'tradechat',
         twitterUser: 'KieferSivitz',
         twitterList: 'Smash'
->>>>>>> state
     },
     mutations: {
         saveLayout (state, newLayout) {
@@ -49,15 +44,6 @@ const store = new Vuex.Store({
         updateTwitterList (state, list) {
             state.twitterList = list
         },
-<<<<<<< HEAD
-        saveLayout (state, currentLayout) {
-            let layoutSaved = currentLayout
-            localStorage.setItem('layout', JSON.stringify(layoutSaved))
-        }
-    }
-})
-store.commit('increment')
-=======
         updateTwitterUser (state, user) {
             state.twitterUser = user
         },
@@ -81,7 +67,6 @@ store.commit('increment')
         }
     }
 })
->>>>>>> state
 // End of Vuex Code
 
 

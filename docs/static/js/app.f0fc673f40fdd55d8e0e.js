@@ -1,2 +1,0 @@
-webpackJsonp([0],[function(n,t){throw new Error("Module build failed: SyntaxError: C:/Users/UpstairsWindows/Documents/Github_Projects/ContentHomepage/src/main.js: Unexpected token (23:0)\n\n  21 |     // State variables\n  22 |     state: {\n> 23 | <<<<<<< HEAD\n     | ^\n  24 |         count: 0,\n  25 |         gridLayout: tmpLayout\n  26 | =======\n")}],[0]);
-//# sourceMappingURL=app.f0fc673f40fdd55d8e0e.js.map
