@@ -2,7 +2,7 @@
   <div id="app">
       <div class="nav" id="navbar">
           <ul>
-            <li><a href="#" class="active" id="icon"><img src="../img/icon.png"></img></a></li>
+            <li><a href="#" class="active" id="icon"><img src="./assets/icon.png"></img></a></li>
             <li><a href="#">Smash</a></li>
             <li><a href="#">CS:GO</a></li>
             <li><a href="#">DotA</a></li>
