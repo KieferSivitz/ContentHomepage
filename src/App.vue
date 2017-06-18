@@ -20,6 +20,7 @@
 </template>
 
 <script>
+
 var $ = require('jquery')
 export default {
     name: 'app',
@@ -31,10 +32,7 @@ export default {
 
     methods: {
         changeLayout () {
-            this.$store.commit('smashLayout')
-            this.$store.commit('updateTwitterList', 'Smash')
-            this.$store.commit('changeTwitchChatChannel', 'vgbootcamp')
-            this.$store.commit('changeTwitterFeed', {user: 'KieferSivitz', list: 'Smash'})
+            this.$store.commit('changeTwitchChatChannel', this.$store.state.twitchChannel)
         }
     },
 

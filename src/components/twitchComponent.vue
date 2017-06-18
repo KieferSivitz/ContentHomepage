@@ -78,9 +78,9 @@ export default {
                 let index = i - 1
                 listItem[i].addEventListener('click', function (e) {
                     let hub = defaultHubs.hubList[index] // eslint-disable-line
-                    console.log(hub, index)
                     _this.twitchPlayer.setChannel(hub.twitchChannel)
                     _this.$store.commit('changeTwitchChannel', hub.twitchChannel)
+                    _this.$store.commit('changeTwitchChatChannel', hub.twitchChannel)
                 })
             }
         })
