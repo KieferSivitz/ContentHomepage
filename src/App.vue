@@ -40,9 +40,6 @@ export default {
 
     mounted () {
         // Iterate through list adding listners
-        document.getElementById('navSmash').onclick = this.changeLayout
-        // Pass down layout information to children
-
         $(document).ready(function () {
             $('.nav li a').click(function (e) {
                 $('.nav li').removeClass('active');
