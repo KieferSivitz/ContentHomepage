@@ -3,12 +3,12 @@
       <div class="nav" id="navbar">
           <ul>
             <li><a href="#" class="active" id="icon"><img src="./assets/icon.png"></img></a></li>
-            <li><a href="#">Smash</a></li>
             <li><a href="#">CS:GO</a></li>
             <li><a href="#">DotA</a></li>
             <li><a href="#">Hearthstone</a></li>
             <li><a href="#">LoL</a></li>
             <li><a href="#">Overwatch</a></li>
+            <li><a href="#">Smash</a></li>
             <li><a href="#">Starcraft</a></li>
             <li><a href="#">Custom</a></li>
             <li style="float:right"><a href="#">About</a></li>
