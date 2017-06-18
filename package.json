@@ -16,6 +16,7 @@
     "deploy": "node ./node_modules/vue-gh-pages/index.js"
   },
   "dependencies": {
+    "jquery": "^3.2.1",
     "replace-in-file": "^2.5.0",
     "twitch-embed": "^1.1.4",
     "vue": "^2.2.6",

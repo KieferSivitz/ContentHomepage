@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <div id="navbar">
+      <div class="nav" id="navbar">
           <ul>
             <li><a href="#" class="active" id="icon"><img src="../img/icon.png"></img></a></li>
             <li><a href="#">Smash</a></li>
@@ -20,12 +20,40 @@
 </template>
 
 <script>
+var $ = require('jquery')
 export default {
     name: 'app',
     data () {
         return {
             msg: 'Welcome to the social media aggregator!'
         }
+    },
+
+    methods: {
+        changeLayout () {
+            this.$store.commit('smashLayout')
+            this.$store.commit('updateTwitterList', 'Smash')
+            this.$store.commit('changeTwitchChatChannel', 'vgbootcamp')
+            this.$store.commit('changeTwitterFeed', {user: 'KieferSivitz', list: 'Smash'})
+        }
+    },
+
+    mounted () {
+        // Iterate through list adding listners
+        document.getElementById('navSmash').onclick = this.changeLayout
+        // Pass down layout information to children
+
+        $(document).ready(function () {
+            $('.nav li a').click(function (e) {
+                $('.nav li').removeClass('active');
+
+                var $parent = $(this).parent();
+                if (!$parent.hasClass('active')) {
+                    $parent.addClass('active');
+                }
+                e.preventDefault();
+            });
+        });
     }
 
 

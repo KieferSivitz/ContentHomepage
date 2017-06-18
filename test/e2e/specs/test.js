@@ -12,8 +12,6 @@ module.exports = {
             .url(devServer)
             .waitForElementVisible('#app', 5000)
             .assert.elementPresent('.gridComponent')
-            .assert.containsText('h1', 'Welcome to the Content Homepage!')
-            .assert.containsText('h3', 'Currently combining Twitch and Twitter for Super Smash Brothers Melee!')
             .waitForElementVisible('#gridComponent0', 1000)
             .waitForElementVisible('#gridComponent1', 1000)
             .waitForElementVisible('#gridComponent2', 1000)

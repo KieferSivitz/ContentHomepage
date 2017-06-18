@@ -8,15 +8,16 @@
 
 <script>
 import 'twitch-embed'; // eslint-disable-line
+var defaultHubs = require('../configuration/hubs.json')
 
 export default {
     name: 'twitchComponent',
     data () {
         return {
+            twitchChannel: this.$store.state.twitchChannel,
             msg: 'Welcome to the social media aggregator!'
         }
     },
-
     methods: {
         renderPlayer: (channelID) => {
             let heightOffset = 70
@@ -33,16 +34,16 @@ export default {
                 autoplay: false
             }
 
-            var player = new window.Twitch.Player(target, options)
-            return player;
+            return new window.Twitch.Player(target, options)
         }
 
     },
 
     mounted () {
+        var _this = this
         window.addEventListener('load', () => {
-            let channelID = localStorage.getItem('twitchChatChannel') || 'vgbootcamp'
-            var twitchPlayer = this.renderPlayer(channelID)
+            let channelID = _this.$store.state.twitchChannel || this.twitchChannel
+            _this.twitchPlayer = this.renderPlayer(channelID)
             document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
 
             // Listener for window resizing
@@ -63,10 +64,25 @@ export default {
             document.getElementById('twitchInput').addEventListener('keydown', function (e) {
                 if (e.keyCode === 13) {
                     let text = e.target.value
-                    localStorage.setItem('twitchChannel', text)
-                    twitchPlayer.setChannel(text)
+                    _this.twitchPlayer.setChannel(text)
+                    _this.$store.commit('changeTwitchChannel', text)
                 }
             })
+
+            // All Listeners for Navigation
+            var nums = document.getElementById('navbar');
+            var listItem = nums.getElementsByTagName('li');
+
+            var i = 0
+            for (i = 0; i < listItem.length; i++) {
+                let index = i - 1
+                listItem[i].addEventListener('click', function (e) {
+                    let hub = defaultHubs.hubList[index] // eslint-disable-line
+                    console.log(hub, index)
+                    _this.twitchPlayer.setChannel(hub.twitchChannel)
+                    _this.$store.commit('changeTwitchChannel', hub.twitchChannel)
+                })
+            }
         })
     }
 }

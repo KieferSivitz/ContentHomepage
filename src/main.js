@@ -1,13 +1,8 @@
 import Vue from 'vue'
 import App from './App'
-import twitterComponent from './components/twitterComponent'
-import twitchComponent from './components/twitchComponent'
-import gridComponent from './components/gridComponent'
-import twitchChatComponent from './components/twitchChatComponent'
-import adsenseComponent from './components/adsenseComponent'
 import router from './router'
 import Vuex from 'vuex'
-
+var defaultConfigs = require('./configuration/layouts.json')
 // Vuex State Management
 Vue.use(Vuex)
 
@@ -25,14 +20,36 @@ if (!localStorage.getItem('layout')) {
 const store = new Vuex.Store({
     // State variables
     state: {
+<<<<<<< HEAD
         count: 0,
         gridLayout: tmpLayout
+=======
+        gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
+        twitchChannel: 'tradechat',
+        twitchChatChannel: 'tradechat',
+        twitterUser: 'KieferSivitz',
+        twitterList: 'Smash'
+>>>>>>> state
     },
-    // State modification functions, behave like getters and setters would, accessing essentially private variables
     mutations: {
-        increment (state) {
-            state.count++
+        saveLayout (state, newLayout) {
+            state.gridLayout = newLayout
+            localStorage.setItem('layout', JSON.stringify(newLayout))
         },
+        smashLayout (state) {
+            state.gridLayout = defaultConfigs.smashLayout
+        },
+        changeTwitchChannel (state, channel) {
+            state.twitchChannel = channel
+        },
+        changeTwitchChatChannel (state, channel) {
+            document.getElementById('twitchChat').setAttribute('src', 'https://www.twitch.tv/' + channel + '/chat')
+            state.twitchChannel = channel
+        },
+        updateTwitterList (state, list) {
+            state.twitterList = list
+        },
+<<<<<<< HEAD
         saveLayout (state, currentLayout) {
             let layoutSaved = currentLayout
             localStorage.setItem('layout', JSON.stringify(layoutSaved))
@@ -40,6 +57,31 @@ const store = new Vuex.Store({
     }
 })
 store.commit('increment')
+=======
+        updateTwitterUser (state, user) {
+            state.twitterUser = user
+        },
+        changeTwitterFeed (state, info) {
+            let user = info.user
+            let list = info.list
+            document.querySelector('iframe[id^="twitter-widget-"]').remove()
+            window.twttr.widgets.createTimeline(
+                {
+                    sourceType: 'list',
+                    ownerScreenName: user,
+                    slug: list
+                },
+                document.getElementById('twitter-feed'),
+                {
+                    theme: 'dark',
+                    dnt: true,
+                    height: document.getElementById('gridComponent0').getBoundingClientRect().height - 100
+                }
+            )
+        }
+    }
+})
+>>>>>>> state
 // End of Vuex Code
 
 
@@ -53,50 +95,5 @@ new Vue({
     template: '<App/>',
     components: {
         'App': App
-    }
-})
-
-Vue.component({
-    el: '#twitterComponent',
-    router,
-    template: '<twitterComponent/>',
-    components: {
-        'twitterComponent': twitterComponent
-    }
-})
-
-Vue.component({
-    el: '#twitchComponent',
-    router,
-    template: '<twitchComponent/>',
-    components: {
-        'twitchComponent': twitchComponent
-    }
-})
-
-Vue.component({
-    el: '#twitchChatComponent',
-    router,
-    template: '<twitchChatComponent/>',
-    components: {
-        'twitchChatComponent': twitchChatComponent
-    }
-})
-
-Vue.component({
-    el: '#adsenseComponent',
-    router,
-    template: '<adsenseComponent/>',
-    components: {
-        'adsenseComponent': adsenseComponent
-    }
-})
-
-Vue.component({
-    el: '#gridComponent',
-    router,
-    template: '<gridComponent/>',
-    components: {
-        'gridComponent': gridComponent
     }
 })
