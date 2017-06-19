@@ -1,10 +1,10 @@
 {
     "defaultLayout": 
         [{"x": 0, "y": 0, "w": 3, "h": 20, "i": "twitterComponent", "id": "gridComponent0"},
-        {"x": 3, "y": 0, "w": 6, "h": 12, "i": "twitchComponent", "id": "gridComponent1"},
+        {"x": 3, "y": 0, "w": 6, "h": 20, "i": "twitchComponent", "id": "gridComponent1"},
         {"x": 9, "y": 0, "w": 3, "h": 20, "i": "twitchChatComponent", "id": "gridComponent2"}],
     "smashLayout":
         [{"x": 0, "y": 12, "w": 6, "h": 20, "i": "twitterComponent", "id": "gridComponent0"},
-        {"x": 0, "y": 0, "w": 12, "h": 12, "i": "twitchComponent", "id": "gridComponent1"},
+        {"x": 0, "y": 0, "w": 12, "h": 20, "i": "twitchComponent", "id": "gridComponent1"},
         {"x": 6, "y": 12, "w": 6, "h": 20, "i": "twitchChatComponent", "id": "gridComponent2"}]
 }

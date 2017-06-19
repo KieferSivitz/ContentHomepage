@@ -15,10 +15,12 @@ var defaultHubs = require('../configuration/hubs.json')
 export default {
     name: 'twitchComponent',
     mixins: [resizeItem, inputListener],
+    displayInput: true,
     data () {
         return {
             twitchChannel: this.$store.state.twitchChannel,
-            msg: 'Welcome to the social media aggregator!'
+            msg: 'Welcome to the social media aggregator!',
+            displayInput: this.$store.state.custom
         }
     },
     methods: {
@@ -39,7 +41,6 @@ export default {
 
             return new window.Twitch.Player(target, options)
         }
-
     },
 
     mounted () {
@@ -65,7 +66,8 @@ export default {
             var listItem = nums.getElementsByTagName('li');
 
             var i = 0
-            for (i = 0; i < listItem.length; i++) {
+            let length = listItem.length
+            for (i = 0; i < length; i++) {
                 let index = i - 1
                 listItem[i].addEventListener('click', function (e) {
                     let hub = defaultHubs.hubList[index] // eslint-disable-line

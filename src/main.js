@@ -13,7 +13,8 @@ const store = new Vuex.Store({
         twitchChannel: 'tradechat',
         twitchChatChannel: 'tradechat',
         twitterUser: 'KieferSivitz',
-        twitterList: 'Smash'
+        twitterList: 'Smash',
+        displayInputs: false
     },
     mutations: {
         saveLayout (state, newLayout) {
@@ -41,7 +42,10 @@ const store = new Vuex.Store({
             let list = info.list
             state.twitterList = list
             state.twitterUser = user
-            document.querySelector('iframe[id^="twitter-widget-"]').remove()
+            let oldTwitter = document.querySelector('iframe[id^="twitter-widget-"]')
+            if (oldTwitter) {
+                oldTwitter.remove()
+            }
             window.twttr.widgets.createTimeline(
                 {
                     sourceType: 'list',
@@ -55,6 +59,12 @@ const store = new Vuex.Store({
                     height: document.getElementById('gridComponent0').getBoundingClientRect().height - 100
                 }
             )
+        },
+        displayInputs (state) {
+            state.displayInputs = true
+        },
+        hideInputs (state) {
+            state.displayInputs = false
         }
     }
 })

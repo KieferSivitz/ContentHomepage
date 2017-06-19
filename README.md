@@ -11,4 +11,4 @@ This project began because I wanted to have a clean interface to have twitter an
 The current vision for the site is to have many different community hubs playing top streams for each and twitter lists curated for each community.
 Additionally I would like to integrate brackets or other such relevant information in the near future.
 
-<a href="https://www.contenthomepage.com" rel="Preview of web site in action during Smash and Splash 3">![Site preview](./img/preview.PNG)</a>
+<a href="https://www.contenthomepage.com" rel="Preview of web site in action during Smash and Splash 3">![Site preview](./src/assets/preview.PNG)</a>

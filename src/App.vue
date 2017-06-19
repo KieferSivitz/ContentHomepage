@@ -9,7 +9,7 @@
             <li><a href="#">LoL</a></li>
             <li><a href="#">Overwatch</a></li>
             <li><a href="#">Smash</a></li>
-            <li><a href="#">Custom</a></li>
+            <li><a href="#" id="navCustom">Custom</a></li>
             <li style="float:right"><a href="#">About</a></li>
         </ul>
       </div>
@@ -128,4 +128,5 @@ li a:hover {
     left: 10px;
     top: 10px;
 }
+
 </style>
