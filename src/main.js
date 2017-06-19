@@ -39,6 +39,8 @@ const store = new Vuex.Store({
         changeTwitterFeed (state, info) {
             let user = info.user
             let list = info.list
+            state.twitterList = list
+            state.twitterUser = user
             document.querySelector('iframe[id^="twitter-widget-"]').remove()
             window.twttr.widgets.createTimeline(
                 {

@@ -3,7 +3,7 @@ export default {
         // this.hello()
     },
     methods: {
-        hello: function (rootElement, gridElement, heightPadding, widthPadding) {
+        initialSize: function (rootElement, gridElement, heightPadding, widthPadding) {
             window.addEventListener('load', () => {
                 let root = document.getElementById(rootElement)
                 let container = document.getElementById(gridElement).getBoundingClientRect()

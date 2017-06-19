@@ -1,32 +1,28 @@
 {
     "hubList": [
         {
-            "twitchChannel": "csgo",
-            "twitterList": "CS:GO"
+            "twitchChannel": "dreamhackcs",
+            "twitterList": "CSGO"
         },
         {
-            "twitchChannel": "csgo",
-            "twitterList": "CS:GO"
+            "twitchChannel": "blizzheroes",
+            "twitterList": "DotA"
         },
         {
-            "twitchChannel": "csgo",
-            "twitterList": "CS:GO"
+            "twitchChannel": "savjz",
+            "twitterList": "Hearthstone"
         },
         {
             "twitchChannel": "riotgames",
             "twitterList": "LoL"
         },
         {
-            "twitchChannel": "csgo",
+            "twitchChannel": "greekgodx",
             "twitterList": "Overwatch"
         },
         {
             "twitchChannel": "vgbootcamp",
             "twitterList": "Smash"
-        },
-        {
-            "twitchChannel": "csgo",
-            "twitterList": "Starcraft"
         },
         {
             "twitchChannel": "tradechat",

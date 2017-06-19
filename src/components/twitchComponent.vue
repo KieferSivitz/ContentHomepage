@@ -8,10 +8,13 @@
 
 <script>
 import 'twitch-embed'; // eslint-disable-line
+import resizeItem from '../mixins/resizeItem.js'
+import inputListener from '../mixins/inputListener.js'
 var defaultHubs = require('../configuration/hubs.json')
 
 export default {
     name: 'twitchComponent',
+    mixins: [resizeItem, inputListener],
     data () {
         return {
             twitchChannel: this.$store.state.twitchChannel,
@@ -41,24 +44,12 @@ export default {
 
     mounted () {
         var _this = this
+        let channelID = this.$store.state.twitchChannel
         window.addEventListener('load', () => {
-            let channelID = _this.$store.state.twitchChannel || this.twitchChannel
             _this.twitchPlayer = this.renderPlayer(channelID)
             document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
-
-            // Listener for window resizing
-            window.addEventListener('resize', function () {
-                let heightOffset = 70
-                let widthOffset = 20
-                let width = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - widthOffset
-                let height = width * (9 / 16)
-                let maxHeight = document.getElementById('gridComponent1').getBoundingClientRect().height
-                if (height > (maxHeight - heightOffset)) {
-                    height = maxHeight - heightOffset
-                }
-                document.getElementById('twitchPlayer').width = width
-                document.getElementById('twitchPlayer').height = height
-            })
+            // Initialize window resize listener
+            resizeItem.methods.initialSize('twitchPlayer', 'gridComponent1', 60, 20)
 
             // Listener for channel changing
             document.getElementById('twitchInput').addEventListener('keydown', function (e) {
@@ -81,6 +72,7 @@ export default {
                     _this.twitchPlayer.setChannel(hub.twitchChannel)
                     _this.$store.commit('changeTwitchChannel', hub.twitchChannel)
                     _this.$store.commit('changeTwitchChatChannel', hub.twitchChannel)
+                    _this.$store.commit('changeTwitterFeed', {user: 'KieferSivitz', list: hub.twitterList})
                 })
             }
         })

@@ -3,15 +3,13 @@ export default {
         // this.hello()
     },
     methods: {
-        createListener: function (elementID, storage) {
+        createListener: function (elementID, _this) {
             // Listener for channel changing
             document.getElementById(elementID).addEventListener('keydown', function (e) {
                 if (e.keyCode === 13) {
                     let text = e.target.value
                     document.getElementById('twitchChat').setAttribute('src', 'https://www.twitch.tv/' + text + '/chat')
-                    if (storage) {
-                        localStorage.setItem(storage, text)
-                    }
+                    _this.$store.commit('changeTwitchChatChannel', text)
                 }
             })
         }

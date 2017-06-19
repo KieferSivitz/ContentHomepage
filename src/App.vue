@@ -9,7 +9,6 @@
             <li><a href="#">LoL</a></li>
             <li><a href="#">Overwatch</a></li>
             <li><a href="#">Smash</a></li>
-            <li><a href="#">Starcraft</a></li>
             <li><a href="#">Custom</a></li>
             <li style="float:right"><a href="#">About</a></li>
         </ul>
@@ -33,7 +32,6 @@ export default {
         // Iterate through list adding listners
         $(document).ready(function () {
             $('.nav li a').click(function (e) {
-                this.$store.commit('changeTwitchChatChannel', this.$store.state.twitchChannel)
                 $('.nav li').removeClass('active');
 
                 var $parent = $(this).parent();

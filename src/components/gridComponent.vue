@@ -61,20 +61,17 @@ export default {
         },
 
         resizedEvent: function (i, newH, newW, newWPx, newHPx) {
-            // TODO: Calculate input height and stuff here
+            this.storeItemProperties()
             switch (i) {
             case 'twitchComponent':
-                this.storeItemProperties()
                 this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchPlayer', 20, 70)
                 break;
 
             case 'twitterComponent':
-                this.storeItemProperties()
                 document.querySelector('iframe[id^="twitter-widget-"]').style.height = String((newHPx - 100) + 'px')
                 break;
 
             case 'twitchChatComponent':
-                this.storeItemProperties()
                 this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChat', 20, 75)
                 break;
 
