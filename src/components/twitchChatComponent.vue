@@ -1,6 +1,6 @@
 <template>
     <div class="twitchChatComponent">
-        <span class="input-descriptor" style="color: white;">Change the chat channel: </span><input type="text" id="twitchChatInput"></input>
+        <input type="text" id="twitchChatInput" value="Chat Channel"></input>
         <iframe v-bind:src="twitchSource"
                 frameborder="0"
                 scrolling="no"
@@ -33,7 +33,7 @@ export default {
     },
 
     mounted () {
-        resizeItem.methods.hello('twitchChat', 'gridComponent2', 75, 20)
+        resizeItem.methods.hello('twitchChat', 'gridComponent2', 60, 20)
         inputListener.methods.createListener('twitchChatInput', 'twitchChatChannel')
     }
 }

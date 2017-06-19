@@ -6,17 +6,6 @@ var defaultConfigs = require('./configuration/layouts.json')
 // Vuex State Management
 Vue.use(Vuex)
 
-// Check localstorage for a layout, otherwise use the default
-let tmpLayout = []
-if (!localStorage.getItem('layout')) {
-    tmpLayout = [{'x': 0, 'y': 0, 'w': 3, 'h': 20, 'i': 'twitterComponent', 'id': 'gridComponent0'},
-    {'x': 6, 'y': 0, 'w': 6, 'h': 12, 'i': 'twitchComponent', 'id': 'gridComponent1'},
-    {'x': 3, 'y': 0, 'w': 3, 'h': 20, 'i': 'twitchChatComponent', 'id': 'gridComponent2'}]
-    localStorage.setItem('layout', JSON.stringify(tmpLayout))
-} else {
-    tmpLayout = JSON.parse(localStorage.getItem('layout'))
-}
-
 const store = new Vuex.Store({
     // State variables
     state: {

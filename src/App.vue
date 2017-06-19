@@ -29,17 +29,11 @@ export default {
             msg: 'Welcome to the social media aggregator!'
         }
     },
-
-    methods: {
-        changeLayout () {
-            this.$store.commit('changeTwitchChatChannel', this.$store.state.twitchChannel)
-        }
-    },
-
     mounted () {
         // Iterate through list adding listners
         $(document).ready(function () {
             $('.nav li a').click(function (e) {
+                this.$store.commit('changeTwitchChatChannel', this.$store.state.twitchChannel)
                 $('.nav li').removeClass('active');
 
                 var $parent = $(this).parent();
