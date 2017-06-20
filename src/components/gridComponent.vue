@@ -53,8 +53,8 @@ export default {
     },
     methods: {
         resizeWithContainer: function (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
-            let width = Number(newWPx) - offsetW
-            let height = Number(newHPx) - offsetH
+            const width = Number(newWPx) - offsetW
+            const height = Number(newHPx) - offsetH
 
             document.getElementById(element).width = width
             document.getElementById(element).height = height

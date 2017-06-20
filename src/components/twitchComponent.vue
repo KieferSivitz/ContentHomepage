@@ -25,14 +25,14 @@ export default {
     },
     methods: {
         renderPlayer: (channelID) => {
-            let heightOffset = 70
-            let widthOffset = 20
-            var windowWidth = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - widthOffset
-            var windowHeight = Number(document.getElementById('gridComponent1').getBoundingClientRect().height) - heightOffset
+            const heightOffset = 70
+            const widthOffset = 20
+            const windowWidth = Number(document.getElementById('gridComponent1').getBoundingClientRect().width) - widthOffset
+            const windowHeight = Number(document.getElementById('gridComponent1').getBoundingClientRect().height) - heightOffset
 
-            var target = 'streamWindow'
+            const target = 'streamWindow'
 
-            var options = {
+            const options = {
                 width: windowWidth,
                 height: windowHeight,
                 channel: channelID,
@@ -44,8 +44,8 @@ export default {
     },
 
     mounted () {
-        var _this = this
-        let channelID = this.$store.state.twitchChannel
+        const _this = this
+        const channelID = this.$store.state.twitchChannel
         window.addEventListener('load', () => {
             _this.twitchPlayer = this.renderPlayer(channelID)
             document.getElementById('streamWindow').firstChild.id = 'twitchPlayer'
@@ -55,22 +55,22 @@ export default {
             // Listener for channel changing
             document.getElementById('twitchInput').addEventListener('keydown', function (e) {
                 if (e.keyCode === 13) {
-                    let text = e.target.value
+                    const text = e.target.value
                     _this.twitchPlayer.setChannel(text)
                     _this.$store.commit('changeTwitchChannel', text)
                 }
             })
 
             // All Listeners for Navigation
-            var nums = document.getElementById('navbar');
-            var listItem = nums.getElementsByTagName('li');
+            const nums = document.getElementById('navbar');
+            const listItem = nums.getElementsByTagName('li');
 
-            var i = 0
-            let length = listItem.length
+            let i = 0
+            const length = listItem.length
             for (i = 0; i < length; i++) {
-                let index = i - 1
+                const index = i - 1
                 listItem[i].addEventListener('click', function (e) {
-                    let hub = defaultHubs.hubList[index] // eslint-disable-line
+                    const hub = defaultHubs.hubList[index] // eslint-disable-line
                     _this.twitchPlayer.setChannel(hub.twitchChannel)
                     _this.$store.commit('changeTwitchChannel', hub.twitchChannel)
                     _this.$store.commit('changeTwitchChatChannel', hub.twitchChannel)

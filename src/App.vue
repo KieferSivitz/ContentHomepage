@@ -34,7 +34,7 @@ export default {
             $('.nav li a').click(function (e) {
                 $('.nav li').removeClass('active');
 
-                var $parent = $(this).parent();
+                const $parent = $(this).parent();
                 if (!$parent.hasClass('active')) {
                     $parent.addClass('active');
                 }
