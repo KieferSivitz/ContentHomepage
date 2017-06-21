@@ -68,7 +68,12 @@ export default {
                 break;
 
             case 'twitterComponent':
-                document.querySelector('iframe[id^="twitter-widget-"]').style.height = String((newHPx - 100) + 'px')
+                const twitterWindow = document.querySelector('iframe[id^="twitter-widget-"]')
+                let twitterHeightOffset = 100
+                if (newWPx >= 515) {
+                    twitterHeightOffset = 60
+                }
+                twitterWindow.style.height = String((newHPx - twitterHeightOffset) + 'px')
                 break;
 
             case 'twitchChatComponent':

@@ -40,20 +40,27 @@ const store = new Vuex.Store({
             state.twitchChannel = channel
             state.twitchPlayer.setChannel(channel)
         },
+        storeTwitchPlayer (state, t) {
+            state.twitchPlayer = t
+        },
+        // Twitch Chat
         changeTwitchChatChannel (state, channel) {
             document.getElementById('twitchChat').setAttribute('src', 'https://www.twitch.tv/' + channel + '/chat')
             state.twitchChannel = channel
         },
-        storeTwitchPlayer (state, t) {
-            state.twitchPlayer = t
-        },
         // Twitter
         changeTwitterFeed (state, info) {
             const oldTwitter = document.querySelector('iframe[id^="twitter-widget-"]')
+            const twitterContainer = document.getElementById('gridComponent0').getBoundingClientRect()
+            let twitterHeightOffset = 100
+
             state.twitterList = info.list
             state.twitterUser = info.user
             if (oldTwitter) {
                 oldTwitter.remove()
+            }
+            if (twitterContainer.width >= 515) {
+                twitterHeightOffset = 60
             }
             window.twttr.widgets.createTimeline(
                 {
@@ -65,7 +72,7 @@ const store = new Vuex.Store({
                 {
                     theme: 'dark',
                     dnt: true,
-                    height: document.getElementById('gridComponent0').getBoundingClientRect().height - 100
+                    height: twitterContainer.height - twitterHeightOffset
                 }
             )
         }
