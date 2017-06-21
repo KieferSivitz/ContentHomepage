@@ -52,43 +52,8 @@ export default {
         }
     },
     methods: {
-        resizeWithContainer: function (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
-            const width = Number(newWPx) - offsetW
-            const height = Number(newHPx) - offsetH
-
-            document.getElementById(element).width = width
-            document.getElementById(element).height = height
-        },
-
         resizedEvent: function (i, newH, newW, newWPx, newHPx) {
-            this.storeItemProperties()
-            switch (i) {
-            case 'twitchComponent':
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchPlayer', 20, 70)
-                break;
-
-            case 'twitterComponent':
-                const twitterWindow = document.querySelector('iframe[id^="twitter-widget-"]')
-                let twitterHeightOffset = 100
-                if (newWPx >= 515) {
-                    twitterHeightOffset = 60
-                }
-                twitterWindow.style.height = String((newHPx - twitterHeightOffset) + 'px')
-                break;
-
-            case 'twitchChatComponent':
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChat', 20, 75)
-                break;
-
-            default:
-                break;
-            }
-        },
-        updateLayout: function () {
-            GridLayout.methods.layoutUpdate()
-        },
-        storeItemProperties: function () {
-            this.$store.commit('saveLayout', this.layout)
+            this.$store.dispatch('resizeEvents', {i: i, newH: newH, newW: newW, newWPx: newWPx, newHPx: newHPx, layout: this.layout})
         }
     }
 

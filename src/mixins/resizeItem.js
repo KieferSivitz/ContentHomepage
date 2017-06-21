@@ -1,14 +1,11 @@
 export default {
-    mounted: function () {
-        // this.hello()
-    },
     methods: {
         initialSize: function (rootElement, gridElement, heightPadding, widthPadding) {
             window.addEventListener('load', () => {
-                let root = document.getElementById(rootElement)
-                let container = document.getElementById(gridElement).getBoundingClientRect()
-                let newheight = Number(container.height) - heightPadding;
-                let newwidth = Number(container.width) - widthPadding
+                const root = document.getElementById(rootElement)
+                const container = document.getElementById(gridElement).getBoundingClientRect()
+                const newheight = Number(container.height) - heightPadding;
+                const newwidth = Number(container.width) - widthPadding
 
                 root.height = newheight
                 root.width = newwidth
@@ -16,10 +13,10 @@ export default {
             })
 
             window.addEventListener('resize', () => {
-                let root = document.getElementById(rootElement)
-                let container = document.getElementById(gridElement).getBoundingClientRect()
-                let newheight = Number(container.height) - heightPadding;
-                let newwidth = Number(container.width) - widthPadding
+                const root = document.getElementById(rootElement)
+                const container = document.getElementById(gridElement).getBoundingClientRect()
+                const newheight = Number(container.height) - heightPadding;
+                const newwidth = Number(container.width) - widthPadding
 
                 root.height = newheight
                 root.width = newwidth
