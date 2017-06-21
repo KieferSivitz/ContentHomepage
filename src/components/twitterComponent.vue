@@ -29,17 +29,16 @@ export default {
         }
     },
     mounted () {
-        const _this = this;
-        document.getElementById('twitter-wjs').addEventListener('load', function () {
-            _this.$store.commit('changeTwitterFeed', {user: _this.$store.state.twitterUser, list: _this.$store.state.twitterList})
+        document.getElementById('twitter-wjs').addEventListener('load', () => {
+            this.$store.commit('changeTwitterFeed', {user: this.$store.state.twitterUser, list: this.$store.state.twitterList})
         })
         // Listener for user changing
-        document.getElementById('twitterUserInput').addEventListener('keydown', function (e) {
-            _this.inputListener(e, _this)
+        document.getElementById('twitterUserInput').addEventListener('keydown', (e) => {
+            this.inputListener(e, this)
         })
         // Listener for list changing
-        document.getElementById('twitterListInput').addEventListener('keydown', function (e) {
-            _this.inputListener(e, _this)
+        document.getElementById('twitterListInput').addEventListener('keydown', (e) => {
+            this.inputListener(e, this)
         })
     }
 }

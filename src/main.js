@@ -9,38 +9,49 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     // State variables
     state: {
+        // Layout
         gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
+        // Twitch
         twitchChannel: 'tradechat',
+        twitchPlayer: {},
+        // Twitch Chat
         twitchChatChannel: 'tradechat',
+        // Twitter
         twitterUser: 'KieferSivitz',
         twitterList: 'Smash',
+        // Inputs
         displayInputs: false
     },
     mutations: {
+        // Inputs
+        displayInputs (state) {
+            state.displayInputs = true
+        },
+        hideInputs (state) {
+            state.displayInputs = false
+        },
+        // Layouts
         saveLayout (state, newLayout) {
             state.gridLayout = newLayout
             localStorage.setItem('layout', JSON.stringify(newLayout))
         },
-        smashLayout (state) {
-            state.gridLayout = defaultConfigs.smashLayout
-        },
+        // Twitch
         changeTwitchChannel (state, channel) {
             state.twitchChannel = channel
+            state.twitchPlayer.setChannel(channel)
         },
         changeTwitchChatChannel (state, channel) {
             document.getElementById('twitchChat').setAttribute('src', 'https://www.twitch.tv/' + channel + '/chat')
             state.twitchChannel = channel
         },
-        updateTwitterList (state, list) {
-            state.twitterList = list
+        storeTwitchPlayer (state, t) {
+            state.twitchPlayer = t
         },
-        updateTwitterUser (state, user) {
-            state.twitterUser = user
-        },
+        // Twitter
         changeTwitterFeed (state, info) {
+            const oldTwitter = document.querySelector('iframe[id^="twitter-widget-"]')
             state.twitterList = info.list
             state.twitterUser = info.user
-            const oldTwitter = document.querySelector('iframe[id^="twitter-widget-"]')
             if (oldTwitter) {
                 oldTwitter.remove()
             }
@@ -57,12 +68,13 @@ const store = new Vuex.Store({
                     height: document.getElementById('gridComponent0').getBoundingClientRect().height - 100
                 }
             )
-        },
-        displayInputs (state) {
-            state.displayInputs = true
-        },
-        hideInputs (state) {
-            state.displayInputs = false
+        }
+    },
+    actions: {
+        navigationActions ({ commit }, info = {twitch: 'tradechat', twitter: {user: 'KieferSivitz', list: 'WoW'}}) {
+            commit('changeTwitterFeed', info.twitter)
+            commit('changeTwitchChannel', info.twitch)
+            commit('changeTwitchChatChannel', info.twitch)
         }
     }
 })

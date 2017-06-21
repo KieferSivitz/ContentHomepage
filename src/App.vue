@@ -19,6 +19,7 @@
 </template>
 
 <script>
+var defaultHubs = require('./configuration/hubs.json')
 
 var $ = require('jquery')
 export default {
@@ -41,6 +42,19 @@ export default {
                 e.preventDefault();
             });
         });
+
+        // All Listeners for Navigation
+        const nums = document.getElementById('navbar');
+        const listItem = nums.getElementsByTagName('li');
+
+        let i = 0
+        for (i = 0; i < listItem.length; i++) {
+            const index = i - 1
+            listItem[i].addEventListener('click', (e) => {
+                const hub = defaultHubs.hubList[index] // eslint-disable-line
+                this.$store.dispatch('navigationActions', {twitch: hub.twitchChannel, twitter: {user: 'KieferSivitz', list: hub.twitterList}})
+            })
+        }
     }
 
 
