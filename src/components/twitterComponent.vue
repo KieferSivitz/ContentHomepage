@@ -11,6 +11,7 @@
 window.twttr = require('../vendor/twitter.js')
 export default {
     name: 'twitterComponent',
+    props: ['componentName'],
     data () {
         return {
             msg: 'Welcome to twitter!'
@@ -32,11 +33,9 @@ export default {
         document.getElementById('twitter-wjs').addEventListener('load', () => {
             this.$store.commit('changeTwitterFeed', {user: this.$store.state.twitterUser, list: this.$store.state.twitterList})
         })
-        // Listener for user changing
         document.getElementById('twitterUserInput').addEventListener('keydown', (e) => {
             this.inputListener(e, this)
         })
-        // Listener for list changing
         document.getElementById('twitterListInput').addEventListener('keydown', (e) => {
             this.inputListener(e, this)
         })

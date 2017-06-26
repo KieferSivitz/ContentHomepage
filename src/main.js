@@ -8,12 +8,32 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
+        componentCounts: {
+            twitch: 0
+        },
         // Layout
         gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
 
-        // Twitch
-        twitchChannel: 'tradechat',
-        twitchPlayer: {},
+        // Components
+        twitchComponents: [{
+            twitchChannel: 'tradechat',
+            twitchPlayer: {},
+            twitchElement: 'twitchPlayer10'
+        },
+        {
+            twitchChannel: 'vgbootcamp',
+            twitchPlayer: {},
+            twitchElement: 'twitchPlayer14'
+        }],
+
+        twitterComponents: [{
+            twitterUser: 'KieferSivitz',
+            twitterList: 'Smash'
+        }],
+
+        twitchChatComponents: [{
+            twitchChatChannel: 'tradechat'
+        }],
 
         // Twitch Chat
         twitchChatChannel: 'tradechat',
@@ -26,6 +46,10 @@ const store = new Vuex.Store({
         displayInputs: false
     },
     mutations: {
+        // Counter
+        addTwitchComponent (state) {
+            ++state.componentCounts.twitch
+        },
         // Inputs
         displayInputs (state) {
             state.displayInputs = true
@@ -39,17 +63,17 @@ const store = new Vuex.Store({
             localStorage.setItem('layout', JSON.stringify(newLayout))
         },
         // Twitch
-        changeTwitchChannel (state, channel) {
-            state.twitchChannel = channel
-            state.twitchPlayer.setChannel(channel)
+        changeTwitchChannel (state, twitch = {channel: 'tradechat', component: 0}) {
+            state.twitchComponents[twitch.component].twitchChannel = twitch.channel
+            state.twitchComponents[twitch.component].twitchPlayer.setChannel(twitch.channel)
         },
-        storeTwitchPlayer (state, t) {
-            state.twitchPlayer = t
+        storeTwitchPlayer (state, twitch = {player: {}, component: 0}) {
+            state.twitchComponents[twitch.component].twitchPlayer = twitch.player
         },
         // Twitch Chat
         changeTwitchChatChannel (state, channel) {
             document.getElementById('twitchChat').setAttribute('src', 'https://www.twitch.tv/' + channel + '/chat')
-            state.twitchChannel = channel
+            state.twitchComponents[0].twitchChannel = channel
         },
         // Twitter
         changeTwitterFeed (state, info) {
@@ -78,43 +102,10 @@ const store = new Vuex.Store({
         }
     },
     actions: {
-        navigationActions ({ commit }, info = {twitch: 'tradechat', twitter: {user: 'KieferSivitz', list: 'WoW'}}) {
+        navigationActions ({ commit }, info = {twitch: {channel: 'tradechat', component: 0}, twitter: {user: 'KieferSivitz', list: 'WoW'}}) {
             commit('changeTwitterFeed', info.twitter)
             commit('changeTwitchChannel', info.twitch)
-            commit('changeTwitchChatChannel', info.twitch)
-        },
-        resizeEvents ({ commit }, info) {
-            function resizeWithContainer (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
-                const width = Number(newWPx) - offsetW
-                const height = Number(newHPx) - offsetH
-
-                document.getElementById(element).width = width
-                document.getElementById(element).height = height
-            }
-            const newH = info.newH
-            const newW = info.newW
-            const newWPx = info.newWPx
-            const newHPx = info.newHPx
-
-            commit('saveLayout', info.layout)
-            switch (info.i) {
-            case 'twitchComponent':
-                resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchPlayer', 20, 70)
-                break;
-
-            case 'twitterComponent':
-                const twitterWindow = document.querySelector('iframe[id^="twitter-widget-"]')
-                const twitterHeightOffset = (newWPx >= 515) ? 60 : 100
-                twitterWindow.style.height = String((newHPx - twitterHeightOffset) + 'px')
-                break;
-
-            case 'twitchChatComponent':
-                resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChat', 20, 75)
-                break;
-
-            default:
-                break;
-            }
+            commit('changeTwitchChatChannel', info.twitch.channel)
         }
     }
 })

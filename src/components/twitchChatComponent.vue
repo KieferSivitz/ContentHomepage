@@ -21,6 +21,7 @@ import resizeItem from '../mixins/resizeItem.js'
 export default {
     name: 'twitchChatComponent',
     mixins: [resizeItem, inputListener],
+    props: ['componentName'],
     data () {
         return {
             msg: 'Welcome to the social media aggregator!',

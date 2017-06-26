@@ -52,7 +52,15 @@ export default {
             const index = i - 1
             listItem[i].addEventListener('click', (e) => {
                 const hub = defaultHubs.hubList[index] // eslint-disable-line
-                this.$store.dispatch('navigationActions', {twitch: hub.twitchChannel, twitter: {user: 'KieferSivitz', list: hub.twitterList}})
+                this.$store.dispatch('navigationActions', {
+                    twitch: {
+                        channel: hub.twitchChannel,
+                        component: 0
+                    },
+                    twitter: {
+                        user: 'KieferSivitz', list: hub.twitterList
+                    }
+                })
             })
         }
     }
