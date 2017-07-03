@@ -13,6 +13,7 @@ const store = new Vuex.Store({
         },
         // Layout
         gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
+        gridLayout1: defaultConfigs.smashLayout,
 
         // Components
         twitchComponents: [{
@@ -69,6 +70,9 @@ const store = new Vuex.Store({
         },
         storeTwitchPlayer (state, twitch = {player: {}, component: 0}) {
             state.twitchComponents[twitch.component].twitchPlayer = twitch.player
+        },
+        removeTwitchComponent (state, component) {
+            state.gridLayout = state.gridLayout1
         },
         // Twitch Chat
         changeTwitchChatChannel (state, channel) {

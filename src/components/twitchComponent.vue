@@ -1,6 +1,8 @@
 <template>
     <div class="twitchComponent">
-        <input type="text" :id="'twitchInput' + _uid" value="Twitch Channel"></input>
+        <div>
+            <input type="text" :id="'twitchInput' + _uid" value="Twitch Channel"></input>
+        </div>
         <div :id="'streamWindow' + _uid">
         </div>
     </div>

@@ -20,6 +20,7 @@
                         :h="item.h"
                         :i="item.i"
                             @resized="resizedEvent">
+                        <button v-on:click="removeComponent">X</button>
                         <component :is="item.componentType" 
                                     :component-name="item.id"></component>
                 </grid-item>
@@ -53,6 +54,9 @@ export default {
         }
     },
     methods: {
+        removeComponent: function () {
+            this.layout = this.$store.state.gridLayout1
+        },
         resizeWithContainer: function (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
             const width = Number(newWPx) - offsetW
             const height = Number(newHPx) - offsetH
@@ -93,7 +97,7 @@ export default {
             }
         },
         updateLayout: function () {
-            GridLayout.methods.layoutUpdate()
+            // defaultConfigs.smashLayout
         },
         storeItemProperties: function () {
             this.$store.commit('saveLayout', this.layout)
@@ -109,6 +113,16 @@ export default {
 .gridItems {
     background: #4A484C;
     border-radius: 5px
+}
+
+button {
+    top: 16px;
+    left: 16px;
+    float: right;
+    width: 32px;
+    height: 32px;
+    background: #4A484C;
+    border: none;
 }
 
 </style>
