@@ -1,55 +1,43 @@
 <template>
     <div id="twitterComponent" class="twitterComponent">
-        <!--<input type="text" id="twitterInput"> </input>-->
+        <input type="text" class="gridInput" id="twitterUserInput" value="Twitter Username"></input>
+        <input type="text" class="gridInput" id="twitterListInput" value="Twitter List"></input>
         <div id="twitter-feed">
         </div>
     </div>
 </template>
 
 <script>
+window.twttr = require('../vendor/twitter.js')
 export default {
     name: 'twitterComponent',
+    props: ['componentName'],
     data () {
         return {
             msg: 'Welcome to twitter!'
         }
     },
 
-
-
-    beforeMount () {
-        window.twttr = (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; // eslint-disable-line
-            if (d.getElementById(id)) return t;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = 'https://platform.twitter.com/widgets.js';
-            fjs.parentNode.insertBefore(js, fjs);
-
-            t._e = [];
-            t.ready = function (f) {
-                t._e.push(f);
-            };
-
-            return t;
-        }(document, 'script', 'twitter-wjs'));
-
-        document.getElementById('twitter-wjs').addEventListener('load', function () {
-            twttr.ready(function (twttr) { // eslint-disable-line
-                window.twttr.widgets.createTimeline(
-                    {
-                        sourceType: 'list',
-                        ownerScreenName: 'KieferSivitz',
-                        slug: 'Smash'
-                    },
-                    document.getElementById('twitter-feed'),
-                    {
-                        // height: (window.innerHeight * 0.54),
-                        height: document.getElementById('gridComponent0').getBoundingClientRect().height - 40,
-                        related: 'twitterdev,twitterapi'
-                    }
-                )
-            })
+    methods: {
+        createTimeline: (twitterUser, listName, _this) => {
+            _this.$store.commit('changeTwitterFeed', {user: twitterUser, list: listName})
+        },
+        inputListener: (e, _this) => {
+            if (e.keyCode === 13) {
+                const text = e.target.value
+                _this.$store.commit('changeTwitterFeed', {user: _this.$store.state.twitterUser, list: text})
+            }
+        }
+    },
+    mounted () {
+        document.getElementById('twitter-wjs').addEventListener('load', () => {
+            this.$store.commit('changeTwitterFeed', {user: this.$store.state.twitterUser, list: this.$store.state.twitterList})
+        })
+        document.getElementById('twitterUserInput').addEventListener('keydown', (e) => {
+            this.inputListener(e, this)
+        })
+        document.getElementById('twitterListInput').addEventListener('keydown', (e) => {
+            this.inputListener(e, this)
         })
     }
 }

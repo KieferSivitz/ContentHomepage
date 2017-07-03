@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "Chrome",
+            "request": "launch",
+            "program": "${workspaceRoot}/build/dev-server.js",
+            "cwd": "${workspaceRoot}",
+            "outFiles": ["${workspaceRoot}/**/*.vue"],
+            "sourceMaps": true
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to Chrome",
+            "port": 8080,
+            "webRoot": "${workspaceRoot}"
+        }
+    ]
+}

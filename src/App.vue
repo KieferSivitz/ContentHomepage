@@ -1,16 +1,67 @@
 <template>
   <div id="app">
+      <div class="nav" id="navbar">
+          <ul>
+            <li><a href="#" class="active" id="icon"><img src="./assets/icon.png"></img></a></li>
+            <li><a href="#">CS:GO</a></li>
+            <li><a href="#">DotA</a></li>
+            <li><a href="#">Hearthstone</a></li>
+            <li><a href="#">LoL</a></li>
+            <li><a href="#">Overwatch</a></li>
+            <li><a href="#">Smash</a></li>
+            <li><a href="#" id="navCustom">Custom</a></li>
+            <li style="float:right"><a href="#">About</a></li>
+        </ul>
+      </div>
     <router-view>
     </router-view>
   </div>
 </template>
 
 <script>
+var defaultHubs = require('./configuration/hubs.json')
+
+var $ = require('jquery')
 export default {
     name: 'app',
     data () {
         return {
             msg: 'Welcome to the social media aggregator!'
+        }
+    },
+    mounted () {
+        // Iterate through list adding listners
+        $(document).ready(function () {
+            $('.nav li a').click(function (e) {
+                $('.nav li').removeClass('active');
+
+                const $parent = $(this).parent();
+                if (!$parent.hasClass('active')) {
+                    $parent.addClass('active');
+                }
+                e.preventDefault();
+            });
+        });
+
+        // All Listeners for Navigation
+        const nums = document.getElementById('navbar');
+        const listItem = nums.getElementsByTagName('li');
+
+        let i = 0
+        for (i = 0; i < listItem.length; i++) {
+            const index = i - 1
+            listItem[i].addEventListener('click', (e) => {
+                const hub = defaultHubs.hubList[index] // eslint-disable-line
+                this.$store.dispatch('navigationActions', {
+                    twitch: {
+                        channel: hub.twitchChannel,
+                        component: 0
+                    },
+                    twitter: {
+                        user: 'KieferSivitz', list: hub.twitterList
+                    }
+                })
+            })
         }
     }
 
@@ -19,11 +70,18 @@ export default {
 </script>
 
 <style>
-html, body {
+html {
+    background-color: #334D5C;
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #2c3e50;
+}
+
+body {
+    background-color: #334D5C;
+    margin: 0;
+    padding: 0;
+
 }
 
 
@@ -39,9 +97,9 @@ html, body {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     height: 100%;
-    color: #2c3e50;
-    background-color: #2c3e50;
+    background-color: #334D5C;
 }
+
 input {
     text-align: center;
     margin-bottom: 10px;
@@ -51,5 +109,46 @@ input {
     background: #fff;
 }
 
+/* N A V B A R */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #45B29D;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+.active {
+    background-color: #334D5C;
+}
+
+#icon {
+    height: 18px;
+    width: 18px;
+}
+
+#icon img {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
 
 </style>

@@ -1,18 +1,16 @@
 <template>
     <div class="componentContainer">
         <div class="page-title">
-            <h1>
-                Welcome to the Content Homepage!
-            </h1>
-            <h3>
-                Currently combining Twitch and Twitter for Super Smash Brothers Melee!
-            </h3>
         </div>
-        <gridComponent />
+        <gridComponent :my-layout="savelayout"/>
         <div class="page-title">
             <h5>
-                More sites and functionality coming in the near future! (Twitch chat, personalized twitter feed, twitch channel options)
+                More features coming in the near future!
+                <br />
             </h5>
+            <p>
+                Keep up to date by following this project on <a href="https://github.com/KieferSivitz/ContentHomepage">GitHub</a>
+            </p>
         </div>
     </div>
 </template>
@@ -22,13 +20,14 @@ import gridComponent from './gridComponent'
 
 export default {
     name: 'homeComponent',
+    props: ['myLayout'],
     components: {
         gridComponent
     },
     data () {
         return {
-            msg: 'Welcome to the content homepage!'
-
+            msg: 'Welcome to your Content Homepage!',
+            savelayout: this.$store.state.gridLayout
         }
     }
 
@@ -39,5 +38,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+
+body {
+    padding-bottom: 0.2em;
+}
 
 </style>

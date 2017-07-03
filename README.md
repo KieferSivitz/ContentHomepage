@@ -1,30 +1,14 @@
-# devdashboard
+# Content Homepage
 
 > Social media aggregator focused on integrating streaming channels with communities
 
-## Build Setup
+[Link to the site](https://www.contenthomepage.com)
 
-``` bash
-# install dependencies
-npm install
+## Project Information
 
-# serve with hot reload at localhost:8080
-npm run dev
+This project began because I wanted to have a clean interface to have twitter and twitch together on one page because twitch chat has become unusable and twitter seemed to be the place that intelligent discussions were taking place.
 
-# build for production with minification
-npm run build
+The current vision for the site is to have many different community hubs playing top streams for each and twitter lists curated for each community.
+Additionally I would like to integrate brackets or other such relevant information in the near future.
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+<a href="https://www.contenthomepage.com" rel="Preview of web site in action during Smash and Splash 3">![Site preview](./src/assets/preview.PNG)</a>

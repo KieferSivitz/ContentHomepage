@@ -1,24 +1,41 @@
 <template>
     <div class="twitchChatComponent">
-        <iframe frameborder="0"
+        <input type="text" class="gridInput" id="twitchChatInput" value="Chat Channel"></input>
+        <iframe v-bind:src="twitchSource"
+                frameborder="0"
                 scrolling="no"
                 id="twitchChat"
-                src="https://www.twitch.tv/tradechat/chat"
-                width="740"
-                height="300"
-                allowfullscreen="true">
+                :width="props.width"
+                :height="props.height"
+                allowfullscreen="true"
+                style="visibility: hidden">
         </iframe>
     </div>
 </template>
 
 <script>
+import inputListener from '../mixins/inputListener.js'
+import resizeItem from '../mixins/resizeItem.js'
+
 
 export default {
     name: 'twitchChatComponent',
+    mixins: [resizeItem, inputListener],
+    props: ['componentName'],
     data () {
         return {
-            msg: 'Welcome to the social media aggregator!'
+            msg: 'Welcome to the social media aggregator!',
+            twitchSource: 'https://www.twitch.tv/' + this.$store.state.twitchChatChannel + '/chat',
+            props: {
+                width: 40,
+                height: 40
+            }
         }
+    },
+
+    mounted () {
+        resizeItem.methods.initialSize('twitchChat', 'gridComponent2', 60, 20)
+        inputListener.methods.createListener('twitchChatInput', this)
     }
 }
 </script>
@@ -27,5 +44,9 @@ export default {
 <style>
 .twitchChatComponent {
     margin: 10px;
+}
+
+.input-descriptor {
+    line-height: 1.6em;
 }
 </style>
