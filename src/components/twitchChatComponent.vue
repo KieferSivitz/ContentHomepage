@@ -23,9 +23,10 @@ export default {
     mixins: [resizeItem, inputListener],
     props: ['componentName'],
     data () {
+        this.$store.commit('addTwitchChatComponent')
         return {
             msg: 'Welcome to the social media aggregator!',
-            twitchSource: 'https://www.twitch.tv/' + this.$store.state.twitchChatChannel + '/chat',
+            twitchSource: 'https://www.twitch.tv/' + this.$store.state.twitchChatComponents[0].twitchChatChannel + '/chat',
             props: {
                 width: 40,
                 height: 40

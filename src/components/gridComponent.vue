@@ -55,7 +55,9 @@ export default {
     },
     methods: {
         removeComponent: function () {
-            this.layout = this.$store.state.gridLayout1
+            this.$store.commit('addTwitchItem')
+            this.layout = this.$store.state.gridLayout
+            localStorage.setItem('layout', JSON.stringify(this.layout))
         },
         resizeWithContainer: function (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
             const width = Number(newWPx) - offsetW
@@ -77,9 +79,11 @@ export default {
                 break;
 
             case 'twitch1':
-                // Which one?
-                let twitchElement1 = 'twitchPlayer14'
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, twitchElement1, 20, 70)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[1].twitchElement, 20, 70)
+                break;
+
+            case 'twitch2':
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[2].twitchElement, 20, 70)
                 break;
 
             case 'twitter0':

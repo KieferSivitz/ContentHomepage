@@ -9,22 +9,28 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         componentCounts: {
-            twitch: 0
+            twitch: 0,
+            twitter: 0,
+            twitchChat: 0
         },
         // Layout
         gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
-        gridLayout1: defaultConfigs.smashLayout,
 
         // Components
-        twitchComponents: [{
+        twitchComponents: JSON.parse(localStorage.getItem('twitchComponents')) || [{
             twitchChannel: 'tradechat',
             twitchPlayer: {},
-            twitchElement: 'twitchPlayer10'
+            twitchElement: 'twitchPlayer0'
         },
         {
             twitchChannel: 'vgbootcamp',
             twitchPlayer: {},
-            twitchElement: 'twitchPlayer14'
+            twitchElement: 'twitchPlayer1'
+        },
+        {
+            twitchChannel: 'vgbootcamp',
+            twitchPlayer: {},
+            twitchElement: 'twitchPlayer2'
         }],
 
         twitterComponents: [{
@@ -34,29 +40,18 @@ const store = new Vuex.Store({
 
         twitchChatComponents: [{
             twitchChatChannel: 'tradechat'
-        }],
-
-        // Twitch Chat
-        twitchChatChannel: 'tradechat',
-
-        // Twitter
-        twitterUser: 'KieferSivitz',
-        twitterList: 'Smash',
-
-        // Inputs
-        displayInputs: false
+        }]
     },
     mutations: {
-        // Counter
+        // Counters TODO: Reduce repitition of these
         addTwitchComponent (state) {
             ++state.componentCounts.twitch
         },
-        // Inputs
-        displayInputs (state) {
-            state.displayInputs = true
+        addTwitterComponent (state) {
+            ++state.componentCounts.twitter
         },
-        hideInputs (state) {
-            state.displayInputs = false
+        addTwitchChatComponent (state) {
+            ++state.componentCounts.twitchChat
         },
         // Layouts
         saveLayout (state, newLayout) {
@@ -71,8 +66,18 @@ const store = new Vuex.Store({
         storeTwitchPlayer (state, twitch = {player: {}, component: 0}) {
             state.twitchComponents[twitch.component].twitchPlayer = twitch.player
         },
-        removeTwitchComponent (state, component) {
-            state.gridLayout = state.gridLayout1
+        addTwitchItem (state) {
+            let newLayout = state.gridLayout
+            let newTwitchComponentsList = state.twitchComponents
+            newLayout.push({'x': 4, 'y': 20, 'w': 2, 'h': 10, 'i': 'twitch' + state.twitchComponents, 'id': 'gridComponent' + state.gridLayout.length, 'componentType': 'twitchComponent'})
+            newTwitchComponentsList.push(
+                {
+                    twitchChannel: 'vgbootcamp',
+                    twitchPlayer: {},
+                    twitchElement: 'twitchPlayer' + state.twitchComponents
+                }
+            )
+            // localStorage.setItem('twitchComponents', JSON.stringify(newTwitchComponentsList))
         },
         // Twitch Chat
         changeTwitchChatChannel (state, channel) {
@@ -85,8 +90,8 @@ const store = new Vuex.Store({
             const twitterContainer = document.getElementById('gridComponent0').getBoundingClientRect()
 
             const twitterHeightOffset = (twitterContainer.width >= 515) ? 60 : 100
-            state.twitterList = info.list
-            state.twitterUser = info.user
+            state.twitterComponents[0].twitterList = info.list
+            state.twitterComponents[0].twitterUser = info.user
             if (oldTwitter) {
                 oldTwitter.remove()
             }

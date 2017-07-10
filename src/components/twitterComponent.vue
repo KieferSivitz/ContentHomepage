@@ -13,25 +13,28 @@ export default {
     name: 'twitterComponent',
     props: ['componentName'],
     data () {
+        this.$store.commit('addTwitterComponent')
         return {
-            msg: 'Welcome to twitter!'
+            msg: 'Welcome to twitter!',
+            component: this.$store.state.componentCounts.twitter - 1
         }
     },
 
     methods: {
-        createTimeline: (twitterUser, listName, _this) => {
-            _this.$store.commit('changeTwitterFeed', {user: twitterUser, list: listName})
+        createTimeline: (twitterUser, listName) => {
+            this.$store.commit('changeTwitterFeed', {user: twitterUser, list: listName})
         },
-        inputListener: (e, _this) => {
+        inputListener: (e) => {
+            const _this = this
             if (e.keyCode === 13) {
                 const text = e.target.value
-                _this.$store.commit('changeTwitterFeed', {user: _this.$store.state.twitterUser, list: text})
+                _this.$store.commit('changeTwitterFeed', {user: _this.$store.state.twitterComponents[this.component].twitterUser, list: text})
             }
         }
     },
     mounted () {
         document.getElementById('twitter-wjs').addEventListener('load', () => {
-            this.$store.commit('changeTwitterFeed', {user: this.$store.state.twitterUser, list: this.$store.state.twitterList})
+            this.$store.commit('changeTwitterFeed', {user: this.$store.state.twitterComponents[this.component].twitterUser, list: this.$store.state.twitterComponents[this.component].twitterList})
         })
         document.getElementById('twitterUserInput').addEventListener('keydown', (e) => {
             this.inputListener(e, this)
