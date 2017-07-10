@@ -1,5 +1,5 @@
 <template>
-    <div class="twitchComponent">
+    <div class="twitchComponent" :id="'twitchComponent' + componentNumber">
         <div>
             <input type="text" :id="'twitchInput' + componentNumber" value="Twitch Channel"></input>
         </div>
@@ -31,8 +31,8 @@ export default {
         renderPlayer (channelID) {
             const heightOffset = 60
             const widthOffset = 20
-            const windowWidth = Number(document.getElementById(this.componentName).getBoundingClientRect().width) - widthOffset
-            const windowHeight = Number(document.getElementById(this.componentName).getBoundingClientRect().height) - heightOffset
+            const windowWidth = document.getElementById(this.componentName).style.width - widthOffset
+            const windowHeight = document.getElementById(this.componentName).style.height - heightOffset
 
             const target = 'streamWindow' + this.componentNumber
 
@@ -43,27 +43,26 @@ export default {
                 autoplay: false
             }
 
-            return new window.Twitch.Player(target, options)
+            this.twitchPlayer = new window.Twitch.Player(target, options)
         }
     },
 
+    beforeMount () {
+    },
     mounted () {
-        const channelID = this.twitchChannel
-        window.addEventListener('load', () => {
-            this.twitchPlayer = this.renderPlayer(channelID)
-            this.$store.commit('storeTwitchPlayer', {player: this.twitchPlayer, component: this.componentNumber})
+        this.renderPlayer(this.twitchChannel)
+        this.$store.commit('storeTwitchPlayer', {player: this.twitchPlayer, component: this.componentNumber})
 
-            document.getElementById('streamWindow' + this.componentNumber).firstChild.id = ('twitchPlayer' + this.componentNumber)
-            // Initialize window resize listener
-            resizeItem.methods.initialSize(('twitchPlayer' + this.componentNumber), this.componentName, 60, 20)
+        document.getElementById('streamWindow' + this.componentNumber).firstChild.id = ('twitchPlayer' + this.componentNumber)
+        // Initialize window resize listener
+        resizeItem.methods.initialSize(('twitchPlayer' + this.componentNumber), this.componentName, 60, 20)
 
-            // Listener for channel changing
-            document.getElementById('twitchInput' + this.componentNumber).addEventListener('keydown', (e) => {
-                if (e.keyCode === 13) {
-                    const text = e.target.value
-                    this.$store.commit('changeTwitchChannel', {channel: text, component: this.component})
-                }
-            })
+        // Listener for channel changing
+        document.getElementById('twitchInput' + this.componentNumber).addEventListener('keydown', (e) => {
+            if (e.keyCode === 13) {
+                const text = e.target.value
+                this.$store.commit('changeTwitchChannel', {channel: text, component: this.component})
+            }
         })
     }
 }

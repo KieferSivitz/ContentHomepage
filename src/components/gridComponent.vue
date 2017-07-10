@@ -20,7 +20,7 @@
                         :h="item.h"
                         :i="item.i"
                             @resized="resizedEvent">
-                        <button v-on:click="removeComponent">X</button>
+                        <button v-on:click="addTwitchComponent">X</button>
                         <component :is="item.componentType" 
                                     :component-name="item.id"></component>
                 </grid-item>
@@ -30,9 +30,11 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import twitterComponent from './twitterComponent'
 import twitchComponent from './twitchComponent'
 import VueGridLayout from 'vue-grid-layout'
+import resizeItem from '../mixins/resizeItem.js'
 import twitchChatComponent from './twitchChatComponent'
 
 var GridLayout = VueGridLayout.GridLayout;
@@ -40,6 +42,7 @@ var GridItem = VueGridLayout.GridItem;
 
 export default {
     name: 'gridComponent',
+    mixins: [resizeItem],
     components: {
         twitterComponent,
         twitchComponent,
@@ -54,10 +57,22 @@ export default {
         }
     },
     methods: {
-        removeComponent: function () {
+        addTwitchComponent: function () {
+            const twitchComponentCount = (this.$store.state.componentCounts.twitch)
+            const componentCount = this.layout.length
+
             this.$store.commit('addTwitchItem')
             this.layout = this.$store.state.gridLayout
             localStorage.setItem('layout', JSON.stringify(this.layout))
+
+            if (document.getElementById('streamWindow' + twitchComponentCount)) {
+                new Vue({props: 'gridComponent' + componentCount}).$mount('#twitchComponent' + twitchComponentCount) // eslint-disable-line
+            } else {
+                setTimeout(function () {
+                    new Vue({props: 'gridComponent' + componentCount}).$mount('#twitchComponent' + twitchComponentCount)
+                }, 2000)  // eslint-disable-line 
+                console.log(('twitchPlayer' + twitchComponentCount), 'gridComponent' + componentCount)
+            }
         },
         resizeWithContainer: function (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
             const width = Number(newWPx) - offsetW
@@ -73,6 +88,7 @@ export default {
                 console.log(this.layout[j].i)
                 console.log(this.layout[j].id)
             }
+            console.log(i)
             switch (i) {
             case 'twitch0':
                 this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[0].twitchElement, 20, 70)

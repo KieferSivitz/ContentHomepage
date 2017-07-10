@@ -26,11 +26,6 @@ const store = new Vuex.Store({
             twitchChannel: 'vgbootcamp',
             twitchPlayer: {},
             twitchElement: 'twitchPlayer1'
-        },
-        {
-            twitchChannel: 'vgbootcamp',
-            twitchPlayer: {},
-            twitchElement: 'twitchPlayer2'
         }],
 
         twitterComponents: [{
@@ -69,12 +64,12 @@ const store = new Vuex.Store({
         addTwitchItem (state) {
             let newLayout = state.gridLayout
             let newTwitchComponentsList = state.twitchComponents
-            newLayout.push({'x': 4, 'y': 20, 'w': 2, 'h': 10, 'i': 'twitch' + state.twitchComponents, 'id': 'gridComponent' + state.gridLayout.length, 'componentType': 'twitchComponent'})
+            newLayout.push({'x': 4, 'y': 20, 'w': 2, 'h': 10, 'i': 'twitch' + state.componentCounts.twitch, 'id': 'gridComponent' + state.gridLayout.length, 'componentType': 'twitchComponent'})
             newTwitchComponentsList.push(
                 {
                     twitchChannel: 'vgbootcamp',
                     twitchPlayer: {},
-                    twitchElement: 'twitchPlayer' + state.twitchComponents
+                    twitchElement: 'twitchPlayer' + state.twitchComponents.length
                 }
             )
             // localStorage.setItem('twitchComponents', JSON.stringify(newTwitchComponentsList))
