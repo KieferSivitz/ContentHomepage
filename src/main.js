@@ -120,7 +120,7 @@ const store = new Vuex.Store({
         },
         removeGridItem ({ commit, state }, gridItem) {
             commit('removeTwitchComponent')
-            console.log(state.gridLayout[gridItem.charAt(gridItem.length - 1)])
+            state.gridLayout.splice(gridItem.charAt(gridItem.length - 1), 1)
         }
     }
 })
