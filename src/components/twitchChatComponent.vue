@@ -1,5 +1,5 @@
 <template>
-    <div class="twitchChatComponent">
+    <div class="twitchChatComponent" :id="'twitchChat' + _uid">
         <input type="text" class="gridInput" id="twitchChatInput" value="Chat Channel"></input>
         <iframe v-bind:src="twitchSource"
                 frameborder="0"
@@ -21,7 +21,6 @@ import resizeItem from '../mixins/resizeItem.js'
 export default {
     name: 'twitchChatComponent',
     mixins: [resizeItem, inputListener],
-    props: ['componentName'],
     data () {
         this.$store.commit('addTwitchChatComponent')
         return {
@@ -35,7 +34,7 @@ export default {
     },
 
     mounted () {
-        resizeItem.methods.initialSize('twitchChat', 'gridComponent2', 60, 20)
+        resizeItem.methods.parentSize('twitchChat', 'twitchChat' + this._uid, 60, 20)
         inputListener.methods.createListener('twitchChatInput', this)
     }
 }

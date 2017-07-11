@@ -14,23 +14,20 @@ const store = new Vuex.Store({
             twitchChat: 0
         },
         // Layout
-        gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
+        // gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
+        gridLayout: defaultConfigs.defaultLayout,
 
         // Components
         twitchComponents: JSON.parse(localStorage.getItem('twitchComponents')) || [{
             twitchChannel: 'tradechat',
             twitchPlayer: {},
             twitchElement: 'twitchPlayer0'
-        },
-        {
-            twitchChannel: 'vgbootcamp',
-            twitchPlayer: {},
-            twitchElement: 'twitchPlayer1'
         }],
 
         twitterComponents: [{
             twitterUser: 'KieferSivitz',
-            twitterList: 'Smash'
+            twitterList: 'Smash',
+            UID: 8
         }],
 
         twitchChatComponents: [{
@@ -42,11 +39,21 @@ const store = new Vuex.Store({
         addTwitchComponent (state) {
             ++state.componentCounts.twitch
         },
-        addTwitterComponent (state) {
+        addTwitterComponent (state, id) {
             ++state.componentCounts.twitter
+            state.twitterComponents[state.componentCounts.twitter - 1].UID = id
         },
         addTwitchChatComponent (state) {
             ++state.componentCounts.twitchChat
+        },
+        removeTwitchComponent (state) {
+            --state.componentCounts.twitch
+        },
+        removeTwitterComponent (state) {
+            --state.componentCounts.twitter
+        },
+        removeTwitchChatComponent (state) {
+            --state.componentCounts.twitchChat
         },
         // Layouts
         saveLayout (state, newLayout) {
@@ -82,7 +89,7 @@ const store = new Vuex.Store({
         // Twitter
         changeTwitterFeed (state, info) {
             const oldTwitter = document.querySelector('iframe[id^="twitter-widget-"]')
-            const twitterContainer = document.getElementById('gridComponent0').getBoundingClientRect()
+            const twitterContainer = document.getElementById(info.componentID).parentNode.getBoundingClientRect()
 
             const twitterHeightOffset = (twitterContainer.width >= 515) ? 60 : 100
             state.twitterComponents[0].twitterList = info.list
@@ -106,10 +113,14 @@ const store = new Vuex.Store({
         }
     },
     actions: {
-        navigationActions ({ commit }, info = {twitch: {channel: 'tradechat', component: 0}, twitter: {user: 'KieferSivitz', list: 'WoW'}}) {
+        navigationActions ({ commit }, info = {twitch: {channel: 'tradechat', component: 0}, twitter: {user: 'KieferSivitz', list: 'WoW', componentID: 'twitterComponent8'}}) {
             commit('changeTwitterFeed', info.twitter)
             commit('changeTwitchChannel', info.twitch)
             commit('changeTwitchChatChannel', info.twitch.channel)
+        },
+        removeGridItem ({ commit, state }, gridItem) {
+            commit('removeTwitchComponent')
+            console.log(state.gridLayout[gridItem.charAt(gridItem.length - 1)])
         }
     }
 })

@@ -58,7 +58,9 @@ export default {
                         component: 0
                     },
                     twitter: {
-                        user: 'KieferSivitz', list: hub.twitterList
+                        user: 'KieferSivitz',
+                        list: hub.twitterList,
+                        componentID: this.$store.state.twitterComponents[0].UID
                     }
                 })
             })

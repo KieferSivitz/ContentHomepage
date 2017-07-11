@@ -16,7 +16,6 @@ import inputListener from '../mixins/inputListener.js'
 export default {
     name: 'twitchComponent',
     mixins: [resizeItem, inputListener],
-    props: ['componentName'],
     componentNumber: -1,
     data () {
         this.$store.commit('addTwitchComponent')
@@ -31,8 +30,8 @@ export default {
         renderPlayer (channelID) {
             const heightOffset = 60
             const widthOffset = 20
-            const windowWidth = document.getElementById(this.componentName).style.width - widthOffset
-            const windowHeight = document.getElementById(this.componentName).style.height - heightOffset
+            const windowWidth = document.getElementById('twitchComponent' + this.componentNumber).style.width - widthOffset
+            const windowHeight = document.getElementById('twitchComponent' + this.componentNumber).style.height - heightOffset
 
             const target = 'streamWindow' + this.componentNumber
 
@@ -55,7 +54,7 @@ export default {
 
         document.getElementById('streamWindow' + this.componentNumber).firstChild.id = ('twitchPlayer' + this.componentNumber)
         // Initialize window resize listener
-        resizeItem.methods.initialSize(('twitchPlayer' + this.componentNumber), this.componentName, 60, 20)
+        resizeItem.methods.parentSize(('twitchPlayer' + this.componentNumber), 'twitchComponent' + this.componentNumber, 60, 20)
 
         // Listener for channel changing
         document.getElementById('twitchInput' + this.componentNumber).addEventListener('keydown', (e) => {
