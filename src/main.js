@@ -60,6 +60,9 @@ const store = new Vuex.Store({
             state.gridLayout = newLayout
             localStorage.setItem('layout', JSON.stringify(newLayout))
         },
+        deleteGridItem (state, itemNumber) {
+            state.gridLayout.splice(Number(itemNumber), 1)
+        },
         // Twitch
         changeTwitchChannel (state, twitch = {channel: 'tradechat', component: 0}) {
             state.twitchComponents[twitch.component].twitchChannel = twitch.channel
@@ -68,13 +71,13 @@ const store = new Vuex.Store({
         storeTwitchPlayer (state, twitch = {player: {}, component: 0}) {
             state.twitchComponents[twitch.component].twitchPlayer = twitch.player
         },
-        addTwitchItem (state) {
+        addTwitchItem (state, channel) {
             let newLayout = state.gridLayout
             let newTwitchComponentsList = state.twitchComponents
-            newLayout.push({'x': 4, 'y': 20, 'w': 2, 'h': 10, 'i': 'twitch' + state.componentCounts.twitch, 'id': 'gridComponent' + state.gridLayout.length, 'componentType': 'twitchComponent'})
+            newLayout.push({'x': 4, 'y': 20, 'w': 3, 'h': 6, 'i': 'twitch' + state.componentCounts.twitch, 'id': 'gridComponent' + state.gridLayout.length, 'componentType': 'twitchComponent'})
             newTwitchComponentsList.push(
                 {
-                    twitchChannel: 'vgbootcamp',
+                    twitchChannel: channel,
                     twitchPlayer: {},
                     twitchElement: 'twitchPlayer' + state.twitchComponents.length
                 }
@@ -119,8 +122,28 @@ const store = new Vuex.Store({
             commit('changeTwitchChatChannel', info.twitch.channel)
         },
         removeGridItem ({ commit, state }, gridItem) {
-            commit('removeTwitchComponent')
-            state.gridLayout.splice(gridItem.charAt(gridItem.length - 1), 1)
+            const componentTypeLong = state.gridLayout[gridItem.charAt(gridItem.length - 1)].i
+            const componentType = componentTypeLong.substring(0, componentTypeLong.length - 1)
+            commit('deleteGridItem', gridItem.charAt(gridItem.length - 1))
+
+            switch (true) {
+            case componentType.includes('twitchChat'):
+                commit('removeTwitchChatComponent')
+                break;
+
+            case componentType.includes('twitch'):
+                commit('removeTwitchComponent')
+                break;
+
+            case componentType.includes('twitter'):
+                commit('removeTwitterComponent')
+                break;
+
+            default:
+                break;
+            }
+
+            // Add vm.$destroy
         }
     }
 })

@@ -1,8 +1,6 @@
 <template>
     <div class="twitchComponent" :id="'twitchComponent' + componentNumber">
-        <div>
-            <input type="text" :id="'twitchInput' + componentNumber" value="Twitch Channel"></input>
-        </div>
+        <input type="text" :id="'twitchInput' + componentNumber" value="Twitch Channel"></input>
         <div :id="'streamWindow' + componentNumber">
         </div>
     </div>
@@ -43,6 +41,9 @@ export default {
             }
 
             this.twitchPlayer = new window.Twitch.Player(target, options)
+        },
+        updatePlayer (text) {
+            this.$store.commit('changeTwitchChannel', {channel: text, component: this.component})
         }
     },
 
@@ -56,11 +57,10 @@ export default {
         // Initialize window resize listener
         resizeItem.methods.parentSize(('twitchPlayer' + this.componentNumber), 'twitchComponent' + this.componentNumber, 60, 20)
 
-        // Listener for channel changing
         document.getElementById('twitchInput' + this.componentNumber).addEventListener('keydown', (e) => {
             if (e.keyCode === 13) {
                 const text = e.target.value
-                this.$store.commit('changeTwitchChannel', {channel: text, component: this.component})
+                this.updatePlayer(text)
             }
         })
     }

@@ -23,7 +23,10 @@
                         <component :is="item.componentType"></component>
                 </grid-item>
             </grid-layout>
-            <button class="add" v-on:click="addTwitchComponent">+</button>
+            <div class="holder">
+                <input id="addTwitchChannel" value="Twitch Channel"></input>
+                <button class="add" v-on:click="addTwitchComponent">+</button>
+            </div>
         </div>
     </div>
 </template>
@@ -58,17 +61,16 @@ export default {
     methods: {
         addTwitchComponent: function () {
             const twitchComponentCount = (this.$store.state.componentCounts.twitch)
-            const componentCount = this.layout.length
             // let tmpTwitchComponents = this.$store.state.twitchComponents
 
-            this.$store.commit('addTwitchItem')
+            this.$store.commit('addTwitchItem', document.getElementById('addTwitchChannel').value)
             this.layout = this.$store.state.gridLayout
             localStorage.setItem('layout', JSON.stringify(this.layout))
             if (document.getElementById('streamWindow' + twitchComponentCount)) {
-                new Vue({props: 'gridComponent' + componentCount}).$mount('#twitchComponent' + twitchComponentCount) // eslint-disable-line
+                new Vue().$mount('#twitchComponent' + twitchComponentCount) // eslint-disable-line
             } else {
                 setTimeout(function () {
-                    new Vue({props: 'gridComponent' + componentCount}).$mount('#twitchComponent' + twitchComponentCount)
+                    new Vue().$mount('#twitchComponent' + twitchComponentCount)
                 }, 2000)  // eslint-disable-line 
             }
 
@@ -81,6 +83,7 @@ export default {
             // localStorage.setItem('twitchComponents', JSON.stringify())
         },
         removeGridItem: function (componentID) {
+            console.log(componentID)
             this.$store.dispatch('removeGridItem', componentID)
         },
         resizeWithContainer: function (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
@@ -143,5 +146,6 @@ button {
 .delete {
     float: right;
 }
+
 
 </style>
