@@ -23,10 +23,8 @@
                         <component :is="item.componentType"></component>
                 </grid-item>
             </grid-layout>
-            <div class="holder">
-                <input id="addTwitchChannel" value="Twitch Channel"></input>
-                <button class="add" v-on:click="addTwitchComponent">+</button>
-            </div>
+            <input id="addTwitchChannel" value="Twitch Channel"></input>
+            <button class="add" v-on:click="addTwitchComponent">+</button>
         </div>
     </div>
 </template>
@@ -60,19 +58,23 @@ export default {
     },
     methods: {
         addTwitchComponent: function () {
+            const registerListener = () => {
+                if (!document.getElementById('#twitchComponent' + twitchComponentCount)) {
+                    window.requestAnimationFrame(registerListener)
+                } else {
+                    new Vue().$mount('#twitchComponent' + twitchComponentCount)
+                }
+            }
             const twitchComponentCount = (this.$store.state.componentCounts.twitch)
             // let tmpTwitchComponents = this.$store.state.twitchComponents
 
             this.$store.commit('addTwitchItem', document.getElementById('addTwitchChannel').value)
+
+
+            registerListener()
+
             this.layout = this.$store.state.gridLayout
             localStorage.setItem('layout', JSON.stringify(this.layout))
-            if (document.getElementById('streamWindow' + twitchComponentCount)) {
-                new Vue().$mount('#twitchComponent' + twitchComponentCount) // eslint-disable-line
-            } else {
-                setTimeout(function () {
-                    new Vue().$mount('#twitchComponent' + twitchComponentCount)
-                }, 2000)  // eslint-disable-line 
-            }
 
             // for (var key in tmpTwitchComponents) {
             //     if (tmpTwitchComponents.hasOwnProperty(key)) {
@@ -83,7 +85,6 @@ export default {
             // localStorage.setItem('twitchComponents', JSON.stringify())
         },
         removeGridItem: function (componentID) {
-            console.log(componentID)
             this.$store.dispatch('removeGridItem', componentID)
         },
         resizeWithContainer: function (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line

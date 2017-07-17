@@ -55,6 +55,7 @@ const store = new Vuex.Store({
         removeTwitchChatComponent (state) {
             --state.componentCounts.twitchChat
         },
+
         // Layouts
         saveLayout (state, newLayout) {
             state.gridLayout = newLayout
@@ -63,6 +64,7 @@ const store = new Vuex.Store({
         deleteGridItem (state, itemNumber) {
             state.gridLayout.splice(Number(itemNumber), 1)
         },
+
         // Twitch
         changeTwitchChannel (state, twitch = {channel: 'tradechat', component: 0}) {
             state.twitchComponents[twitch.component].twitchChannel = twitch.channel
@@ -74,7 +76,17 @@ const store = new Vuex.Store({
         addTwitchItem (state, channel) {
             let newLayout = state.gridLayout
             let newTwitchComponentsList = state.twitchComponents
-            newLayout.push({'x': 4, 'y': 20, 'w': 3, 'h': 6, 'i': 'twitch' + state.componentCounts.twitch, 'id': 'gridComponent' + state.gridLayout.length, 'componentType': 'twitchComponent'})
+
+            newLayout.push({
+                'x': 4,
+                'y': 20,
+                'w': 3,
+                'h': 6,
+                'i': 'twitch' + state.componentCounts.twitch,
+                'id': 'gridComponent' + state.gridLayout.length,
+                'componentType': 'twitchComponent'
+            })
+
             newTwitchComponentsList.push(
                 {
                     twitchChannel: channel,
@@ -84,11 +96,13 @@ const store = new Vuex.Store({
             )
             // localStorage.setItem('twitchComponents', JSON.stringify(newTwitchComponentsList))
         },
+
         // Twitch Chat
         changeTwitchChatChannel (state, channel) {
             document.getElementById('twitchChat').setAttribute('src', 'https://www.twitch.tv/' + channel + '/chat')
             state.twitchComponents[0].twitchChannel = channel
         },
+
         // Twitter
         changeTwitterFeed (state, info) {
             const oldTwitter = document.querySelector('iframe[id^="twitter-widget-"]')
@@ -121,12 +135,13 @@ const store = new Vuex.Store({
             commit('changeTwitchChannel', info.twitch)
             commit('changeTwitchChatChannel', info.twitch.channel)
         },
+
         removeGridItem ({ commit, state }, gridItem) {
             const componentTypeLong = state.gridLayout[gridItem.charAt(gridItem.length - 1)].i
             const componentType = componentTypeLong.substring(0, componentTypeLong.length - 1)
             commit('deleteGridItem', gridItem.charAt(gridItem.length - 1))
 
-            switch (true) {
+            switch (true) { // Kinda gross but lets you do partial string comparison in switch cases
             case componentType.includes('twitchChat'):
                 commit('removeTwitchChatComponent')
                 break;

@@ -20,8 +20,7 @@ export default {
         this.componentNumber = this.$store.state.componentCounts.twitch - 1
         // Figure out which info to load and load it
         return {
-            twitchChannel: this.$store.state.twitchComponents[this.$store.state.componentCounts.twitch - 1].twitchChannel,
-            component: this.$store.state.componentCounts.twitch - 1
+            twitchChannel: this.$store.state.twitchComponents[this.$store.state.componentCounts.twitch - 1].twitchChannel
         }
     },
     methods: {
@@ -43,22 +42,31 @@ export default {
             this.twitchPlayer = new window.Twitch.Player(target, options)
         },
         updatePlayer (text) {
-            this.$store.commit('changeTwitchChannel', {channel: text, component: this.component})
+            this.$store.commit('changeTwitchChannel', {channel: text, component: this.componentNumber})
+        },
+        registerListener () {
+            const text = document.getElementById('twitchInput' + this.componentNumber).value
+            this.updatePlayer(text)
         }
     },
-
     beforeMount () {
     },
     mounted () {
+        const $ = function (selector) {
+            return document.querySelector(selector);
+        };
         this.renderPlayer(this.twitchChannel)
         this.$store.commit('storeTwitchPlayer', {player: this.twitchPlayer, component: this.componentNumber})
 
-        document.getElementById('streamWindow' + this.componentNumber).firstChild.id = ('twitchPlayer' + this.componentNumber)
+        $('#streamWindow' + this.componentNumber).firstChild.id = ('twitchPlayer' + this.componentNumber)
         // Initialize window resize listener
         resizeItem.methods.parentSize(('twitchPlayer' + this.componentNumber), 'twitchComponent' + this.componentNumber, 60, 20)
 
-        document.getElementById('twitchInput' + this.componentNumber).addEventListener('keydown', (e) => {
+        const input = $('#twitchInput' + this.componentNumber)
+        input.addEventListener('keyup', (e) => {
+            e.preventDefault()
             if (e.keyCode === 13) {
+                console.log(e)
                 const text = e.target.value
                 this.updatePlayer(text)
             }
