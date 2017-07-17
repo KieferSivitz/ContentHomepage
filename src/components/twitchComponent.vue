@@ -66,7 +66,6 @@ export default {
         input.addEventListener('keyup', (e) => {
             e.preventDefault()
             if (e.keyCode === 13) {
-                console.log(e)
                 const text = e.target.value
                 this.updatePlayer(text)
             }
