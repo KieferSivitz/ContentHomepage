@@ -143,8 +143,8 @@ li a:hover {
 }
 
 #icon {
-    height: 18px;
-    width: 18px;
+    height: 20px;
+    width: 20px;
 }
 
 #icon img {
