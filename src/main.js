@@ -137,17 +137,17 @@ const store = new Vuex.Store({
         },
 
         removeGridItem ({ commit, state }, gridItem) {
-            const componentTypeLong = state.gridLayout[gridItem.charAt(gridItem.length - 1)].i
+            const componentTypeLong = state.gridLayout[gridItem].i
             const componentType = componentTypeLong.substring(0, componentTypeLong.length - 1)
-            commit('deleteGridItem', gridItem.charAt(gridItem.length - 1))
+            commit('deleteGridItem', gridItem)
 
             switch (true) { // Kinda gross but lets you do partial string comparison in switch cases
-            case componentType.includes('twitchChat'):
-                commit('removeTwitchChatComponent')
-                break;
-
             case componentType.includes('twitch'):
                 commit('removeTwitchComponent')
+                break;
+
+            case componentType.includes('twitchChat'):
+                commit('removeTwitchChatComponent')
                 break;
 
             case componentType.includes('twitter'):

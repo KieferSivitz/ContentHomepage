@@ -4,10 +4,6 @@
         </div>
         <gridComponent :my-layout="savelayout"/>
         <div class="page-title">
-            <h5>
-                More features coming in the near future!
-                <br />
-            </h5>
             <p>
                 Keep up to date by following this project on <a href="https://github.com/KieferSivitz/ContentHomepage">GitHub</a>
             </p>

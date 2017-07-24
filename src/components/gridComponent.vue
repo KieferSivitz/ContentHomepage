@@ -66,7 +66,6 @@ export default {
                 }
             }
             const twitchComponentCount = (this.$store.state.componentCounts.twitch)
-            // let tmpTwitchComponents = this.$store.state.twitchComponents
 
             this.$store.commit('addTwitchItem', document.getElementById('addTwitchChannel').value)
 
@@ -85,7 +84,13 @@ export default {
             // localStorage.setItem('twitchComponents', JSON.stringify())
         },
         removeGridItem: function (componentID) {
-            this.$store.dispatch('removeGridItem', componentID)
+            for (var i = 0; i < this.$store.state.gridLayout.length; ++i) {
+                if (this.$store.state.gridLayout[i].id === componentID) {
+                    this.$store.dispatch('removeGridItem', i)
+                    console.log(componentID)
+                    break
+                }
+            }
         },
         resizeWithContainer: function (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
             const width = Number(newWPx) - offsetW
