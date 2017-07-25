@@ -14,8 +14,8 @@ const store = new Vuex.Store({
             twitchChat: 0
         },
         // Layout
-        // gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
-        gridLayout: defaultConfigs.defaultLayout,
+        gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
+        // gridLayout: defaultConfigs.defaultLayout,
 
         // Components
         twitchComponents: JSON.parse(localStorage.getItem('twitchComponents')) || [{
@@ -98,6 +98,23 @@ const store = new Vuex.Store({
         },
 
         // Twitch Chat
+        addTwitchChatItem (state, channel) {
+            let newLayout = state.gridLayout
+
+            newLayout.push({
+                'x': 4,
+                'y': 20,
+                'w': 3,
+                'h': 6,
+                'i': 'twitchChat' + state.componentCounts.twitchChat,
+                'id': 'gridComponent' + state.gridLayout.length,
+                'componentType': 'twitchChatComponent'
+            })
+
+            state.twitchChatComponents.push({
+                twitchChatChannel: channel
+            })
+        },
         changeTwitchChatChannel (state, channel) {
             document.getElementById('twitchChat').setAttribute('src', 'https://www.twitch.tv/' + channel + '/chat')
             state.twitchComponents[0].twitchChannel = channel
