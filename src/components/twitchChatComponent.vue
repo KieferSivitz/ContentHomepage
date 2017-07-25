@@ -1,6 +1,6 @@
 <template>
     <div class="twitchChatComponent" :id="'twitchChat' + componentNumber">
-        <input type="text" class="gridInput" id="twitchChatInput" value="Chat Channel"></input>
+        <input type="text" class="gridInput" :id="'twitchChatInput' + componentNumber" value="Chat Channel"></input>
         <iframe v-bind:src="twitchSource"
                 frameborder="0"
                 scrolling="no"
@@ -40,7 +40,7 @@ export default {
                 window.requestAnimationFrame(registerListener)
             } else {
                 resizeItem.methods.parentSize('twitchChatWindow' + this.componentNumber, 'twitchChat' + this.componentNumber, 60, 20)
-                inputListener.methods.createListener('twitchChatInput', this, this.componentNumber)
+                inputListener.methods.createListener('twitchChatInput' + this.componentNumber, this, this.componentNumber)
             }
         }
 
