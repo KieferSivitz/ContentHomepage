@@ -6,7 +6,7 @@ export default {
             let newheight = Number(container.height) - heightPadding;
             let newwidth = Number(container.width) - widthPadding
 
-            window.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('load', () => {
                 container = document.getElementById(childElement).parentNode.getBoundingClientRect()
                 newheight = Number(container.height) - heightPadding;
                 newwidth = Number(container.width) - widthPadding
