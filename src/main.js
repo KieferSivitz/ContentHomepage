@@ -115,15 +115,15 @@ const store = new Vuex.Store({
                 twitchChatChannel: channel
             })
         },
-        changeTwitchChatChannel (state, channel) {
-            document.getElementById('twitchChat').setAttribute('src', 'https://www.twitch.tv/' + channel + '/chat')
-            state.twitchComponents[0].twitchChannel = channel
+        changeTwitchChatChannel (state, info) {
+            document.getElementById('twitchChat' + info.id).setAttribute('src', 'https://www.twitch.tv/' + info.channel + '/chat')
+            state.twitchComponents[info.id].twitchChannel = info.channel
         },
 
         // Twitter
         changeTwitterFeed (state, info) {
-            const oldTwitter = document.querySelector('iframe[id^="twitter-widget-"]')
-            const twitterContainer = document.getElementById(info.componentID).parentNode.getBoundingClientRect()
+            const oldTwitter = document.querySelector('#twitter-widget-' + info.componentNumber)
+            const twitterContainer = document.getElementById('twitterComponent' + info.componentID).parentNode.getBoundingClientRect()
 
             const twitterHeightOffset = (twitterContainer.width >= 515) ? 60 : 100
             state.twitterComponents[0].twitterList = info.list
@@ -131,26 +131,50 @@ const store = new Vuex.Store({
             if (oldTwitter) {
                 oldTwitter.remove()
             }
+            console.log('twitter-feed-' + info.componentNumber)
             window.twttr.widgets.createTimeline(
                 {
                     sourceType: 'list',
                     ownerScreenName: info.user,
                     slug: info.list
                 },
-                document.getElementById('twitter-feed'),
+                document.getElementById('twitter-feed-' + info.componentNumber),
                 {
                     theme: 'dark',
                     dnt: true,
                     height: twitterContainer.height - twitterHeightOffset
                 }
             )
+        },
+        addTwitterItem (state, info) {
+            let newLayout = state.gridLayout
+
+            newLayout.push({
+                'x': 4,
+                'y': 20,
+                'w': 3,
+                'h': 6,
+                'i': 'twitter' + state.componentCounts.twitter,
+                'id': 'gridComponent' + state.gridLayout.length,
+                'componentType': 'twitterComponent'
+            })
+
+            state.twitterComponents.push({
+                twitterUser: info.user,
+                twitterList: info.list,
+                UID: 8,
+                componentNumber: info.componentNumber
+            })
         }
     },
     actions: {
-        navigationActions ({ commit }, info = {twitch: {channel: 'tradechat', component: 0}, twitter: {user: 'KieferSivitz', list: 'WoW', componentID: 'twitterComponent8'}}) {
+        navigationActions ({ commit }, info = {twitch: {channel: 'tradechat', component: 0}, twitter: {user: 'KieferSivitz', list: 'WoW', componentID: 'twitterComponent8', componentNumber: 0}}) {
             commit('changeTwitterFeed', info.twitter)
             commit('changeTwitchChannel', info.twitch)
-            commit('changeTwitchChatChannel', info.twitch.channel)
+            commit('changeTwitchChatChannel', {
+                channel: info.twitch.channel,
+                id: 0
+            })
         },
 
         removeGridItem ({ commit, state }, gridItem) {

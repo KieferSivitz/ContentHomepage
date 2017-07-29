@@ -24,7 +24,7 @@
                 </grid-item>
             </grid-layout>
             <div>
-                <button class="add">
+                <button class="add" v-on:click="addTwitterComponent">
                     <img src="../assets/Twitter_Logo_Blue/Twitter_Logo_Blue.svg" type="image/svg+xml" class="addIcon"></img>
                 </button>
                 <button class="add" v-on:click="addTwitchComponent">
@@ -66,6 +66,7 @@ export default {
         }
     },
     methods: {
+        // TODO: Combign the below
         addTwitchComponent: function () {
             const twitchComponentCount = (this.$store.state.componentCounts.twitch)
             const registerListener = () => {
@@ -95,6 +96,27 @@ export default {
             }
 
             this.$store.commit('addTwitchChatItem', 'vgbootcamp')
+
+
+            registerListener()
+
+            this.layout = this.$store.state.gridLayout
+            localStorage.setItem('layout', JSON.stringify(this.layout))
+        },
+        addTwitterComponent: function () {
+            const twitterComponentCount = (this.$store.state.componentCounts.twitter)
+            const registerListener = () => {
+                if (!document.getElementById('#twitterComponent' + twitterComponentCount)) {
+                    window.requestAnimationFrame(registerListener)
+                } else {
+                    new Vue().$mount('#twitterComponent' + twitterComponentCount)
+                }
+            }
+
+            this.$store.commit('addTwitterItem', {
+                user: 'KieferSivitz',
+                list: 'smash'
+            })
 
 
             registerListener()
@@ -133,7 +155,8 @@ export default {
                 break;
 
             case i.includes('twitter'):
-                const twitterWindow = document.querySelector('iframe[id^="twitter-widget-"]')
+                const twitterNumber = i.charAt(i.length - 1)
+                const twitterWindow = document.getElementById('twitter-widget-' + twitterNumber)
                 let twitterHeightOffset = (newWPx >= 515) ? 60 : 100
                 twitterWindow.style.height = String((newHPx - twitterHeightOffset) + 'px')
                 break;

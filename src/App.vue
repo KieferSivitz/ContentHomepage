@@ -60,7 +60,8 @@ export default {
                     twitter: {
                         user: 'KieferSivitz',
                         list: hub.twitterList,
-                        componentID: this.$store.state.twitterComponents[0].UID
+                        componentID: this.$store.state.twitterComponents[0].UID,
+                        componentNumber: 0
                     }
                 })
             })
@@ -130,6 +131,7 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    height: 100%;
     font-weight: 700;
 }
 
