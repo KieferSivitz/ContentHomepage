@@ -124,9 +124,15 @@ const store = new Vuex.Store({
         changeTwitterFeed (state, info) {
             const oldTwitter = document.querySelector('#twitter-widget-' + info.componentNumber)
             const twitterContainer = document.getElementById('twitterComponent' + info.componentID).parentNode.getBoundingClientRect()
-            console.log(twitterContainer.height)
 
-            // const twitterHeightOffset = (twitterContainer.width >= 515) ? 60 : 100
+            let twitterHeightOffset = 0
+            if (twitterContainer.width >= 515) {
+                if (twitterContainer.height > 60) {
+                    twitterHeightOffset = 60
+                }
+            } else {
+                twitterHeightOffset = 100
+            }
             state.twitterComponents[0].twitterList = info.list
             state.twitterComponents[0].twitterUser = info.user
             if (oldTwitter) {
@@ -142,7 +148,7 @@ const store = new Vuex.Store({
                 {
                     theme: 'dark',
                     dnt: true,
-                    height: twitterContainer.height
+                    height: twitterContainer.height - twitterHeightOffset
                 }
             )
         },
@@ -183,12 +189,12 @@ const store = new Vuex.Store({
             commit('deleteGridItem', gridItem)
 
             switch (true) { // Lets you do partial string comparison in switch cases
-            case componentType.includes('twitch'):
-                commit('removeTwitchComponent')
-                break;
-
             case componentType.includes('twitchChat'):
                 commit('removeTwitchChatComponent')
+                break;
+
+            case componentType.includes('twitch'):
+                commit('removeTwitchComponent')
                 break;
 
             case componentType.includes('twitter'):

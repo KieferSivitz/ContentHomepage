@@ -69,6 +69,7 @@ export default {
         // TODO: Combign the below
         addTwitchComponent: function () {
             const twitchComponentCount = (this.$store.state.componentCounts.twitch)
+            console.log(twitchComponentCount)
             const registerListener = () => {
                 if (!document.getElementById('#twitchComponent' + twitchComponentCount)) {
                     window.requestAnimationFrame(registerListener)
