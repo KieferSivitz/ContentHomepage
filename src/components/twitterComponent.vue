@@ -51,7 +51,7 @@ export default {
         })
 
         const registerListener = (element) => {
-            if (!document.getElementById(element)) {
+            if (!document.getElementById(element).parentNode) {
                 window.requestAnimationFrame(registerListener)
             } else {
                 this.$store.commit('changeTwitterFeed', {
@@ -63,7 +63,7 @@ export default {
             }
         }
 
-        registerListener('twitter-wjs')
+        registerListener('twitterComponent' + this._uid)
 
         document.getElementById('twitterUserInput' + this._uid).addEventListener('keydown', (e) => {
             this.inputListener(e, this)
