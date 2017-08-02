@@ -20,14 +20,6 @@ export default {
     },
 
     methods: {
-        createTimeline: (twitterUser, listName) => {
-            this.$store.commit('changeTwitterFeed', {
-                user: twitterUser,
-                list: listName,
-                componentID: this._uid,
-                componentNumber: this.componentNumber
-            })
-        },
         inputListener: (e, _this) => {
             if (e.keyCode === 13) {
                 const text = e.target.value
@@ -40,16 +32,7 @@ export default {
             }
         }
     },
-    mounted () {
-        document.getElementById('twitter-wjs').addEventListener('load', () => {
-            this.$store.commit('changeTwitterFeed', {
-                user: this.$store.state.twitterComponents[this.componentNumber].twitterUser,
-                list: this.$store.state.twitterComponents[this.componentNumber].twitterList,
-                componentID: this._uid,
-                componentNumber: this.componentNumber
-            })
-        })
-
+    mounted () { // For dynamically created components
         const registerListener = (element) => {
             if (!document.getElementById(element).parentNode) {
                 window.requestAnimationFrame(registerListener)
@@ -62,6 +45,15 @@ export default {
                 })
             }
         }
+
+        document.getElementById('twitter-wjs').addEventListener('load', () => {
+            this.$store.commit('changeTwitterFeed', {
+                user: this.$store.state.twitterComponents[this.componentNumber].twitterUser,
+                list: this.$store.state.twitterComponents[this.componentNumber].twitterList,
+                componentID: this._uid,
+                componentNumber: this.componentNumber
+            })
+        })
 
         registerListener('twitterComponent' + this._uid)
 

@@ -16,7 +16,7 @@ export default {
     mixins: [resizeItem, inputListener],
     componentNumber: -1,
     data () {
-        this.$store.commit('addTwitchComponent')
+        this.$store.commit('addTwitchComponent', this._uid)
         this.componentNumber = this.$store.state.componentCounts.twitch - 1
         // Figure out which info to load and load it
         return {
