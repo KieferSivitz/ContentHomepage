@@ -1,14 +1,13 @@
 <template>
-    <div class="twitchChatComponent" :id="'twitchChat' + _uid">
-        <input type="text" class="gridInput" id="twitchChatInput" value="Chat Channel"></input>
+    <div class="twitchChatComponent" :id="'twitchChat' + componentNumber">
+        <input type="text" class="gridInput" :id="'twitchChatInput' + componentNumber" value="Chat Channel"></input>
         <iframe v-bind:src="twitchSource"
                 frameborder="0"
                 scrolling="no"
-                id="twitchChat"
+                :id="'twitchChatWindow' + componentNumber"
                 :width="props.width"
                 :height="props.height"
-                allowfullscreen="true"
-                style="visibility: hidden">
+                allowfullscreen="true">
         </iframe>
     </div>
 </template>
@@ -21,21 +20,32 @@ import resizeItem from '../mixins/resizeItem.js'
 export default {
     name: 'twitchChatComponent',
     mixins: [resizeItem, inputListener],
+    componentNumber: -1,
     data () {
         this.$store.commit('addTwitchChatComponent')
+        this.componentNumber = this.$store.state.componentCounts.twitchChat - 1
         return {
             msg: 'Welcome to the social media aggregator!',
-            twitchSource: 'https://www.twitch.tv/' + this.$store.state.twitchChatComponents[0].twitchChatChannel + '/chat',
+            twitchSource: 'https://www.twitch.tv/' + this.$store.state.twitchChatComponents[this.componentNumber].twitchChatChannel + '/chat' || 'https://www.twitch.tv/tradechat/chat',
             props: {
-                width: 40,
-                height: 40
+                width: 200,
+                height: 160
             }
         }
     },
 
     mounted () {
-        resizeItem.methods.parentSize('twitchChat', 'twitchChat' + this._uid, 60, 20)
-        inputListener.methods.createListener('twitchChatInput', this)
+        const registerListener = (element) => {
+            if (!document.getElementById(element)) {
+                window.requestAnimationFrame(registerListener)
+            } else {
+                resizeItem.methods.parentSize('twitchChatWindow' + this.componentNumber, 'twitchChat' + this.componentNumber, 60, 20)
+                inputListener.methods.createListener('twitchChatInput' + this.componentNumber, this, this.componentNumber)
+            }
+        }
+
+
+        registerListener('twitchChat' + this.componentNumber)
     }
 }
 </script>

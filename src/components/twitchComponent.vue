@@ -20,7 +20,7 @@ export default {
         this.componentNumber = this.$store.state.componentCounts.twitch - 1
         // Figure out which info to load and load it
         return {
-            twitchChannel: this.$store.state.twitchComponents[this.$store.state.componentCounts.twitch - 1].twitchChannel
+            twitchChannel: this.$store.state.twitchComponents[this.componentNumber].twitchChannel
         }
     },
     methods: {

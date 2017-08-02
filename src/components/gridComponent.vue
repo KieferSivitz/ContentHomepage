@@ -23,8 +23,17 @@
                         <component :is="item.componentType"></component>
                 </grid-item>
             </grid-layout>
-            <input id="addTwitchChannel" value="Twitch Channel"></input>
-            <button class="add" v-on:click="addTwitchComponent">+</button>
+            <div>
+                <button class="add" v-on:click="addTwitterComponent">
+                    <img src="../assets/Twitter_Logo_Blue/Twitter_Logo_Blue.svg" type="image/svg+xml" class="addIcon"></img>
+                </button>
+                <button class="add" v-on:click="addTwitchComponent">
+                    <img src="../assets/twitch.svg" type="image/svg+xml" class="addIcon"></img>
+                </button>
+                <button class="add" v-on:click="addTwitchChatComponent">
+                    <img src="../assets/chat.svg" type="image/svg+xml" class="addIcon"></img>
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -57,7 +66,9 @@ export default {
         }
     },
     methods: {
+        // TODO: Combign the below
         addTwitchComponent: function () {
+            const twitchComponentCount = (this.$store.state.componentCounts.twitch)
             const registerListener = () => {
                 if (!document.getElementById('#twitchComponent' + twitchComponentCount)) {
                     window.requestAnimationFrame(registerListener)
@@ -65,32 +76,62 @@ export default {
                     new Vue().$mount('#twitchComponent' + twitchComponentCount)
                 }
             }
-            const twitchComponentCount = (this.$store.state.componentCounts.twitch)
 
-            this.$store.commit('addTwitchItem', document.getElementById('addTwitchChannel').value)
+            this.$store.commit('addTwitchItem', 'vgbootcamp')
 
 
             registerListener()
 
             this.layout = this.$store.state.gridLayout
             localStorage.setItem('layout', JSON.stringify(this.layout))
+        },
+        addTwitchChatComponent: function () {
+            const twitchChatComponentCount = (this.$store.state.componentCounts.twitchChat)
+            const registerListener = () => {
+                if (!document.getElementById('#twitchChatComponent' + twitchChatComponentCount)) {
+                    window.requestAnimationFrame(registerListener)
+                } else {
+                    new Vue().$mount('#twitchChatComponent' + twitchChatComponentCount)
+                }
+            }
 
-            // for (var key in tmpTwitchComponents) {
-            //     if (tmpTwitchComponents.hasOwnProperty(key)) {
-            //         console.log(tmpTwitchComponents)
-            //         tmpTwitchComponents[key].twitchElement = {}
-            //     }
-            // }
-            // localStorage.setItem('twitchComponents', JSON.stringify())
+            this.$store.commit('addTwitchChatItem', 'vgbootcamp')
+
+
+            registerListener()
+
+            this.layout = this.$store.state.gridLayout
+            localStorage.setItem('layout', JSON.stringify(this.layout))
+        },
+        addTwitterComponent: function () {
+            const twitterComponentCount = (this.$store.state.componentCounts.twitter)
+            const registerListener = () => {
+                if (!document.getElementById('#twitterComponent' + twitterComponentCount)) {
+                    window.requestAnimationFrame(registerListener)
+                } else {
+                    new Vue().$mount('#twitterComponent' + twitterComponentCount)
+                }
+            }
+
+            this.$store.commit('addTwitterItem', {
+                user: 'KieferSivitz',
+                list: 'smash'
+            })
+
+
+            registerListener()
+
+            this.layout = this.$store.state.gridLayout
+            localStorage.setItem('layout', JSON.stringify(this.layout))
         },
         removeGridItem: function (componentID) {
             for (var i = 0; i < this.$store.state.gridLayout.length; ++i) {
                 if (this.$store.state.gridLayout[i].id === componentID) {
                     this.$store.dispatch('removeGridItem', i)
-                    console.log(componentID)
                     break
                 }
             }
+            localStorage.setItem('layout', JSON.stringify(this.layout))
         },
         resizeWithContainer: function (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
             const width = Number(newWPx) - offsetW
@@ -104,16 +145,18 @@ export default {
             this.storeItemProperties()
             switch (true) {
             case i.includes('twitchChat'):
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChat', 20, 75)
+                const chatNumber = i.charAt(i.length - 1)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChatWindow' + chatNumber, 20, 75)
                 break;
 
             case i.includes('twitch'):
-                const number = i.charAt(i.length - 1)
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[number].twitchElement, 20, 70)
+                const streamNumber = i.charAt(i.length - 1)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[streamNumber].twitchElement, 20, 70)
                 break;
 
             case i.includes('twitter'):
-                const twitterWindow = document.querySelector('iframe[id^="twitter-widget-"]')
+                const twitterNumber = i.charAt(i.length - 1)
+                const twitterWindow = document.getElementById('twitter-widget-' + twitterNumber)
                 let twitterHeightOffset = (newWPx >= 515) ? 60 : 100
                 twitterWindow.style.height = String((newHPx - twitterHeightOffset) + 'px')
                 break;
@@ -142,15 +185,25 @@ export default {
 }
 
 button {
-    top: 16px;
-    left: 16px;
     width: 32px;
     height: 32px;
-    background: #4A484C;
     border: none;
+    background: #4A484C;
 }
+
 .delete {
     float: right;
+}
+
+.addIcon {
+    max-width: 100%;
+}
+
+.add {
+    background-color: white;
+    width: 32px;
+    height: 32px;
+    border: none;
 }
 
 

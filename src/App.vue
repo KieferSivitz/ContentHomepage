@@ -5,9 +5,9 @@
             <li><a href="#" class="active" id="icon"><img src="./assets/icon.png"></img></a></li>
             <li><a href="#">CS:GO</a></li>
             <li><a href="#">DotA</a></li>
-            <li><a href="#">Hearthstone</a></li>
+            <li><a href="#">HS</a></li>
             <li><a href="#">LoL</a></li>
-            <li><a href="#">Overwatch</a></li>
+            <li><a href="#">OW</a></li>
             <li><a href="#">Smash</a></li>
             <li><a href="#" id="navCustom">Custom</a></li>
             <li style="float:right"><a href="#">About</a></li>
@@ -60,7 +60,8 @@ export default {
                     twitter: {
                         user: 'KieferSivitz',
                         list: hub.twitterList,
-                        componentID: this.$store.state.twitterComponents[0].UID
+                        componentID: this.$store.state.twitterComponents[0].UID,
+                        componentNumber: 0
                     }
                 })
             })
@@ -130,6 +131,7 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    height: 100%;
     font-weight: 700;
 }
 
