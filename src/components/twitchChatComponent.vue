@@ -22,7 +22,8 @@ export default {
     mixins: [resizeItem, inputListener],
     componentNumber: -1,
     data () {
-        this.$store.commit('addTwitchChatComponent')
+        console.log(this._uid)
+        this.$store.commit('addTwitchChatComponent', this._uid)
         this.componentNumber = this.$store.state.componentCounts.twitchChat - 1
         return {
             msg: 'Welcome to the social media aggregator!',
@@ -43,7 +44,6 @@ export default {
                 inputListener.methods.createListener('twitchChatInput' + this.componentNumber, this, this.componentNumber)
             }
         }
-
 
         registerListener('twitchChat' + this.componentNumber)
     }

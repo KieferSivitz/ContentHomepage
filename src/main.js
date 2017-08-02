@@ -21,30 +21,34 @@ const store = new Vuex.Store({
         twitchComponents: JSON.parse(localStorage.getItem('twitchComponents')) || [{
             twitchChannel: 'tradechat',
             twitchPlayer: {},
-            twitchElement: 'twitchPlayer0'
+            twitchElement: 'twitchPlayer0',
+            UID: -1
         }],
 
         twitterComponents: [{
             twitterUser: 'KieferSivitz',
             twitterList: 'Smash',
-            UID: 8
+            UID: -1
         }],
 
         twitchChatComponents: [{
-            twitchChatChannel: 'tradechat'
+            twitchChatChannel: 'tradechat',
+            UID: -1
         }]
     },
     mutations: {
         // Counters TODO: Reduce repitition of these
-        addTwitchComponent (state) {
+        addTwitchComponent (state, UID) {
             ++state.componentCounts.twitch
+            state.twitchComponents[state.componentCounts.twitch - 1].UID = UID
         },
-        addTwitterComponent (state, id) {
+        addTwitterComponent (state, UID) {
             ++state.componentCounts.twitter
-            state.twitterComponents[state.componentCounts.twitter - 1].UID = id
+            state.twitterComponents[state.componentCounts.twitter - 1].UID = UID
         },
-        addTwitchChatComponent (state) {
+        addTwitchChatComponent (state, UID) {
             ++state.componentCounts.twitchChat
+            state.twitchChatComponents[state.componentCounts.twitchChat - 1].UID = UID
         },
         removeTwitchComponent (state) {
             --state.componentCounts.twitch
