@@ -10,7 +10,6 @@
             <li><a href="#">OW</a></li>
             <li><a href="#">Smash</a></li>
             <li><a href="#" id="navCustom">Custom</a></li>
-            <li style="float:right"><a href="#">About</a></li>
         </ul>
       </div>
     <router-view>
@@ -145,14 +144,14 @@ li a:hover {
 }
 
 #icon {
-    height: 20px;
+    height: 18px;
     width: 20px;
 }
 
 #icon img {
     position: absolute;
     left: 10px;
-    top: 10px;
+    top: 8px;
 }
 
 </style>

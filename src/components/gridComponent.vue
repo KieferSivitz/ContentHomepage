@@ -1,5 +1,26 @@
 <template>
     <div class="gridComponent">
+        <div id="addItem">
+            <a id="addButton" href="#">+</a>
+            <br />
+            <ul id="creationList">
+                <li>
+                    <button class="add" v-on:click="addTwitterComponent">
+                        <img src="../assets/Twitter_Logo_Blue/Twitter_Logo_Blue.svg" type="image/svg+xml" class="addIcon"></img>
+                    </button>
+                </li>
+                <li>
+                    <button class="add" v-on:click="addTwitchComponent" style="padding-bottom: 4px">
+                        <img src="../assets/twitch.svg" type="image/svg+xml" class="addIcon"></img>
+                    </button>
+                </li>
+                <li>
+                    <button class="add" v-on:click="addTwitchChatComponent" style="padding-top: 6px">
+                        <img src="../assets/chat.svg" type="image/svg+xml" class="addIcon"></img>
+                    </button>
+                </li>
+            </ul>
+        </div>
         <div class="layout">
             <grid-layout
                 :layout="layout"
@@ -23,17 +44,6 @@
                         <component :is="item.componentType"></component>
                 </grid-item>
             </grid-layout>
-            <div>
-                <button class="add" v-on:click="addTwitterComponent">
-                    <img src="../assets/Twitter_Logo_Blue/Twitter_Logo_Blue.svg" type="image/svg+xml" class="addIcon"></img>
-                </button>
-                <button class="add" v-on:click="addTwitchComponent">
-                    <img src="../assets/twitch.svg" type="image/svg+xml" class="addIcon"></img>
-                </button>
-                <button class="add" v-on:click="addTwitchChatComponent">
-                    <img src="../assets/chat.svg" type="image/svg+xml" class="addIcon"></img>
-                </button>
-            </div>
         </div>
     </div>
 </template>
@@ -177,7 +187,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style scoped>
 
 .gridItems {
     background: #4A484C;
@@ -191,18 +201,57 @@ button {
     background: #4A484C;
 }
 
+#addItem {
+    width: 250px;
+    position: absolute;
+    float: right;
+    top: 0;
+    right: 0;
+    padding: 14px 16px;
+    height: 32px;
+}
+
+#addButton {
+    position: absolute;
+    float: right;
+    top: 0;
+    right: 0;
+    color: white;
+    text-align: center;
+    padding: 6px 16px;
+    text-decoration: none;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+#creationList {
+    display: none;
+}
+
+#addItem:hover #creationList {
+    display: block;
+}
+
+#addItem:hover {
+    background-color: #111;
+    width: 8%;
+    height: 97.8%;
+    z-index: 999;
+}
+
 .delete {
     float: right;
 }
 
 .addIcon {
     max-width: 100%;
+    max-height: 100%;
 }
 
 .add {
     background-color: white;
-    width: 32px;
-    height: 32px;
+    width: 250px;
+    height: 100px;
     border: none;
 }
 

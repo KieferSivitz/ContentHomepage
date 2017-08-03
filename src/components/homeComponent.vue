@@ -3,11 +3,6 @@
         <div class="page-title">
         </div>
         <gridComponent :my-layout="savelayout"/>
-        <div class="page-title">
-            <p>
-                Keep up to date by following this project on <a href="https://github.com/KieferSivitz/ContentHomepage">GitHub</a>
-            </p>
-        </div>
     </div>
 </template>
 
