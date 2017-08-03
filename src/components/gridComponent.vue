@@ -2,7 +2,6 @@
     <div class="gridComponent">
         <div id="addItem">
             <a id="addButton" href="#">+</a>
-            <br />
             <ul id="creationList">
                 <li>
                     <button class="add" v-on:click="addTwitterComponent">
@@ -225,6 +224,7 @@ button {
 }
 
 #creationList {
+    margin-top: 38px;
     display: none;
 }
 
@@ -233,7 +233,7 @@ button {
 }
 
 #addItem:hover {
-    background-color: #111;
+    background-color: #4A484C;
     width: 8%;
     height: 97.8%;
     z-index: 999;
@@ -244,15 +244,19 @@ button {
 }
 
 .addIcon {
-    max-width: 100%;
+    width: 100%;
     max-height: 100%;
 }
 
 .add {
     background-color: white;
-    width: 250px;
-    height: 100px;
+    width: 100%;
+    height: 80px;
     border: none;
+}
+
+ul {
+    background-color: #4A484C;
 }
 
 
