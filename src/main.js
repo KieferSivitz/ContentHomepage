@@ -129,7 +129,7 @@ const store = new Vuex.Store({
             const oldTwitter = document.querySelector('#twitter-widget-' + info.componentNumber)
             const twitterContainer = document.getElementById('twitterComponent' + info.componentID).parentNode.getBoundingClientRect()
 
-            let twitterHeightOffset = 40
+            let twitterHeightOffset = 60
             state.twitterComponents[0].twitterList = info.list
             state.twitterComponents[0].twitterUser = info.user
             if (oldTwitter) {
@@ -156,7 +156,7 @@ const store = new Vuex.Store({
                 'x': 4,
                 'y': 20,
                 'w': 3,
-                'h': 6,
+                'h': 8,
                 'i': 'twitter' + state.componentCounts.twitter,
                 'id': 'gridComponent' + state.gridLayout.length,
                 'componentType': 'twitterComponent'
