@@ -1,7 +1,9 @@
 <template>
     <div :id="'twitterComponent' + _uid" class="twitterComponent">
-        <input type="text" class="gridInput" :id="'twitterUserInput' + _uid" value="Twitter Username"></input>
-        <input type="text" class="gridInput" :id="'twitterListInput' + _uid" value="Twitter List"></input>
+        <form v-on:submit="changeFeed()">
+            <input type="text" class="gridInput twitterInput" :id="'twitterListInput' + _uid" placeholder="Twitter List" v-model="twitterList"></input>
+            <!-- <input type="text" class="gridInput twitterInput" :id="'twitterUserInput' + _uid" placeholder="Twitter Username" v-model="twitterUser" required="optional"></input> -->
+        </form>
         <div :id="'twitter-feed-' + componentNumber">
         </div>
     </div>
@@ -14,12 +16,23 @@ export default {
     data () {
         this.$store.commit('addTwitterComponent', this._uid)
         return {
+            twitterUser: 'KieferSivitz',
+            twitterList: '',
             msg: 'Welcome to twitter!',
             componentNumber: this.$store.state.componentCounts.twitter - 1
         }
     },
 
     methods: {
+        changeFeed () {
+            event.preventDefault()
+            this.$store.commit('changeTwitterFeed', {
+                user: this.$store.state.twitterComponents[this.componentNumber].twitterUser,
+                list: this.twitterList,
+                componentID: this._uid,
+                componentNumber: this.componentNumber
+            })
+        },
         inputListener: (e, _this) => {
             if (e.keyCode === 13) {
                 const text = e.target.value
@@ -56,13 +69,6 @@ export default {
         })
 
         registerListener('twitterComponent' + this._uid)
-
-        document.getElementById('twitterUserInput' + this._uid).addEventListener('keydown', (e) => {
-            this.inputListener(e, this)
-        })
-        document.getElementById('twitterListInput' + this._uid).addEventListener('keydown', (e) => {
-            this.inputListener(e, this)
-        })
     }
 }
 </script>
@@ -71,6 +77,10 @@ export default {
 <style scoped>
 .twitterComponent {
     padding: 10px;
+}
+
+input {
+    display: none;
 }
 
 

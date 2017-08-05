@@ -9,12 +9,12 @@
                     </button>
                 </li>
                 <li>
-                    <button class="add" v-on:click="addTwitchComponent" style="padding-bottom: 4px">
+                    <button class="add" v-on:click="addTwitchComponent">
                         <img src="../assets/twitch.svg" type="image/svg+xml" class="addIcon"></img>
                     </button>
                 </li>
                 <li>
-                    <button class="add" v-on:click="addTwitchChatComponent" style="padding-top: 6px">
+                    <button class="add" v-on:click="addTwitchChatComponent">
                         <img src="../assets/chat.svg" type="image/svg+xml" class="addIcon"></img>
                     </button>
                 </li>
@@ -39,7 +39,12 @@
                         :h="item.h"
                         :i="item.i"
                             @resized="resizedEvent">
-                        <button class="delete" v-on:click="removeGridItem(item.id)">X</button>
+                        <button class="delete" v-on:click="removeGridItem(item.id)">
+                            <img src="../assets/close.svg" type="image/svg+xml" class="expandImg"></img>
+                        </button>
+                        <button class="expandInput" v-on:click="expandInput(item.i)">
+                            <img src="../assets/expand-down.svg" type="image/svg+xml" class="expandImg"></img>
+                        </button>
                         <component :is="item.componentType"></component>
                 </grid-item>
             </grid-layout>
@@ -127,7 +132,6 @@ export default {
                 list: 'smash'
             })
 
-
             registerListener()
 
             this.layout = this.$store.state.gridLayout
@@ -141,6 +145,30 @@ export default {
                 }
             }
             localStorage.setItem('layout', JSON.stringify(this.layout))
+        },
+        expandInput: function (componentID) {
+            let input = null
+            switch (true) {
+            case componentID.includes('twitchChat'):
+                input = document.querySelector('input.twitchChatInput')
+                break;
+
+            case componentID.includes('twitch'):
+                input = document.querySelector('input.twitchInput')
+                break;
+
+            case componentID.includes('twitter'):
+                input = document.querySelector('input.twitterInput')
+                break;
+
+            default:
+                break;
+            }
+            if (input.style.display !== 'inline') {
+                input.style.display = 'inline'
+            } else {
+                input.style.display = 'none'
+            }
         },
         resizeWithContainer: function (newH, newW, newWPx, newHPx, element, offsetW, offsetH) { // eslint-disable-line
             const width = Number(newWPx) - offsetW
@@ -241,6 +269,15 @@ button {
 
 .delete {
     float: right;
+    max-width: 100%;
+}
+
+.expandInput {
+    float: left;
+}
+
+.expandImg {
+    max-width: 80%;
 }
 
 .addIcon {

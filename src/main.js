@@ -129,14 +129,7 @@ const store = new Vuex.Store({
             const oldTwitter = document.querySelector('#twitter-widget-' + info.componentNumber)
             const twitterContainer = document.getElementById('twitterComponent' + info.componentID).parentNode.getBoundingClientRect()
 
-            let twitterHeightOffset = 0
-            if (twitterContainer.width >= 515) {
-                if (twitterContainer.height > 60) {
-                    twitterHeightOffset = 60
-                }
-            } else {
-                twitterHeightOffset = 100
-            }
+            let twitterHeightOffset = 60
             state.twitterComponents[0].twitterList = info.list
             state.twitterComponents[0].twitterUser = info.user
             if (oldTwitter) {

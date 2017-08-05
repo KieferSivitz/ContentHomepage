@@ -1,6 +1,6 @@
 <template>
     <div class="twitchComponent" :id="'twitchComponent' + componentNumber">
-        <input type="text" :id="'twitchInput' + componentNumber" value="Twitch Channel"></input>
+        <input type="text" class="twitchInput" :id="'twitchInput' + componentNumber" value="Twitch Channel"></input>
         <div :id="'streamWindow' + componentNumber">
         </div>
     </div>
@@ -78,6 +78,10 @@ export default {
 <style scoped>
 .twitchComponent {
     padding: 10px;
+}
+
+input {
+    display: none;
 }
 
 </style>

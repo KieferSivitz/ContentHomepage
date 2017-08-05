@@ -1,6 +1,6 @@
 <template>
     <div class="twitchChatComponent" :id="'twitchChat' + componentNumber">
-        <input type="text" class="gridInput" :id="'twitchChatInput' + componentNumber" value="Chat Channel"></input>
+        <input type="text" class="gridInput twitchChatInput" :id="'twitchChatInput' + componentNumber" value="Chat Channel"></input>
         <iframe v-bind:src="twitchSource"
                 frameborder="0"
                 scrolling="no"
@@ -58,5 +58,9 @@ export default {
 
 .input-descriptor {
     line-height: 1.6em;
+}
+
+input {
+    display: none;
 }
 </style>
