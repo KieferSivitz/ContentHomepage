@@ -20,7 +20,7 @@ export default {
         this.componentNumber = this.$store.state.componentCounts.twitch - 1
         // Figure out which info to load and load it
         return {
-            twitchChannel: this.$store.state.twitchComponents[this.componentNumber].twitchChannel
+            twitchChannel: ''
         }
     },
     methods: {
@@ -55,7 +55,7 @@ export default {
         const $ = function (selector) {
             return document.querySelector(selector);
         };
-        this.renderPlayer(this.twitchChannel)
+        this.renderPlayer(this.$store.state.twitchComponents[this.componentNumber].twitchChannel)
         this.$store.commit('storeTwitchPlayer', {player: this.twitchPlayer, component: this.componentNumber})
 
         $('#streamWindow' + this.componentNumber).firstChild.id = ('twitchPlayer' + this.componentNumber)

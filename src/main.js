@@ -13,6 +13,7 @@ const store = new Vuex.Store({
             twitter: 0,
             twitchChat: 0
         },
+
         // Layout
         gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
         // gridLayout: defaultConfigs.defaultLayout,
