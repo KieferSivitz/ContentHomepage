@@ -1,6 +1,6 @@
 <template>
     <div class="twitchComponent" :id="'twitchComponent' + componentNumber">
-        <input type="text" class="twitchInput" :id="'twitchInput' + componentNumber" value="Twitch Channel"></input>
+        <input type="text" class="twitchInput" :id="'twitchInput' + componentNumber" placeholder="Twitch Channel" v-model="twitchChannel"></input>
         <div :id="'streamWindow' + componentNumber">
         </div>
     </div>
@@ -60,7 +60,7 @@ export default {
 
         $('#streamWindow' + this.componentNumber).firstChild.id = ('twitchPlayer' + this.componentNumber)
         // Initialize window resize listener
-        resizeItem.methods.parentSize(('twitchPlayer' + this.componentNumber), 'twitchComponent' + this.componentNumber, 60, 20)
+        resizeItem.methods.parentSize(('twitchPlayer' + this.componentNumber), 'twitchComponent' + this.componentNumber, 50, 20)
 
         const input = $('#twitchInput' + this.componentNumber)
         input.addEventListener('keyup', (e) => {
@@ -82,6 +82,9 @@ export default {
 
 input {
     display: none;
+    position: absolute;
+    left: 25%;
+    width: 50%
 }
 
 </style>

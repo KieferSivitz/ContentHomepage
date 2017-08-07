@@ -39,7 +39,7 @@
                         :h="item.h"
                         :i="item.i"
                             @resized="resizedEvent">
-                        <button class="delete" v-on:click="removeGridItem(item.id)">
+                        <button class="delete" v-on:click="removeGridItem(item.id, item.i)">
                             <img src="../assets/close.svg" type="image/svg+xml" class="expandImg"></img>
                         </button>
                         <button class="expandInput" v-on:click="expandInput(item.i)">
@@ -183,18 +183,18 @@ export default {
             switch (true) {
             case i.includes('twitchChat'):
                 const chatNumber = i.charAt(i.length - 1)
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChatWindow' + chatNumber, 20, 75)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChatWindow' + chatNumber, 20, 55)
                 break;
 
             case i.includes('twitch'):
                 const streamNumber = i.charAt(i.length - 1)
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[streamNumber].twitchElement, 20, 70)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[streamNumber].twitchElement, 20, 50)
                 break;
 
             case i.includes('twitter'):
                 const twitterNumber = i.charAt(i.length - 1)
                 const twitterWindow = document.getElementById('twitter-widget-' + twitterNumber)
-                let twitterHeightOffset = (newWPx >= 515) ? 60 : 100
+                let twitterHeightOffset = 50
                 twitterWindow.style.height = String((newHPx - twitterHeightOffset) + 'px')
                 break;
 

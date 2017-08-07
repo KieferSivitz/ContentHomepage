@@ -69,6 +69,7 @@ export default {
         })
 
         registerListener('twitterComponent' + this._uid)
+        document.querySelector('twitter-widget-').style.pointerevents = 'none'
     }
 }
 </script>
@@ -81,6 +82,9 @@ export default {
 
 input {
     display: none;
+    position: absolute;
+    left: 25%;
+    width: 50%
 }
 
 

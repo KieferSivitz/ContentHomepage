@@ -1,13 +1,14 @@
 <template>
     <div class="twitchChatComponent" :id="'twitchChat' + componentNumber">
-        <input type="text" class="gridInput twitchChatInput" :id="'twitchChatInput' + componentNumber" value="Chat Channel"></input>
+        <input type="text" class="gridInput twitchChatInput" :id="'twitchChatInput' + componentNumber" placeholder="Chat Channel" v-model="chatChannel"></input>
         <iframe v-bind:src="twitchSource"
                 frameborder="0"
                 scrolling="no"
                 :id="'twitchChatWindow' + componentNumber"
                 :width="props.width"
                 :height="props.height"
-                allowfullscreen="true">
+                allowfullscreen="true"
+                pointerevents="none">
         </iframe>
     </div>
 </template>
@@ -26,7 +27,7 @@ export default {
         this.$store.commit('addTwitchChatComponent', this._uid)
         this.componentNumber = this.$store.state.componentCounts.twitchChat - 1
         return {
-            msg: 'Welcome to the social media aggregator!',
+            chatChannel: '',
             twitchSource: 'https://www.twitch.tv/' + this.$store.state.twitchChatComponents[this.componentNumber].twitchChatChannel + '/chat' || 'https://www.twitch.tv/tradechat/chat',
             props: {
                 width: 200,
@@ -40,7 +41,7 @@ export default {
             if (!document.getElementById(element)) {
                 window.requestAnimationFrame(registerListener)
             } else {
-                resizeItem.methods.parentSize('twitchChatWindow' + this.componentNumber, 'twitchChat' + this.componentNumber, 60, 20)
+                resizeItem.methods.parentSize('twitchChatWindow' + this.componentNumber, 'twitchChat' + this.componentNumber, 50, 20)
                 inputListener.methods.createListener('twitchChatInput' + this.componentNumber, this, this.componentNumber)
             }
         }
@@ -62,5 +63,8 @@ export default {
 
 input {
     display: none;
+    position: absolute;
+    left: 25%;
+    width: 50%
 }
 </style>
