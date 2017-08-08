@@ -38,6 +38,7 @@
                         :w="item.w"
                         :h="item.h"
                         :i="item.i"
+                        :id="item.id"
                             @resized="resizedEvent">
                         <button class="delete" v-on:click="removeGridItem(item.id, item.i)">
                             <img src="../assets/close.svg" type="image/svg+xml" class="expandImg"></img>
@@ -140,7 +141,10 @@ export default {
         removeGridItem: function (componentID) {
             for (var i = 0; i < this.$store.state.gridLayout.length; ++i) {
                 if (this.$store.state.gridLayout[i].id === componentID) {
-                    this.$store.dispatch('removeGridItem', i)
+                    this.$store.dispatch('removeGridItem', {
+                        gridItem: i,
+                        componentIndex: componentID.substring(1, componentID.length)
+                    })
                     break
                 }
             }
