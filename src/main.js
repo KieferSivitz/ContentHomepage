@@ -14,7 +14,7 @@ const store = new Vuex.Store({
             twitchChat: 0
         },
 
-        componentIndex: 3, // Used to generate component IDs, using current count of component causes reuse of IDs
+        componentIndex: -1, // Used to generate component IDs, using current count of component causes reuse of IDs
 
         // Layout
         gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
