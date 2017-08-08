@@ -14,6 +14,8 @@ const store = new Vuex.Store({
             twitchChat: 0
         },
 
+        componentIndex: 3, // Used to generate component IDs, using current count of component causes reuse of IDs
+
         // Layout
         gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
         // gridLayout: defaultConfigs.defaultLayout,
@@ -40,14 +42,17 @@ const store = new Vuex.Store({
     mutations: {
         // Counters TODO: Reduce repitition of these
         addTwitchComponent (state, UID) {
+            ++state.componentIndex
             ++state.componentCounts.twitch
             state.twitchComponents[state.componentCounts.twitch - 1].UID = UID
         },
         addTwitterComponent (state, UID) {
+            ++state.componentIndex
             ++state.componentCounts.twitter
             state.twitterComponents[state.componentCounts.twitter - 1].UID = UID
         },
         addTwitchChatComponent (state, UID) {
+            ++state.componentIndex
             ++state.componentCounts.twitchChat
             state.twitchChatComponents[state.componentCounts.twitchChat - 1].UID = UID
         },
@@ -88,7 +93,7 @@ const store = new Vuex.Store({
                 'w': 3,
                 'h': 6,
                 'i': 'twitch' + state.componentCounts.twitch,
-                'id': 'gridComponent' + state.gridLayout.length,
+                'id': 'G' + state.componentIndex,
                 'componentType': 'twitchComponent'
             })
 
@@ -112,7 +117,7 @@ const store = new Vuex.Store({
                 'w': 3,
                 'h': 6,
                 'i': 'twitchChat' + state.componentCounts.twitchChat,
-                'id': 'gridComponent' + state.gridLayout.length,
+                'id': 'G' + state.componentIndex,
                 'componentType': 'twitchChatComponent'
             })
 
@@ -159,7 +164,7 @@ const store = new Vuex.Store({
                 'w': 3,
                 'h': 8,
                 'i': 'twitter' + state.componentCounts.twitter,
-                'id': 'gridComponent' + state.gridLayout.length,
+                'id': 'G' + state.componentIndex,
                 'componentType': 'twitterComponent'
             })
 

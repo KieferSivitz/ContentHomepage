@@ -38,6 +38,7 @@
                         :w="item.w"
                         :h="item.h"
                         :i="item.i"
+                        :id="item.id"
                             @resized="resizedEvent">
                         <button class="delete" v-on:click="removeGridItem(item.id, item.i)">
                             <img src="../assets/close.svg" type="image/svg+xml" class="expandImg"></img>
