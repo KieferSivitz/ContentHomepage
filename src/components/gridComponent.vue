@@ -141,7 +141,10 @@ export default {
         removeGridItem: function (componentID) {
             for (var i = 0; i < this.$store.state.gridLayout.length; ++i) {
                 if (this.$store.state.gridLayout[i].id === componentID) {
-                    this.$store.dispatch('removeGridItem', i)
+                    this.$store.dispatch('removeGridItem', {
+                        gridItem: i,
+                        componentIndex: componentID.substring(1, componentID.length)
+                    })
                     break
                 }
             }

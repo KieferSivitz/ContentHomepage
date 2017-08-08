@@ -25,7 +25,8 @@ const store = new Vuex.Store({
             twitchChannel: 'tradechat',
             twitchPlayer: {},
             twitchElement: 'twitchPlayer0',
-            UID: -1
+            UID: -1,
+            componentIndex: -1
         }],
 
         twitterComponents: [{
@@ -45,25 +46,43 @@ const store = new Vuex.Store({
             ++state.componentIndex
             ++state.componentCounts.twitch
             state.twitchComponents[state.componentCounts.twitch - 1].UID = UID
+            state.twitchComponents[state.componentCounts.twitch - 1].componentIndex = state.componentIndex
         },
         addTwitterComponent (state, UID) {
             ++state.componentIndex
             ++state.componentCounts.twitter
             state.twitterComponents[state.componentCounts.twitter - 1].UID = UID
+            state.twitterComponents[state.componentCounts.twitter - 1].componentIndex = state.componentIndex
         },
         addTwitchChatComponent (state, UID) {
             ++state.componentIndex
             ++state.componentCounts.twitchChat
             state.twitchChatComponents[state.componentCounts.twitchChat - 1].UID = UID
+            state.twitchChatComponents[state.componentCounts.twitchChat - 1].componentIndex = state.componentIndex
         },
-        removeTwitchComponent (state) {
+        removeTwitchComponent (state, componentIndex) {
             --state.componentCounts.twitch
+            for (var i = 0; i < state.twitchComponents.length; ++i) {
+                if (state.twitchComponents[i].componentIndex === Number(componentIndex)) {
+                    state.twitchComponents.splice(i, 1)
+                }
+            }
         },
-        removeTwitterComponent (state) {
+        removeTwitterComponent (state, componentIndex) {
             --state.componentCounts.twitter
+            for (var i = 0; i < state.twitterComponents.length; ++i) {
+                if (state.twitterComponents[i].componentIndex === Number(componentIndex)) {
+                    state.twitterComponents.splice(i, 1)
+                }
+            }
         },
-        removeTwitchChatComponent (state) {
+        removeTwitchChatComponent (state, componentIndex) {
             --state.componentCounts.twitchChat
+            for (var i = 0; i < state.twitchChatComponents.length; ++i) {
+                if (state.twitchChatComponents[i].componentIndex === Number(componentIndex)) {
+                    state.twitchChatComponents.splice(i, 1)
+                }
+            }
         },
 
         // Layouts
@@ -186,22 +205,22 @@ const store = new Vuex.Store({
             })
         },
 
-        removeGridItem ({ commit, state }, gridItem) {
-            const componentTypeLong = state.gridLayout[gridItem].i
+        removeGridItem ({ commit, state }, info) {
+            const componentTypeLong = state.gridLayout[info.gridItem].i
             const componentType = componentTypeLong.substring(0, componentTypeLong.length - 1)
-            commit('deleteGridItem', gridItem)
+            commit('deleteGridItem', info.gridItem)
 
             switch (true) { // Lets you do partial string comparison in switch cases
             case componentType.includes('twitchChat'):
-                commit('removeTwitchChatComponent')
+                commit('removeTwitchChatComponent', info.componentIndex)
                 break;
 
             case componentType.includes('twitch'):
-                commit('removeTwitchComponent')
+                commit('removeTwitchComponent', info.componentIndex)
                 break;
 
             case componentType.includes('twitter'):
-                commit('removeTwitterComponent')
+                commit('removeTwitterComponent', info.componentIndex)
                 break;
 
             default:
