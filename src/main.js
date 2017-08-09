@@ -17,12 +17,12 @@ const store = new Vuex.Store({
         componentIndex: -1, // Used to generate component IDs, using current count of component causes reuse of IDs
 
         // Layout
-        gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
-        // gridLayout: defaultConfigs.defaultLayout,
+        // gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
+        gridLayout: defaultConfigs.defaultLayout,
 
         // Components
         twitchComponents: JSON.parse(localStorage.getItem('twitchComponents')) || [{
-            twitchChannel: 'tradechat',
+            twitchChannel: 'vgbootcamp',
             twitchPlayer: {},
             twitchElement: 'twitchPlayer0',
             UID: -1,
@@ -36,7 +36,7 @@ const store = new Vuex.Store({
         }],
 
         twitchChatComponents: [{
-            twitchChatChannel: 'tradechat',
+            twitchChatChannel: 'vgbootcamp',
             UID: -1
         }]
     },
@@ -86,7 +86,7 @@ const store = new Vuex.Store({
         },
 
         // Twitch
-        changeTwitchChannel (state, twitch = {channel: 'tradechat', component: 0}) {
+        changeTwitchChannel (state, twitch = {channel: 'vgbootcamp', component: 0}) {
             state.twitchComponents[twitch.component].twitchChannel = twitch.channel
             state.twitchComponents[twitch.component].twitchPlayer.setChannel(twitch.channel)
         },
@@ -188,7 +188,7 @@ const store = new Vuex.Store({
         }
     },
     actions: {
-        navigationActions ({ commit }, info = {twitch: {channel: 'tradechat', component: 0}, twitter: {user: 'KieferSivitz', list: 'WoW', componentID: 'twitterComponent8', componentNumber: 0}}) {
+        navigationActions ({ commit }, info) {
             commit('changeTwitterFeed', info.twitter)
             commit('changeTwitchChannel', info.twitch)
             commit('changeTwitchChatChannel', {
