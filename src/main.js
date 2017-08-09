@@ -112,7 +112,7 @@ const store = new Vuex.Store({
                 'w': 3,
                 'h': 6,
                 'i': 'twitch' + state.componentCounts.twitch,
-                'id': 'G' + state.componentIndex,
+                'id': 'G' + state.componentIndex + 1,
                 'componentType': 'twitchComponent'
             })
 
@@ -136,7 +136,7 @@ const store = new Vuex.Store({
                 'w': 3,
                 'h': 6,
                 'i': 'twitchChat' + state.componentCounts.twitchChat,
-                'id': 'G' + state.componentIndex,
+                'id': 'G' + state.componentIndex + 1,
                 'componentType': 'twitchChatComponent'
             })
 
@@ -154,12 +154,13 @@ const store = new Vuex.Store({
             const oldTwitter = document.querySelector('#twitter-widget-' + info.componentNumber)
             const twitterContainer = document.getElementById('twitterComponent' + info.componentID).parentNode.getBoundingClientRect()
 
-            let twitterHeightOffset = 50
+            let twitterHeightOffset = (twitterContainer.height > 50) ? 50 : 10
             state.twitterComponents[0].twitterList = info.list
             state.twitterComponents[0].twitterUser = info.user
             if (oldTwitter) {
                 oldTwitter.remove()
             }
+
             window.twttr.widgets.createTimeline(
                 {
                     sourceType: 'list',
@@ -183,7 +184,7 @@ const store = new Vuex.Store({
                 'w': 3,
                 'h': 8,
                 'i': 'twitter' + state.componentCounts.twitter,
-                'id': 'G' + state.componentIndex,
+                'id': 'G' + state.componentIndex + 1,
                 'componentType': 'twitterComponent'
             })
 

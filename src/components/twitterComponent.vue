@@ -69,7 +69,6 @@ export default {
         })
 
         registerListener('twitterComponent' + this._uid)
-        document.querySelector('twitter-widget-').style.pointerevents = 'none'
     }
 }
 </script>
