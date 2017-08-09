@@ -62,27 +62,18 @@ const store = new Vuex.Store({
         },
         removeTwitchComponent (state, componentIndex) {
             --state.componentCounts.twitch
-            for (var i = 0; i < state.twitchComponents.length; ++i) {
-                if (state.twitchComponents[i].componentIndex === Number(componentIndex)) {
-                    state.twitchComponents.splice(i, 1)
-                }
-            }
+            const index = state.twitchComponents.findIndex(it => it.componentIndex === Number(componentIndex))
+            state.twitchComponents.splice(index, 1)
         },
         removeTwitterComponent (state, componentIndex) {
             --state.componentCounts.twitter
-            for (var i = 0; i < state.twitterComponents.length; ++i) {
-                if (state.twitterComponents[i].componentIndex === Number(componentIndex)) {
-                    state.twitterComponents.splice(i, 1)
-                }
-            }
+            const index = state.twitterComponents.findIndex(it => it.componentIndex === Number(componentIndex))
+            state.twitterComponents.splice(index, 1)
         },
         removeTwitchChatComponent (state, componentIndex) {
             --state.componentCounts.twitchChat
-            for (var i = 0; i < state.twitchChatComponents.length; ++i) {
-                if (state.twitchChatComponents[i].componentIndex === Number(componentIndex)) {
-                    state.twitchChatComponents.splice(i, 1)
-                }
-            }
+            const index = state.twitchChatComponents.findIndex(it => it.componentIndex === Number(componentIndex))
+            state.twitchChatComponents.splice(index, 1)
         },
 
         // Layouts

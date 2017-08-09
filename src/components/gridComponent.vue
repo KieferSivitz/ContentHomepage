@@ -197,6 +197,7 @@ export default {
 
             case i.includes('twitter'):
                 const twitterNumber = i.charAt(i.length - 1)
+                console.log(twitterNumber)
                 const twitterWindow = document.getElementById('twitter-widget-' + twitterNumber)
                 let twitterHeightOffset = 50
                 twitterWindow.style.height = String((newHPx - twitterHeightOffset) + 'px')
@@ -233,7 +234,6 @@ button {
 }
 
 #addItem {
-    width: 250px;
     position: absolute;
     float: right;
     top: 0;
