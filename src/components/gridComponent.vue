@@ -119,22 +119,14 @@ export default {
             localStorage.setItem('layout', JSON.stringify(this.layout))
         },
         addTwitterComponent: function () {
-            const twitterComponentCount = (this.$store.state.componentCounts.twitter)
-            const registerListener = () => {
-                if (!document.getElementById('#twitterComponent' + twitterComponentCount)) {
-                    window.requestAnimationFrame(registerListener)
-                } else {
-                    new Vue().$mount('#twitterComponent' + twitterComponentCount)
-                }
-            }
+            const twitterComponentCount = (this.$store.state.componentIndexes.twitter)
 
             this.$store.commit('addTwitterItem', {
                 user: 'KieferSivitz',
                 list: 'smash'
             })
 
-            registerListener()
-
+            console.log(twitterComponentCount)
             this.layout = this.$store.state.gridLayout
             localStorage.setItem('layout', JSON.stringify(this.layout))
         },
@@ -196,6 +188,7 @@ export default {
                 break;
 
             case i.includes('twitter'):
+                // const twitterElement = document.querySelectorAll('#twitter-feed-0 > iframe')[0].id
                 const twitterNumber = i.charAt(i.length - 1)
                 console.log(twitterNumber)
                 const twitterWindow = document.getElementById('twitter-widget-' + twitterNumber)

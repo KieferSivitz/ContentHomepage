@@ -14,6 +14,12 @@ const store = new Vuex.Store({
             twitchChat: 0
         },
 
+        componentIndexes: {
+            twitch: 0,
+            twitter: 0,
+            twitchChat: 0
+        },
+
         componentIndex: -1, // Used to generate component IDs, using current count of component causes reuse of IDs
 
         // Layout
@@ -45,18 +51,21 @@ const store = new Vuex.Store({
         addTwitchComponent (state, UID) {
             ++state.componentIndex
             ++state.componentCounts.twitch
+            ++state.componentIndexes.twitch
             state.twitchComponents[state.componentCounts.twitch - 1].UID = UID
             state.twitchComponents[state.componentCounts.twitch - 1].componentIndex = state.componentIndex
         },
         addTwitterComponent (state, UID) {
             ++state.componentIndex
             ++state.componentCounts.twitter
+            ++state.componentIndexes.twitter
             state.twitterComponents[state.componentCounts.twitter - 1].UID = UID
             state.twitterComponents[state.componentCounts.twitter - 1].componentIndex = state.componentIndex
         },
         addTwitchChatComponent (state, UID) {
             ++state.componentIndex
             ++state.componentCounts.twitchChat
+            ++state.componentIndexes.twitchChat
             state.twitchChatComponents[state.componentCounts.twitchChat - 1].UID = UID
             state.twitchChatComponents[state.componentCounts.twitchChat - 1].componentIndex = state.componentIndex
         },
@@ -102,8 +111,8 @@ const store = new Vuex.Store({
                 'y': 20,
                 'w': 3,
                 'h': 6,
-                'i': 'twitch' + state.componentCounts.twitch,
-                'id': 'G' + state.componentIndex + 1,
+                'i': 'twitch' + state.componentIndexes.twitch,
+                'id': 'G' + ((state.componentIndex) + 1),
                 'componentType': 'twitchComponent'
             })
 
@@ -126,8 +135,8 @@ const store = new Vuex.Store({
                 'y': 20,
                 'w': 3,
                 'h': 6,
-                'i': 'twitchChat' + state.componentCounts.twitchChat,
-                'id': 'G' + state.componentIndex + 1,
+                'i': 'twitchChat' + state.componentIndexes.twitchChat,
+                'id': 'G' + ((state.componentIndex) + 1),
                 'componentType': 'twitchChatComponent'
             })
 
@@ -143,7 +152,7 @@ const store = new Vuex.Store({
         // Twitter
         changeTwitterFeed (state, info) {
             const oldTwitter = document.querySelector('#twitter-widget-' + info.componentNumber)
-            const twitterContainer = document.getElementById('twitterComponent' + info.componentID).parentNode.getBoundingClientRect()
+            const twitterContainer = document.getElementById('twitterComponent' + info.componentNumber).parentNode.getBoundingClientRect()
 
             let twitterHeightOffset = (twitterContainer.height > 50) ? 50 : 10
             state.twitterComponents[0].twitterList = info.list
@@ -151,7 +160,6 @@ const store = new Vuex.Store({
             if (oldTwitter) {
                 oldTwitter.remove()
             }
-
             window.twttr.widgets.createTimeline(
                 {
                     sourceType: 'list',
@@ -174,16 +182,15 @@ const store = new Vuex.Store({
                 'y': 20,
                 'w': 3,
                 'h': 8,
-                'i': 'twitter' + state.componentCounts.twitter,
-                'id': 'G' + state.componentIndex + 1,
+                'i': 'twitter' + state.componentIndexes.twitter,
+                'id': 'G' + ((state.componentIndex) + 1),
                 'componentType': 'twitterComponent'
             })
 
             state.twitterComponents.push({
                 twitterUser: info.user,
                 twitterList: info.list,
-                UID: 8,
-                componentNumber: info.componentNumber
+                UID: 8
             })
         }
     },
