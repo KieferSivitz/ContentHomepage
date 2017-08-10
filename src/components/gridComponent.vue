@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import twitterComponent from './twitterComponent'
 import twitchComponent from './twitchComponent'
 import VueGridLayout from 'vue-grid-layout'
@@ -83,50 +82,23 @@ export default {
     methods: {
         // TODO: Combign the below
         addTwitchComponent: function () {
-            const twitchComponentCount = (this.$store.state.componentCounts.twitch)
-            const registerListener = () => {
-                if (!document.getElementById('#twitchComponent' + twitchComponentCount)) {
-                    window.requestAnimationFrame(registerListener)
-                } else {
-                    new Vue().$mount('#twitchComponent' + twitchComponentCount)
-                }
-            }
-
             this.$store.commit('addTwitchItem', 'vgbootcamp')
-
-
-            registerListener()
 
             this.layout = this.$store.state.gridLayout
             localStorage.setItem('layout', JSON.stringify(this.layout))
         },
         addTwitchChatComponent: function () {
-            const twitchChatComponentCount = (this.$store.state.componentCounts.twitchChat)
-            const registerListener = () => {
-                if (!document.getElementById('#twitchChatComponent' + twitchChatComponentCount)) {
-                    window.requestAnimationFrame(registerListener)
-                } else {
-                    new Vue().$mount('#twitchChatComponent' + twitchChatComponentCount)
-                }
-            }
-
             this.$store.commit('addTwitchChatItem', 'vgbootcamp')
-
-
-            registerListener()
 
             this.layout = this.$store.state.gridLayout
             localStorage.setItem('layout', JSON.stringify(this.layout))
         },
         addTwitterComponent: function () {
-            const twitterComponentCount = (this.$store.state.componentIndexes.twitter)
-
             this.$store.commit('addTwitterItem', {
                 user: 'KieferSivitz',
                 list: 'smash'
             })
 
-            console.log(twitterComponentCount)
             this.layout = this.$store.state.gridLayout
             localStorage.setItem('layout', JSON.stringify(this.layout))
         },
@@ -170,6 +142,7 @@ export default {
             const width = Number(newWPx) - offsetW
             const height = Number(newHPx) - offsetH
 
+            console.log(element)
             document.getElementById(element).width = width
             document.getElementById(element).height = height
         },
@@ -183,14 +156,14 @@ export default {
                 break;
 
             case i.includes('twitch'):
-                const streamNumber = i.charAt(i.length - 1)
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[streamNumber].twitchElement, 20, 50)
+                const streamNumber = Number(i.charAt(i.length - 1))
+                const twitchIndex = this.$store.state.twitchComponents.findIndex(it => it.twitchComponentIndex === streamNumber)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[twitchIndex].twitchElement, 20, 50)
                 break;
 
             case i.includes('twitter'):
                 // const twitterElement = document.querySelectorAll('#twitter-feed-0 > iframe')[0].id
                 const twitterNumber = i.charAt(i.length - 1)
-                console.log(twitterNumber)
                 const twitterWindow = document.getElementById('twitter-widget-' + twitterNumber)
                 let twitterHeightOffset = 50
                 twitterWindow.style.height = String((newHPx - twitterHeightOffset) + 'px')

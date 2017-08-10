@@ -32,7 +32,8 @@ const store = new Vuex.Store({
             twitchPlayer: {},
             twitchElement: 'twitchPlayer0',
             UID: -1,
-            componentIndex: -1
+            componentIndex: -1,
+            twitchComponentIndex: -1
         }],
 
         twitterComponents: [{
@@ -48,12 +49,13 @@ const store = new Vuex.Store({
     },
     mutations: {
         // Counters TODO: Reduce repitition of these
-        addTwitchComponent (state, UID) {
+        addTwitchComponent (state, info) {
             ++state.componentIndex
             ++state.componentCounts.twitch
             ++state.componentIndexes.twitch
-            state.twitchComponents[state.componentCounts.twitch - 1].UID = UID
+            state.twitchComponents[state.componentCounts.twitch - 1].UID = info.UID
             state.twitchComponents[state.componentCounts.twitch - 1].componentIndex = state.componentIndex
+            state.twitchComponents[state.componentCounts.twitch - 1].twitchComponentIndex = info.twitchComponentIndex
         },
         addTwitterComponent (state, UID) {
             ++state.componentIndex
@@ -120,7 +122,7 @@ const store = new Vuex.Store({
                 {
                     twitchChannel: channel,
                     twitchPlayer: {},
-                    twitchElement: 'twitchPlayer' + state.twitchComponents.length
+                    twitchElement: 'twitchPlayer' + state.componentIndexes.twitch
                 }
             )
             // localStorage.setItem('twitchComponents', JSON.stringify(newTwitchComponentsList))

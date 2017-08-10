@@ -16,11 +16,15 @@ export default {
     mixins: [resizeItem, inputListener],
     componentNumber: -1,
     data () {
-        this.$store.commit('addTwitchComponent', this._uid)
-        this.componentNumber = this.$store.state.componentCounts.twitch - 1
+        const index = this.$store.state.componentIndexes.twitch
+        this.$store.commit('addTwitchComponent', {
+            UID: this._uid,
+            twitchComponentIndex: index
+        })
         // Figure out which info to load and load it
         return {
-            twitchChannel: ''
+            twitchChannel: '',
+            componentNumber: index
         }
     },
     methods: {
@@ -55,8 +59,8 @@ export default {
         const $ = function (selector) {
             return document.querySelector(selector);
         };
-        this.renderPlayer(this.$store.state.twitchComponents[this.componentNumber].twitchChannel)
-        this.$store.commit('storeTwitchPlayer', {player: this.twitchPlayer, component: this.componentNumber})
+        this.renderPlayer(this.$store.state.twitchComponents[this.$store.state.componentCounts.twitch - 1].twitchChannel)
+        this.$store.commit('storeTwitchPlayer', {player: this.twitchPlayer, component: this.$store.state.componentCounts.twitch - 1})
 
         $('#streamWindow' + this.componentNumber).firstChild.id = ('twitchPlayer' + this.componentNumber)
         // Initialize window resize listener
