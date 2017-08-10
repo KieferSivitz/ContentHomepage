@@ -142,7 +142,6 @@ export default {
             const width = Number(newWPx) - offsetW
             const height = Number(newHPx) - offsetH
 
-            console.log(element)
             document.getElementById(element).width = width
             document.getElementById(element).height = height
         },
@@ -152,6 +151,7 @@ export default {
             switch (true) {
             case i.includes('twitchChat'):
                 const chatNumber = i.charAt(i.length - 1)
+                console.log(chatNumber)
                 this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChatWindow' + chatNumber, 20, 55)
                 break;
 

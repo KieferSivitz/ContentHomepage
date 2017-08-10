@@ -23,12 +23,12 @@ export default {
     mixins: [resizeItem, inputListener],
     componentNumber: -1,
     data () {
-        console.log(this._uid)
+        const index = this.$store.state.componentIndexes.twitchChat
         this.$store.commit('addTwitchChatComponent', this._uid)
-        this.componentNumber = this.$store.state.componentCounts.twitchChat - 1
         return {
             chatChannel: '',
-            twitchSource: 'https://www.twitch.tv/' + this.$store.state.twitchChatComponents[this.componentNumber].twitchChatChannel + '/chat' || 'https://www.twitch.tv/tradechat/chat',
+            componentNumber: index,
+            twitchSource: 'https://www.twitch.tv/' + this.$store.state.twitchChatComponents[this.$store.state.componentCounts.twitchChat - 1].twitchChatChannel + '/chat' || 'https://www.twitch.tv/tradechat/chat',
             props: {
                 width: 200,
                 height: 160
