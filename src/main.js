@@ -157,12 +157,13 @@ const store = new Vuex.Store({
 
         // Twitter
         changeTwitterFeed (state, info) {
+            const twitterIndex = state.twitterComponents.findIndex(it => it.twitterComponentIndex === info.componentNumber)
             const oldTwitter = document.querySelector('#twitter-widget-' + info.componentNumber)
             const twitterContainer = document.getElementById('twitterComponent' + info.componentNumber).parentNode.getBoundingClientRect()
 
             let twitterHeightOffset = (twitterContainer.height > 50) ? 50 : 10
-            state.twitterComponents[0].twitterList = info.list
-            state.twitterComponents[0].twitterUser = info.user
+            state.twitterComponents[twitterIndex].twitterList = info.list
+            state.twitterComponents[twitterIndex].twitterUser = info.user
             if (oldTwitter) {
                 oldTwitter.remove()
             }
