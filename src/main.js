@@ -44,7 +44,8 @@ const store = new Vuex.Store({
 
         twitchChatComponents: [{
             twitchChatChannel: 'vgbootcamp',
-            UID: -1
+            UID: -1,
+            twitchChatComponentIndex: -1
         }]
     },
     mutations: {
@@ -67,9 +68,10 @@ const store = new Vuex.Store({
         addTwitchChatComponent (state, UID) {
             ++state.componentIndex
             ++state.componentCounts.twitchChat
-            ++state.componentIndexes.twitchChat
             state.twitchChatComponents[state.componentCounts.twitchChat - 1].UID = UID
             state.twitchChatComponents[state.componentCounts.twitchChat - 1].componentIndex = state.componentIndex
+            state.twitchChatComponents[state.componentCounts.twitchChat - 1].twitchChatComponentIndex = state.componentIndexes.twitchChat
+            ++state.componentIndexes.twitchChat
         },
         removeTwitchComponent (state, componentIndex) {
             --state.componentCounts.twitch

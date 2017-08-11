@@ -115,10 +115,12 @@ export default {
             localStorage.setItem('layout', JSON.stringify(this.layout))
         },
         expandInput: function (componentID) {
-            let input = null
+            let input = ''
             switch (true) {
             case componentID.includes('twitchChat'):
-                input = document.querySelector('input.twitchChatInput')
+                // const index = this.$store.state.twitchChatComponents.findIndex(it => it.twitchChatComponentIndex === Number(componentID.substring('twitchChat'.length, componentID.length)))
+                console.log('input.twitchChatInput' + Number(componentID.substring('twitchChat'.length, componentID.length)))
+                input = document.querySelector('#twitchChatInput' + Number(componentID.substring('twitchChat'.length, componentID.length)))
                 break;
 
             case componentID.includes('twitch'):
@@ -151,7 +153,6 @@ export default {
             switch (true) {
             case i.includes('twitchChat'):
                 const chatNumber = i.charAt(i.length - 1)
-                console.log(chatNumber)
                 this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChatWindow' + chatNumber, 20, 55)
                 break;
 
