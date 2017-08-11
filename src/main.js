@@ -158,7 +158,7 @@ const store = new Vuex.Store({
         // Twitter
         changeTwitterFeed (state, info) {
             const twitterIndex = state.twitterComponents.findIndex(it => it.twitterComponentIndex === info.componentNumber)
-            const oldTwitter = document.querySelector('#twitter-widget-' + info.componentNumber)
+            const oldTwitter = document.querySelector('#twitter-feed-' + info.componentNumber + ' > iframe')
             const twitterContainer = document.getElementById('twitterComponent' + info.componentNumber).parentNode.getBoundingClientRect()
 
             let twitterHeightOffset = (twitterContainer.height > 50) ? 50 : 10
