@@ -118,17 +118,15 @@ export default {
             let input = ''
             switch (true) {
             case componentID.includes('twitchChat'):
-                // const index = this.$store.state.twitchChatComponents.findIndex(it => it.twitchChatComponentIndex === Number(componentID.substring('twitchChat'.length, componentID.length)))
-                console.log('input.twitchChatInput' + Number(componentID.substring('twitchChat'.length, componentID.length)))
                 input = document.querySelector('#twitchChatInput' + Number(componentID.substring('twitchChat'.length, componentID.length)))
                 break;
 
             case componentID.includes('twitch'):
-                input = document.querySelector('input.twitchInput')
+                input = document.querySelector('#twitchInput' + Number(componentID.substring('twitch'.length, componentID.length)))
                 break;
 
             case componentID.includes('twitter'):
-                input = document.querySelector('input.twitterInput')
+                input = document.querySelector('#twitterInput' + Number(componentID.substring('twitter'.length, componentID.length)))
                 break;
 
             default:

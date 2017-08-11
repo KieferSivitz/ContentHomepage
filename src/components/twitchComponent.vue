@@ -17,10 +17,7 @@ export default {
     componentNumber: -1,
     data () {
         const index = this.$store.state.componentIndexes.twitch
-        this.$store.commit('addTwitchComponent', {
-            UID: this._uid,
-            twitchComponentIndex: index
-        })
+        this.$store.commit('addTwitchComponent', this._uid)
         // Figure out which info to load and load it
         return {
             twitchChannel: '',
