@@ -115,18 +115,18 @@ export default {
             localStorage.setItem('layout', JSON.stringify(this.layout))
         },
         expandInput: function (componentID) {
-            let input = null
+            let input = ''
             switch (true) {
             case componentID.includes('twitchChat'):
-                input = document.querySelector('input.twitchChatInput')
+                input = document.querySelector('#twitchChatInput' + Number(componentID.substring('twitchChat'.length, componentID.length)))
                 break;
 
             case componentID.includes('twitch'):
-                input = document.querySelector('input.twitchInput')
+                input = document.querySelector('#twitchInput' + Number(componentID.substring('twitch'.length, componentID.length)))
                 break;
 
             case componentID.includes('twitter'):
-                input = document.querySelector('input.twitterInput')
+                input = document.querySelector('#twitterListInput' + Number(componentID.substring('twitter'.length, componentID.length)))
                 break;
 
             default:
@@ -151,7 +151,6 @@ export default {
             switch (true) {
             case i.includes('twitchChat'):
                 const chatNumber = i.charAt(i.length - 1)
-                console.log(chatNumber)
                 this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChatWindow' + chatNumber, 20, 55)
                 break;
 

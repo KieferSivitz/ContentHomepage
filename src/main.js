@@ -44,32 +44,35 @@ const store = new Vuex.Store({
 
         twitchChatComponents: [{
             twitchChatChannel: 'vgbootcamp',
-            UID: -1
+            UID: -1,
+            twitchChatComponentIndex: -1
         }]
     },
     mutations: {
         // Counters TODO: Reduce repitition of these
-        addTwitchComponent (state, info) {
+        addTwitchComponent (state, UID) {
             ++state.componentIndex
             ++state.componentCounts.twitch
-            ++state.componentIndexes.twitch
-            state.twitchComponents[state.componentCounts.twitch - 1].UID = info.UID
+            state.twitchComponents[state.componentCounts.twitch - 1].UID = UID
             state.twitchComponents[state.componentCounts.twitch - 1].componentIndex = state.componentIndex
-            state.twitchComponents[state.componentCounts.twitch - 1].twitchComponentIndex = info.twitchComponentIndex
+            state.twitchComponents[state.componentCounts.twitch - 1].twitchComponentIndex = state.componentIndexes.twitch
+            ++state.componentIndexes.twitch
         },
         addTwitterComponent (state, UID) {
             ++state.componentIndex
             ++state.componentCounts.twitter
-            ++state.componentIndexes.twitter
             state.twitterComponents[state.componentCounts.twitter - 1].UID = UID
             state.twitterComponents[state.componentCounts.twitter - 1].componentIndex = state.componentIndex
+            state.twitterComponents[state.componentCounts.twitter - 1].twitterComponentIndex = state.componentIndexes.twitter
+            ++state.componentIndexes.twitter
         },
         addTwitchChatComponent (state, UID) {
             ++state.componentIndex
             ++state.componentCounts.twitchChat
-            ++state.componentIndexes.twitchChat
             state.twitchChatComponents[state.componentCounts.twitchChat - 1].UID = UID
             state.twitchChatComponents[state.componentCounts.twitchChat - 1].componentIndex = state.componentIndex
+            state.twitchChatComponents[state.componentCounts.twitchChat - 1].twitchChatComponentIndex = state.componentIndexes.twitchChat
+            ++state.componentIndexes.twitchChat
         },
         removeTwitchComponent (state, componentIndex) {
             --state.componentCounts.twitch
@@ -98,8 +101,9 @@ const store = new Vuex.Store({
 
         // Twitch
         changeTwitchChannel (state, twitch = {channel: 'vgbootcamp', component: 0}) {
-            state.twitchComponents[twitch.component].twitchChannel = twitch.channel
-            state.twitchComponents[twitch.component].twitchPlayer.setChannel(twitch.channel)
+            const index = state.twitchComponents.findIndex(it => it.twitchComponentIndex === twitch.component)
+            state.twitchComponents[index].twitchChannel = twitch.channel
+            state.twitchComponents[index].twitchPlayer.setChannel(twitch.channel)
         },
         storeTwitchPlayer (state, twitch = {player: {}, component: 0}) {
             state.twitchComponents[twitch.component].twitchPlayer = twitch.player
