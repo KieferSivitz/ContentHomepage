@@ -1,7 +1,7 @@
 <template>
     <div :id="'twitterComponent' + componentNumber" class="twitterComponent">
         <form v-on:submit="changeFeed()">
-            <input type="text" class="gridInput twitterInput" :id="'twitterListInput' + _uid" placeholder="Twitter List" v-model="twitterList"></input>
+            <input type="text" class="gridInput twitterInput" :id="'twitterListInput' + componentNumber" placeholder="Twitter List" v-model="twitterList"></input>
             <!-- <input type="text" class="gridInput twitterInput" :id="'twitterUserInput' + _uid" placeholder="Twitter Username" v-model="twitterUser" required="optional"></input> -->
         </form>
         <div :id="'twitter-feed-' + componentNumber">
@@ -25,6 +25,16 @@ export default {
     },
 
     methods: {
+        changeFeed () {
+            event.preventDefault()
+            const twitterIndex = this.$store.state.twitterComponents.findIndex(it => it.twitterComponentIndex === this.componentNumber)
+            this.$store.commit('changeTwitterFeed', {
+                user: this.$store.state.twitterComponents[twitterIndex].twitterUser,
+                list: this.twitterList,
+                componentID: this._uid,
+                componentNumber: this.componentNumber
+            })
+        }
     },
     mounted () { // For dynamically created components
         const registerListener = (element) => {

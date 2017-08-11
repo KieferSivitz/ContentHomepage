@@ -126,7 +126,7 @@ export default {
                 break;
 
             case componentID.includes('twitter'):
-                input = document.querySelector('#twitterInput' + Number(componentID.substring('twitter'.length, componentID.length)))
+                input = document.querySelector('#twitterListInput' + Number(componentID.substring('twitter'.length, componentID.length)))
                 break;
 
             default:
