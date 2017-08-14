@@ -40,7 +40,7 @@
                         :i="item.i"
                         :id="item.id"
                             @resized="resizedEvent">
-                        <button class="delete" v-on:click="removeGridItem(item.id, item.i)">
+                        <button class="delete" v-on:click="removeGridItem(item.id)">
                             <img src="../assets/close.svg" type="image/svg+xml" class="expandImg"></img>
                         </button>
                         <button class="expandInput" v-on:click="expandInput(item.i)">
@@ -202,8 +202,9 @@ button {
     position: absolute;
     float: right;
     top: 0;
+    padding-left: 5px;
+    padding-right: 5px;
     right: 0;
-    padding: 14px 16px;
     height: 32px;
 }
 
@@ -231,8 +232,8 @@ button {
 
 #addItem:hover {
     background-color: #4A484C;
-    width: 8%;
-    height: 97.8%;
+    width: 12%;
+    height: 100%;
     z-index: 999;
 }
 
@@ -250,19 +251,23 @@ button {
 }
 
 .addIcon {
-    width: 100%;
     max-height: 100%;
 }
 
 .add {
     background-color: white;
-    width: 100%;
+    min-width: 100%;
     height: 80px;
     border: none;
 }
 
 ul {
+    min-width: 100%;
     background-color: #4A484C;
+}
+
+li {
+    min-width: 100%;
 }
 
 
