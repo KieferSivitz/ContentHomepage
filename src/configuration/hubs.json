@@ -1,26 +1,6 @@
 {
     "hubList": [
         {
-            "twitchChannel": "dreamhackcs",
-            "twitterList": "CSGO"
-        },
-        {
-            "twitchChannel": "arteezy",
-            "twitterList": "DotA"
-        },
-        {
-            "twitchChannel": "savjz",
-            "twitterList": "Hearthstone"
-        },
-        {
-            "twitchChannel": "riotgames",
-            "twitterList": "LoL"
-        },
-        {
-            "twitchChannel": "greekgodx",
-            "twitterList": "Overwatch"
-        },
-        {
             "twitchChannel": "vgbootcamp",
             "twitterList": "Smash"
         },

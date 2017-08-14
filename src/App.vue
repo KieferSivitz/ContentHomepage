@@ -3,13 +3,8 @@
       <div class="nav" id="navbar">
           <ul>
             <li><a href="#" class="active" id="icon"><img src="./assets/icon.png"></img></a></li>
-            <li><a href="#">CS:GO</a></li>
-            <li><a href="#">DotA</a></li>
-            <li><a href="#">HS</a></li>
-            <li><a href="#">LoL</a></li>
-            <li><a href="#">OW</a></li>
-            <li><a href="#">Smash</a></li>
-            <li><a href="#" id="navCustom">Custom</a></li>
+            <!-- <li><a href="#">VGBootCamp</a></li>
+            <li><a href="#" id="navCustom">Custom</a></li> -->
         </ul>
       </div>
     <router-view>
@@ -18,7 +13,7 @@
 </template>
 
 <script>
-var defaultHubs = require('./configuration/hubs.json')
+// var defaultHubs = require('./configuration/hubs.json')
 
 var $ = require('jquery')
 export default {
@@ -43,28 +38,28 @@ export default {
         });
 
         // All Listeners for Navigation
-        const nums = document.getElementById('navbar');
-        const listItem = nums.getElementsByTagName('li');
+        // const nums = document.getElementById('navbar');
+        // const listItem = nums.getElementsByTagName('li');
 
-        let i = 0
-        for (i = 0; i < listItem.length; i++) {
-            const index = i - 1
-            listItem[i].addEventListener('click', (e) => {
-                const hub = defaultHubs.hubList[index] // eslint-disable-line
-                this.$store.dispatch('navigationActions', {
-                    twitch: {
-                        channel: hub.twitchChannel,
-                        component: 0
-                    },
-                    twitter: {
-                        user: 'KieferSivitz',
-                        list: hub.twitterList,
-                        componentID: this.$store.state.twitterComponents[0].UID,
-                        componentNumber: 0
-                    }
-                })
-            })
-        }
+        // let i = 0
+        // for (i = 0; i < listItem.length; i++) {
+        //     const index = i - 1
+        //     listItem[i].addEventListener('click', (e) => {
+        //         const hub = defaultHubs.hubList[index] // eslint-disable-line
+        //         this.$store.dispatch('navigationActions', {
+        //             twitch: {
+        //                 channel: hub.twitchChannel,
+        //                 component: 0
+        //             },
+        //             twitter: {
+        //                 user: 'KieferSivitz',
+        //                 list: hub.twitterList,
+        //                 componentID: this.$store.state.twitterComponents[0].UID,
+        //                 componentNumber: 0
+        //             }
+        //         })
+        //     })
+        // }
     }
 
 
@@ -144,7 +139,7 @@ li a:hover {
 }
 
 #icon {
-    height: 18px;
+    height: 20px;
     width: 20px;
 }
 
