@@ -47,7 +47,7 @@ export default {
                 this.$store.dispatch('navigationActions', {
                     twitch: {
                         channel: hub.twitchChannel,
-                        component: 0
+                        component: this.$store.state.twitchComponents[0].twitchComponentIndex
                     },
                     twitter: {
                         user: 'KieferSivitz',
