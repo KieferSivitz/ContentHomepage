@@ -116,17 +116,21 @@ export default {
         },
         expandInput: function (componentID) {
             let input = ''
+            let inputString = ''
             switch (true) {
             case componentID.includes('twitchChat'):
-                input = document.querySelector('#twitchChatInput' + Number(componentID.substring('twitchChat'.length, componentID.length)))
+                inputString = '#twitchChatInput' + Number(componentID.substring('twitchChat'.length, componentID.length))
+                input = document.querySelector(inputString)
                 break;
 
             case componentID.includes('twitch'):
-                input = document.querySelector('#twitchInput' + Number(componentID.substring('twitch'.length, componentID.length)))
+                inputString = '#twitchInput' + Number(componentID.substring('twitch'.length, componentID.length))
+                input = document.querySelector(inputString)
                 break;
 
             case componentID.includes('twitter'):
-                input = document.querySelector('#twitterListInput' + Number(componentID.substring('twitter'.length, componentID.length)))
+                inputString = '#twitterListInput' + Number(componentID.substring('twitter'.length, componentID.length))
+                input = document.querySelector(inputString)
                 break;
 
             default:
@@ -134,6 +138,7 @@ export default {
             }
             if (input.style.display !== 'inline') {
                 input.style.display = 'inline'
+                document.querySelector(inputString + ' > input').style.display = 'inline'
             } else {
                 input.style.display = 'none'
             }
@@ -209,6 +214,7 @@ button {
 }
 
 #addButton {
+    z-index: 999;
     position: absolute;
     float: right;
     top: 0;
@@ -243,6 +249,7 @@ button {
 }
 
 .expandInput {
+    z-index: 999;
     float: left;
 }
 

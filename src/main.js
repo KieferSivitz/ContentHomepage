@@ -151,18 +151,19 @@ const store = new Vuex.Store({
             })
         },
         changeTwitchChatChannel (state, info) {
-            document.getElementById('twitchChat' + info.id).setAttribute('src', 'https://www.twitch.tv/' + info.channel + '/chat')
+            document.getElementById('twitchChatWindow' + info.id).setAttribute('src', 'https://www.twitch.tv/' + info.channel + '/chat')
             state.twitchComponents[info.id].twitchChannel = info.channel
         },
 
         // Twitter
         changeTwitterFeed (state, info) {
-            const oldTwitter = document.querySelector('#twitter-widget-' + info.componentNumber)
+            const oldTwitter = document.querySelector('#twitter-feed-' + info.componentNumber + ' > iframe')
             const twitterContainer = document.getElementById('twitterComponent' + info.componentNumber).parentNode.getBoundingClientRect()
 
             let twitterHeightOffset = (twitterContainer.height > 50) ? 50 : 10
             state.twitterComponents[0].twitterList = info.list
             state.twitterComponents[0].twitterUser = info.user
+
             if (oldTwitter) {
                 oldTwitter.remove()
             }
@@ -201,12 +202,12 @@ const store = new Vuex.Store({
         }
     },
     actions: {
-        navigationActions ({ commit }, info) {
+        navigationActions ({ commit, state }, info) {
             commit('changeTwitterFeed', info.twitter)
             commit('changeTwitchChannel', info.twitch)
             commit('changeTwitchChatChannel', {
                 channel: info.twitch.channel,
-                id: 0
+                id: state.twitchChatComponents[0].twitchChatComponentIndex
             })
         },
 
