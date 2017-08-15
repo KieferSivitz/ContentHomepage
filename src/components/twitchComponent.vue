@@ -1,6 +1,8 @@
 <template>
     <div class="twitchComponent" :id="'twitchComponent' + componentNumber">
-        <input type="text" class="twitchInput" :id="'twitchInput' + componentNumber" placeholder="Twitch Channel" v-model="twitchChannel"></input>
+        <div class="inputContainer" :id="'twitchInput' + componentNumber">
+            <input type="text" class="gridInput twitchInput" placeholder="Twitch Channel" v-model="twitchChannel"></input>
+        </div>
         <div :id="'streamWindow' + componentNumber">
         </div>
     </div>

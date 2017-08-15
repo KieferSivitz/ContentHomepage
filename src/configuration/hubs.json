@@ -1,12 +1,40 @@
 {
-    "hubList": [
-        {
-            "twitchChannel": "vgbootcamp",
-            "twitterList": "Smash"
-        },
-        {
-            "twitchChannel": "tradechat",
-            "twitterList": "WoW"
-        }]
+    "hubList": {
+        "Smash": [
+            {
+                "twitchChannel": "vgbootcamp",
+                "twitterList": "Smash"
+            },
+            {
+                "twitchChannel": "twitch_scar",
+                "twitterList": "Smash"
+            }
+
+        ],
+        "Custom": [   
+            {
+                "twitchChannel": "tradechat",
+                "twitterList": "WoW"
+            }
+        ],
+        "Starcraft": [
+            {
+                "twitchChannel": "day9tv",
+                "twitterList": "day9"
+            }
+        ],
+        "CSGO": [
+            {
+                "twitchChannel": "CSGO",
+                "twitterList": "CSGO"
+            }
+        ],
+        "HS": [
+            {
+                "twitchChannel": "Trump",
+                "twitterList": "HS"
+            }
+        ]
+    }
     
 }

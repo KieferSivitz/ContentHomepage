@@ -1,8 +1,10 @@
 <template>
     <div :id="'twitterComponent' + componentNumber" class="twitterComponent">
         <form v-on:submit="changeFeed()">
-            <input type="text" class="gridInput twitterInput" :id="'twitterListInput' + componentNumber" placeholder="Twitter List" v-model="twitterList"></input>
-            <!-- <input type="text" class="gridInput twitterInput" :id="'twitterUserInput' + _uid" placeholder="Twitter Username" v-model="twitterUser" required="optional"></input> -->
+            <div class="inputContainer" :id="'twitterListInput' + componentNumber">
+                <input type="text" class="gridInput twitterInput" placeholder="Twitter List" v-model="twitterList"></input>
+                <!-- <input type="text" class="gridInput twitterInput" :id="'twitterUserInput' + _uid" placeholder="Twitter Username" v-model="twitterUser" required="optional"></input> -->   
+            </div>
         </form>
         <div :id="'twitter-feed-' + componentNumber">
         </div>

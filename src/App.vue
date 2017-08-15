@@ -3,8 +3,8 @@
       <div class="nav" id="navbar">
           <ul>
             <li><a href="#" class="active" id="icon"><img src="./assets/icon.png"></img></a></li>
-            <!-- <li><a href="#">VGBootCamp</a></li>
-            <li><a href="#" id="navCustom">Custom</a></li> -->
+            <li><a href="#">VGBootCamp</a></li>
+            <li><a href="#" id="navCustom">Custom</a></li>
         </ul>
       </div>
     <router-view>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-// var defaultHubs = require('./configuration/hubs.json')
+var defaultHubs = require('./configuration/hubs.json')
 
 var $ = require('jquery')
 export default {
@@ -38,28 +38,26 @@ export default {
         });
 
         // All Listeners for Navigation
-        // const nums = document.getElementById('navbar');
-        // const listItem = nums.getElementsByTagName('li');
+        const nums = document.getElementById('navbar');
+        let listItem = [...nums.getElementsByTagName('li')] // '...' spreads array like object into array, allows .forEach
 
-        // let i = 0
-        // for (i = 0; i < listItem.length; i++) {
-        //     const index = i - 1
-        //     listItem[i].addEventListener('click', (e) => {
-        //         const hub = defaultHubs.hubList[index] // eslint-disable-line
-        //         this.$store.dispatch('navigationActions', {
-        //             twitch: {
-        //                 channel: hub.twitchChannel,
-        //                 component: 0
-        //             },
-        //             twitter: {
-        //                 user: 'KieferSivitz',
-        //                 list: hub.twitterList,
-        //                 componentID: this.$store.state.twitterComponents[0].UID,
-        //                 componentNumber: 0
-        //             }
-        //         })
-        //     })
-        // }
+        listItem.forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                const hub = defaultHubs.hubList.Smash[index - 1]
+                this.$store.dispatch('navigationActions', {
+                    twitch: {
+                        channel: hub.twitchChannel,
+                        component: 0
+                    },
+                    twitter: {
+                        user: 'KieferSivitz',
+                        list: hub.twitterList,
+                        componentID: this.$store.state.twitterComponents[0].UID,
+                        componentNumber: this.$store.state.twitterComponents[0].twitterComponentIndex
+                    }
+                })
+            })
+        })
     }
 
 
@@ -97,13 +95,30 @@ body {
     background-color: #334D5C;
 }
 
+.gridInput {
+    position: inherit;
+}
+
 input {
     text-align: center;
     margin-bottom: 10px;
     font-size: 1.3rem;
+    top: 3px;
     border: 0;
     border-radius: 3px;
     background: #fff;
+}
+
+.inputContainer {
+    pointer-events: none;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: #4A484C;
+    z-index: -1;
 }
 
 /* N A V B A R */
@@ -139,7 +154,7 @@ li a:hover {
 }
 
 #icon {
-    height: 20px;
+    height: 18px;
     width: 20px;
 }
 

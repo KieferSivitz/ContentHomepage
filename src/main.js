@@ -151,7 +151,7 @@ const store = new Vuex.Store({
             })
         },
         changeTwitchChatChannel (state, info) {
-            document.getElementById('twitchChat' + info.id).setAttribute('src', 'https://www.twitch.tv/' + info.channel + '/chat')
+            document.getElementById('twitchChatWindow' + info.id).setAttribute('src', 'https://www.twitch.tv/' + info.channel + '/chat')
             state.twitchComponents[info.id].twitchChannel = info.channel
         },
 
@@ -202,12 +202,12 @@ const store = new Vuex.Store({
         }
     },
     actions: {
-        navigationActions ({ commit }, info) {
+        navigationActions ({ commit, state }, info) {
             commit('changeTwitterFeed', info.twitter)
             commit('changeTwitchChannel', info.twitch)
             commit('changeTwitchChatChannel', {
                 channel: info.twitch.channel,
-                id: 0
+                id: state.twitchChatComponents[0].twitchChatComponentIndex
             })
         },
 
