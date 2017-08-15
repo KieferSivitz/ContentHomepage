@@ -2,7 +2,7 @@
   <div id="app">
       <div class="nav" id="navbar">
           <ul>
-            <li><a href="#" class="active" id="icon"><img src="./assets/icon.png"></img></a></li>
+            <li id="iconLi"><a href="#" class="active" id="icon"> <img src="./assets/icon.png"></img></a></li>
             <li><a href="#">VGBootCamp</a></li>
             <li><a href="#" id="navCustom">Custom</a></li>
         </ul>
@@ -154,8 +154,12 @@ li a:hover {
 }
 
 #icon {
-    height: 18px;
+    height: 100%;
     width: 20px;
+}
+
+#iconLi {
+    height: 20px;
 }
 
 #icon img {
