@@ -109,17 +109,6 @@ input {
     background: #fff;
 }
 
-.inputContainer {
-    pointer-events: none;
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 30px;
-    background: #4A484C;
-    z-index: -1;
-}
 
 /* N A V B A R */
 ul {
