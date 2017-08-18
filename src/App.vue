@@ -23,6 +23,17 @@ export default {
             msg: 'Welcome to the social media aggregator!'
         }
     },
+    beforeMount () {
+        let game = 'Super Smash Bros. for Wii U'
+        $.ajax({
+            type: 'GET',
+            url: 'https://api.twitch.tv/kraken/streams?game=' + game + '&limit=10',
+            headers: {'Client-ID': 'uo6dggojyb8d6soh92zknwmi5ej1q2'},
+            success: function (data) {
+                console.log([...data.streams])
+            }
+        });
+    },
     mounted () {
         // Iterate through list adding listners
         $(document).ready(function () {
