@@ -1,8 +1,6 @@
 <template>
     <div class="twitchChatComponent" :id="'twitchChat' + componentNumber">
-        <div class="inputContainer" :id="'twitchChatInput' + componentNumber">
-            <input type="text" class="gridInput twitchChatInput" placeholder="Chat Channel" v-model="chatChannel"></input>
-        </div>
+        <input type="text" class="gridInput twitchChatInput" :id="'twitchChatInput' + componentNumber" placeholder="Chat Channel" v-model="chatChannel"></input>
         <iframe v-bind:src="twitchSource"
                 frameborder="0"
                 scrolling="no"
