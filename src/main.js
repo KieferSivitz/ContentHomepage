@@ -20,7 +20,7 @@ const store = new Vuex.Store({
             twitchChat: 0
         },
 
-        streamsList: [],
+        streamList: [],
 
         componentIndex: -1, // Used to generate component IDs, using current count of component causes reuse of IDs
 
@@ -103,9 +103,9 @@ const store = new Vuex.Store({
 
         // StreamsList
         saveStreamsList (state, streams) {
-            state.streamsList = []
+            state.streamList = []
             streams.forEach((item, index) => {
-                state.streamsList.push(item)
+                state.streamList.push(item)
             })
         },
 
@@ -213,7 +213,6 @@ const store = new Vuex.Store({
     },
     actions: {
         navigationActions ({ commit, state }, info) {
-            commit('changeTwitterFeed', info.twitter)
             commit('changeTwitchChannel', info.twitch)
             commit('changeTwitchChatChannel', {
                 channel: info.twitch.channel,
