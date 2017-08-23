@@ -3,8 +3,9 @@
       <div class="nav" id="navbar">
           <ul>
             <li id="iconLi"><a href="#" class="active" id="icon"> <img src="./assets/icon.png"></img></a></li>
-            <li><a href="#">VGBootCamp</a></li>
-            <li><a href="#" id="navCustom">Custom</a></li>
+            <li v-for="item in streamList">
+                <a v-on:click="navigation(item.index)">{{ item.channel }}</a>
+            </li>
         </ul>
       </div>
     <router-view>
@@ -13,15 +14,48 @@
 </template>
 
 <script>
-var defaultHubs = require('./configuration/hubs.json')
 
 var $ = require('jquery')
 export default {
     name: 'app',
     data () {
         return {
-            msg: 'Welcome to the social media aggregator!'
+            streamList: [{
+                channel: 'vgBootcamp'
+            }]
         }
+    },
+    methods: {
+        navigation (index) {
+            console.log(index)
+            const hub = this.$store.state.streamList[index]
+            this.$store.dispatch('navigationActions', {
+                twitch: {
+                    channel: hub.channel,
+                    component: this.$store.state.twitchComponents[0].twitchComponentIndex
+                }
+            })
+        }
+    },
+    beforeMount () {
+        let game = 'Super Smash Bros. Melee'
+        $.ajax({
+            type: 'GET',
+            url: 'https://api.twitch.tv/kraken/streams?game=' + game + '&limit=8',
+            headers: {'Client-ID': 'uo6dggojyb8d6soh92zknwmi5ej1q2'},
+            success: (data) => {
+                let tmpList = [];
+                [...data.streams].forEach((item, index) => {
+                    tmpList[index] = {
+                        channel: item.channel.display_name,
+                        viewers: item.viewers,
+                        index: index
+                    }
+                })
+                this.$store.commit('saveStreamsList', tmpList)
+                this.streamList = tmpList
+            }
+        });
     },
     mounted () {
         // Iterate through list adding listners
@@ -36,28 +70,6 @@ export default {
                 e.preventDefault();
             });
         });
-
-        // All Listeners for Navigation
-        const nums = document.getElementById('navbar');
-        let listItem = [...nums.getElementsByTagName('li')] // '...' spreads array like object into array, allows .forEach
-
-        listItem.forEach((item, index) => {
-            item.addEventListener('click', (e) => {
-                const hub = defaultHubs.hubList.Smash[index - 1]
-                this.$store.dispatch('navigationActions', {
-                    twitch: {
-                        channel: hub.twitchChannel,
-                        component: this.$store.state.twitchComponents[0].twitchComponentIndex
-                    },
-                    twitter: {
-                        user: 'KieferSivitz',
-                        list: hub.twitterList,
-                        componentID: this.$store.state.twitterComponents[0].UID,
-                        componentNumber: this.$store.state.twitterComponents[0].twitterComponentIndex
-                    }
-                })
-            })
-        })
     }
 
 
@@ -136,6 +148,10 @@ li a {
 /* Change the link color to #111 (black) on hover */
 li a:hover {
     background-color: #111;
+}
+
+#navbar {
+    overflow: hidden;
 }
 
 .active {

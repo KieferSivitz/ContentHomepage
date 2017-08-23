@@ -20,6 +20,8 @@ const store = new Vuex.Store({
             twitchChat: 0
         },
 
+        streamList: [],
+
         componentIndex: -1, // Used to generate component IDs, using current count of component causes reuse of IDs
 
         // Layout
@@ -97,6 +99,14 @@ const store = new Vuex.Store({
         },
         deleteGridItem (state, itemNumber) {
             state.gridLayout.splice(Number(itemNumber), 1)
+        },
+
+        // StreamsList
+        saveStreamsList (state, streams) {
+            state.streamList = []
+            streams.forEach((item, index) => {
+                state.streamList.push(item)
+            })
         },
 
         // Twitch
@@ -203,7 +213,6 @@ const store = new Vuex.Store({
     },
     actions: {
         navigationActions ({ commit, state }, info) {
-            commit('changeTwitterFeed', info.twitter)
             commit('changeTwitchChannel', info.twitch)
             commit('changeTwitchChatChannel', {
                 channel: info.twitch.channel,
