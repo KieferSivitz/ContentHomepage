@@ -3,8 +3,9 @@
       <div class="nav" id="navbar">
           <ul>
             <li id="iconLi"><a href="#" class="active" id="icon"> <img src="./assets/icon.png"></img></a></li>
-            <li><a href="#">VGBootCamp</a></li>
-            <li><a href="#" id="navCustom">Custom</a></li>
+            <li v-for="item in streamList">
+                <a href="#">{{ item.channel }}</a>
+            </li>
         </ul>
       </div>
     <router-view>
@@ -20,19 +21,31 @@ export default {
     name: 'app',
     data () {
         return {
-            msg: 'Welcome to the social media aggregator!'
+            streamList: [{
+                channel: 'vgBootcamp'
+            }]
         }
     },
     beforeMount () {
         let game = 'Super Smash Bros. for Wii U'
         $.ajax({
             type: 'GET',
-            url: 'https://api.twitch.tv/kraken/streams?game=' + game + '&limit=10',
+            url: 'https://api.twitch.tv/kraken/streams?game=' + game + '&limit=8',
             headers: {'Client-ID': 'uo6dggojyb8d6soh92zknwmi5ej1q2'},
-            success: function (data) {
-                console.log([...data.streams])
+            success: (data) => {
+                let tmpList = [];
+                [...data.streams].forEach((item, index) => {
+                    tmpList[index] = {
+                        channel: item.channel.display_name,
+                        viewers: item.viewers
+                    }
+                })
+                this.$store.commit('saveStreamsList', tmpList)
+                this.streamList = tmpList
             }
         });
+
+        console.log('Populate List of Streams')
     },
     mounted () {
         // Iterate through list adding listners

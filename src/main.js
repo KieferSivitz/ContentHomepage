@@ -20,6 +20,8 @@ const store = new Vuex.Store({
             twitchChat: 0
         },
 
+        streamsList: [],
+
         componentIndex: -1, // Used to generate component IDs, using current count of component causes reuse of IDs
 
         // Layout
@@ -97,6 +99,14 @@ const store = new Vuex.Store({
         },
         deleteGridItem (state, itemNumber) {
             state.gridLayout.splice(Number(itemNumber), 1)
+        },
+
+        // StreamsList
+        saveStreamsList (state, streams) {
+            state.streamsList = []
+            streams.forEach((item, index) => {
+                state.streamsList.push(item)
+            })
         },
 
         // Twitch
