@@ -138,7 +138,7 @@ export default {
             }
             if (input.style.display !== 'inline') {
                 input.style.display = 'inline'
-                document.querySelector(inputString + ' > input').style.display = 'inline'
+                document.querySelector(inputString).style.display = 'inline'
             } else {
                 input.style.display = 'none'
             }

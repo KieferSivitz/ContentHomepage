@@ -17,6 +17,7 @@ export default {
         const index = this.$store.state.componentIndexes.twitter
         this.$store.commit('addTwitterComponent', this._uid)
         return {
+            initialized: 0,
             twitterUser: 'KieferSivitz',
             twitterList: '',
             componentNumber: index,
@@ -50,15 +51,18 @@ export default {
             }
         }
 
-        document.getElementById('twitter-wjs').addEventListener('load', () => {
-            this.$store.commit('changeTwitterFeed', {
-                user: this.$store.state.twitterComponents[this.twitterNumber].twitterUser,
-                list: this.$store.state.twitterComponents[this.twitterNumber].twitterList,
-                componentID: this._uid,
-                componentNumber: this.componentNumber
+        if (this.$store.state.componentIndexes.twitter === 1) {
+            document.getElementById('twitter-wjs').addEventListener('load', () => {
+                this.$store.commit('changeTwitterFeed', {
+                    user: this.$store.state.twitterComponents[this.twitterNumber].twitterUser,
+                    list: this.$store.state.twitterComponents[this.twitterNumber].twitterList,
+                    componentID: this._uid,
+                    componentNumber: this.componentNumber
+                })
             })
-        })
-        registerListener('twitterComponent' + this.componentNumber)
+        } else {
+            registerListener('twitterComponent' + this.componentNumber)
+        }
     }
 }
 </script>
