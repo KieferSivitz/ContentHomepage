@@ -42,6 +42,20 @@ export default {
                     component: this.$store.state.twitchComponents[0].twitchComponentIndex
                 }
             })
+        },
+        activeTab () {
+            // Iterate through list adding listners
+            $(document).ready(() => {
+                $('.nav li a').click(function (e) {
+                    $('.nav li').removeClass('active');
+
+                    const $parent = $(this).parent();
+                    if (!$parent.hasClass('active')) {
+                        $parent.addClass('active');
+                    }
+                    e.preventDefault();
+                });
+            });
         }
     },
     beforeMount () {
@@ -61,25 +75,8 @@ export default {
                 })
                 this.$store.commit('saveStreamsList', tmpList)
                 this.streamList = tmpList
+                this.activeTab()
             }
-        });
-    },
-    mounted () {
-        // Iterate through list adding listners
-        $(document).ready(() => {
-            this.$nextTick(() => {
-                this.$nextTick(() => {
-                    $('.nav li a').click(function (e) {
-                        $('.nav li').removeClass('active');
-
-                        const $parent = $(this).parent();
-                        if (!$parent.hasClass('active')) {
-                            $parent.addClass('active');
-                        }
-                        e.preventDefault();
-                    });
-                })
-            })
         });
     }
 
