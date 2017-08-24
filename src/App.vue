@@ -2,8 +2,8 @@
   <div id="app">
       <div class="nav" id="navbar">
           <ul>
-            <li id="iconLi"><a href="#" class="active" id="icon"> <img src="./assets/icon.png"></img></a></li>
-            <li v-for="item in streamList">
+            <li id="iconLi"><a v-on:click="home()" class="active" id="icon"> <img src="./assets/icon.png"></img></a></li>
+            <li v-for="item in streamList" :key="item.index" :id="'navItem' + item.index">
                 <a v-on:click="navigation(item.index)">{{ item.channel }}</a>
             </li>
         </ul>
@@ -26,8 +26,15 @@ export default {
         }
     },
     methods: {
+        home () {
+            this.$store.dispatch('navigationActions', {
+                twitch: {
+                    channel: 'vgbootcamp',
+                    component: this.$store.state.twitchComponents[0].twitchComponentIndex
+                }
+            })
+        },
         navigation (index) {
-            console.log(index)
             const hub = this.$store.state.streamList[index]
             this.$store.dispatch('navigationActions', {
                 twitch: {
@@ -41,7 +48,7 @@ export default {
         let game = 'Super Smash Bros. Melee'
         $.ajax({
             type: 'GET',
-            url: 'https://api.twitch.tv/kraken/streams?game=' + game + '&limit=8',
+            url: 'https://api.twitch.tv/kraken/streams?game=' + game + '&limit=10',
             headers: {'Client-ID': 'uo6dggojyb8d6soh92zknwmi5ej1q2'},
             success: (data) => {
                 let tmpList = [];
@@ -59,16 +66,18 @@ export default {
     },
     mounted () {
         // Iterate through list adding listners
-        $(document).ready(function () {
-            $('.nav li a').click(function (e) {
-                $('.nav li').removeClass('active');
+        $(document).ready(() => {
+            this.$nextTick(() => {
+                $('.nav li a').click(function (e) {
+                    $('.nav li').removeClass('active');
 
-                const $parent = $(this).parent();
-                if (!$parent.hasClass('active')) {
-                    $parent.addClass('active');
-                }
-                e.preventDefault();
-            });
+                    const $parent = $(this).parent();
+                    if (!$parent.hasClass('active')) {
+                        $parent.addClass('active');
+                    }
+                    e.preventDefault();
+                });
+            })
         });
     }
 
