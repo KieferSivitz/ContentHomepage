@@ -1,6 +1,6 @@
 {
     "defaultLayout": 
         [{"x": 0, "y": 0, "w": 3, "h": 20, "i": "twitter0", "id": "G0", "componentType": "twitterComponent"},
-        {"x": 3, "y": 0, "w": 6, "h": 20, "i": "twitch0", "id": "G1", "componentType": "twitchComponent"},
+        {"x": 3, "y": 0, "w": 6, "h": 12, "i": "twitch0", "id": "G1", "componentType": "twitchComponent"},
         {"x": 9, "y": 0, "w": 3, "h": 20, "i": "twitchChat0", "id": "G2", "componentType": "twitchChatComponent"}]
 }

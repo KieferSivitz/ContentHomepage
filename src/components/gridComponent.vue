@@ -95,8 +95,8 @@ export default {
         },
         addTwitterComponent: function () {
             this.$store.commit('addTwitterItem', {
-                user: 'KieferSivitz',
-                list: 'smash'
+                user: 'ContentHomepage',
+                list: 'Melee'
             })
 
             this.layout = this.$store.state.gridLayout

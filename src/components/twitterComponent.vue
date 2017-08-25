@@ -18,7 +18,7 @@ export default {
         this.$store.commit('addTwitterComponent', this._uid)
         return {
             initialized: 0,
-            twitterUser: 'KieferSivitz',
+            twitterUser: 'ContentHomepage',
             twitterList: '',
             componentNumber: index,
             twitterNumber: this.$store.state.twitterComponents.length - 1

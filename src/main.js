@@ -39,8 +39,8 @@ const store = new Vuex.Store({
         }],
 
         twitterComponents: [{
-            twitterUser: 'KieferSivitz',
-            twitterList: 'Smash',
+            twitterUser: 'ContentHomepage',
+            twitterList: 'Melee',
             UID: -1
         }],
 
