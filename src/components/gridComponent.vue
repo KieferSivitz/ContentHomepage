@@ -18,6 +18,11 @@
                         <img src="../assets/chat.svg" type="image/svg+xml" class="addIcon"></img>
                     </button>
                 </li>
+                <li>
+                    <button class="add" v-on:click="addSmashggComponent">
+                        <img src="../assets/chat.svg" type="image/svg+xml" class="addIcon"></img>
+                    </button>
+                </li>
             </ul>
         </div>
         <div class="layout">
@@ -55,6 +60,7 @@
 
 <script>
 import twitterComponent from './twitterComponent'
+import smashggComponent from './smashggComponent'
 import twitchComponent from './twitchComponent'
 import VueGridLayout from 'vue-grid-layout'
 import resizeItem from '../mixins/resizeItem.js'
@@ -69,9 +75,10 @@ export default {
     components: {
         twitterComponent,
         twitchComponent,
+        twitchChatComponent,
+        smashggComponent,
         GridLayout,
-        GridItem,
-        twitchChatComponent
+        GridItem
     },
     data () {
         return {
@@ -89,6 +96,12 @@ export default {
         },
         addTwitchChatComponent: function () {
             this.$store.commit('addTwitchChatItem', 'vgbootcamp')
+
+            this.layout = this.$store.state.gridLayout
+            localStorage.setItem('layout', JSON.stringify(this.layout))
+        },
+        addSmashggComponent: function () {
+            this.$store.commit('addSmashggItem')
 
             this.layout = this.$store.state.gridLayout
             localStorage.setItem('layout', JSON.stringify(this.layout))
@@ -130,6 +143,11 @@ export default {
 
             case componentID.includes('twitter'):
                 inputString = '#twitterListInput' + Number(componentID.substring('twitter'.length, componentID.length))
+                input = document.querySelector(inputString)
+                break;
+
+            case componentID.includes('smashgg'):
+                inputString = '#smashggInput' + Number(componentID.substring('smashgg'.length, componentID.length))
                 input = document.querySelector(inputString)
                 break;
 

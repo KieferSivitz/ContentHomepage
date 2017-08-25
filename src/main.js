@@ -11,13 +11,15 @@ const store = new Vuex.Store({
         componentCounts: {
             twitch: 0,
             twitter: 0,
-            twitchChat: 0
+            twitchChat: 0,
+            smashgg: 0
         },
 
         componentIndexes: {
             twitch: 0,
             twitter: 0,
-            twitchChat: 0
+            twitchChat: 0,
+            smashgg: 0
         },
 
         streamList: [],
@@ -48,6 +50,13 @@ const store = new Vuex.Store({
             twitchChatChannel: 'vgbootcamp',
             UID: -1,
             twitchChatComponentIndex: -1
+        }],
+
+        smashggComponents: [{
+            placeholder: 'yup',
+            UID: -1,
+            componentIndex: -1,
+            smashggComponentIndex: -1
         }]
     },
     mutations: {
@@ -76,6 +85,14 @@ const store = new Vuex.Store({
             state.twitchChatComponents[state.componentCounts.twitchChat - 1].twitchChatComponentIndex = state.componentIndexes.twitchChat
             ++state.componentIndexes.twitchChat
         },
+        addSmashggComponent (state, UID) {
+            ++state.componentIndex
+            ++state.componentCounts.smashgg
+            state.smashggComponents[state.componentCounts.smashgg - 1].UID = UID
+            state.smashggComponents[state.componentCounts.smashgg - 1].componentIndex = state.componentIndex
+            state.smashggComponents[state.componentCounts.smashgg - 1].smashggComponentIndex = state.componentIndexes.smashgg
+            ++state.componentIndexes.smashgg
+        },
         removeTwitchComponent (state, componentIndex) {
             --state.componentCounts.twitch
             const index = state.twitchComponents.findIndex(it => it.componentIndex === Number(componentIndex))
@@ -90,6 +107,11 @@ const store = new Vuex.Store({
             --state.componentCounts.twitchChat
             const index = state.twitchChatComponents.findIndex(it => it.componentIndex === Number(componentIndex))
             state.twitchChatComponents.splice(index, 1)
+        },
+        removeSmashggComponent (state, componentIndex) {
+            --state.componentCounts.smashgg
+            const index = state.smashggComponents.findIndex(it => it.componentIndex === Number(componentIndex))
+            state.smashggComponents.splice(index, 1)
         },
 
         // Layouts
@@ -209,6 +231,29 @@ const store = new Vuex.Store({
                 twitterList: info.list,
                 UID: 8
             })
+        },
+
+        // Smashgg
+        addSmashggItem (state) {
+            let newLayout = state.gridLayout
+            let newSmashggComponentsList = state.smashggComponents
+
+            newLayout.push({
+                'x': 4,
+                'y': 20,
+                'w': 3,
+                'h': 6,
+                'i': 'smashgg' + state.componentIndexes.smashgg,
+                'id': 'G' + ((state.componentIndex) + 1),
+                'componentType': 'smashggComponent'
+            })
+
+            newSmashggComponentsList.push(
+                {
+                    placeholder: 'yum'
+                }
+            )
+            // localStorage.setItem('twitchComponents', JSON.stringify(newTwitchComponentsList))
         }
     },
     actions: {
