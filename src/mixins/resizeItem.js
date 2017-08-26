@@ -14,7 +14,7 @@ export default {
                 root.height = newheight
                 root.width = newwidth
                 root.style.visibility = 'visible'
-            })
+            }, 5)
 
             window.addEventListener('resize', () => {
                 setTimeout(() => {
