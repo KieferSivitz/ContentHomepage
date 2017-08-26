@@ -83,7 +83,6 @@ export default {
         this.fetchStreams()
         setInterval(() => {
             this.fetchStreams()
-            console.log('hi')
         }, 60000);
     }
 
