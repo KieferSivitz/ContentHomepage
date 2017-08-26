@@ -18,11 +18,6 @@
                         <img src="../assets/chat.svg" type="image/svg+xml" class="addIcon"></img>
                     </button>
                 </li>
-                <li>
-                    <button class="add resetLayout" v-on:click="resetLayout">
-                        <img src="../assets/chat.svg" type="image/svg+xml" class="addIcon"></img>
-                    </button>
-                </li>
             </ul>
         </div>
         <div class="layout">
@@ -67,7 +62,6 @@ import twitchChatComponent from './twitchChatComponent'
 
 var GridLayout = VueGridLayout.GridLayout;
 var GridItem = VueGridLayout.GridItem;
-var defaultConfigs = require('../configuration/layouts.json')
 
 export default {
     name: 'gridComponent',
@@ -106,10 +100,6 @@ export default {
             })
 
             this.layout = this.$store.state.gridLayout
-            localStorage.setItem('layout', JSON.stringify(this.layout))
-        },
-        resetLayout: function () {
-            this.layout = defaultConfigs.defaultLayout
             localStorage.setItem('layout', JSON.stringify(this.layout))
         },
         removeGridItem: function (componentID) {
@@ -285,12 +275,6 @@ ul {
 
 li {
     min-width: 100%;
-}
-
-.resetLayout {
-    position: absolute;
-    bottom: 10px;
-    right: 0;
 }
 
 </style>
