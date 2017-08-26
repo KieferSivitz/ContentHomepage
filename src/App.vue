@@ -56,28 +56,35 @@ export default {
                     e.preventDefault();
                 });
             });
+        },
+        fetchStreams () {
+            let game = 'Super Smash Bros. Melee'
+            $.ajax({
+                type: 'GET',
+                url: 'https://api.twitch.tv/kraken/streams?game=' + game + '&limit=6',
+                headers: {'Client-ID': 'uo6dggojyb8d6soh92zknwmi5ej1q2'},
+                success: (data) => {
+                    let tmpList = [];
+                    [...data.streams].forEach((item, index) => {
+                        tmpList[index] = {
+                            channel: item.channel.display_name,
+                            viewers: item.viewers,
+                            index: index
+                        }
+                    })
+                    this.$store.commit('saveStreamsList', tmpList)
+                    this.streamList = tmpList
+                    this.activeTab()
+                }
+            });
         }
     },
     beforeMount () {
-        let game = 'Super Smash Bros. Melee'
-        $.ajax({
-            type: 'GET',
-            url: 'https://api.twitch.tv/kraken/streams?game=' + game + '&limit=10',
-            headers: {'Client-ID': 'uo6dggojyb8d6soh92zknwmi5ej1q2'},
-            success: (data) => {
-                let tmpList = [];
-                [...data.streams].forEach((item, index) => {
-                    tmpList[index] = {
-                        channel: item.channel.display_name,
-                        viewers: item.viewers,
-                        index: index
-                    }
-                })
-                this.$store.commit('saveStreamsList', tmpList)
-                this.streamList = tmpList
-                this.activeTab()
-            }
-        });
+        this.fetchStreams()
+        setInterval(() => {
+            this.fetchStreams()
+            console.log('hi')
+        }, 60000);
     }
 
 
