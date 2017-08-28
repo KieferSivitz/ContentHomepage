@@ -169,7 +169,6 @@ export default {
                 // const twitterElement = document.querySelectorAll('#twitter-feed-0 > iframe')[0].id
                 const twitterNumber = i.charAt(i.length - 1)
                 const twitterWindow = document.querySelector('#twitter-feed-' + twitterNumber + ' > iframe')
-                console.log(twitterNumber)
                 let twitterHeightOffset = 50
                 twitterWindow.style.height = String((newHPx - twitterHeightOffset) + 'px')
                 break;
