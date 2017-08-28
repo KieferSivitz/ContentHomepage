@@ -66,6 +66,7 @@ var GridItem = VueGridLayout.GridItem;
 export default {
     name: 'gridComponent',
     mixins: [resizeItem],
+    props: ['game'],
     components: {
         twitterComponent,
         twitchComponent,
@@ -75,7 +76,6 @@ export default {
     },
     data () {
         return {
-            msg: 'Welcome to the social media aggregator!',
             layout: this.$store.state.gridLayout
         }
     },

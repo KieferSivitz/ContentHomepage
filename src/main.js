@@ -8,6 +8,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
+        currentGame: 'Melee',
         componentCounts: {
             twitch: 0,
             twitter: 0,
@@ -210,6 +211,11 @@ const store = new Vuex.Store({
                 twitterList: info.list,
                 UID: 8
             })
+        },
+
+        // Route
+        storeCurrentGame (state, game) {
+            state.currentGame = game
         }
     },
     actions: {

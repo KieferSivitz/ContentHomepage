@@ -55,7 +55,7 @@ export default {
             document.getElementById('twitter-wjs').addEventListener('load', () => {
                 this.$store.commit('changeTwitterFeed', {
                     user: this.$store.state.twitterComponents[this.twitterNumber].twitterUser,
-                    list: this.$store.state.twitterComponents[this.twitterNumber].twitterList,
+                    list: this.$store.state.currentGame,
                     componentID: this._uid,
                     componentNumber: this.componentNumber
                 })
