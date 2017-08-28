@@ -1,7 +1,5 @@
 <template>
-    <div class="componentContainer">
-        <div class="page-title">
-        </div>
+    <div class="componentContainer"> 
         <gridComponent :my-layout="savelayout"/>
     </div>
 </template>
