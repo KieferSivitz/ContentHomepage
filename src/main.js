@@ -187,7 +187,8 @@ const store = new Vuex.Store({
                 {
                     theme: 'dark',
                     dnt: true,
-                    height: twitterContainer.height - twitterHeightOffset
+                    height: twitterContainer.height - twitterHeightOffset,
+                    linkColor: '#45B29D'
                 }
             )
         },
