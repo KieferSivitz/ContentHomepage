@@ -1,7 +1,6 @@
 export default {
     methods: {
         parentSize: function (rootElement, childElement, heightPadding, widthPadding) {
-            console.log(rootElement, childElement)
             const root = document.getElementById(rootElement)
             let container = document.getElementById(childElement).parentNode.getBoundingClientRect()
             let newheight = Number(container.height) - heightPadding
@@ -21,7 +20,7 @@ export default {
                     let container = document.getElementById(childElement).parentNode.getBoundingClientRect()
                     root.height = Number(container.height) - heightPadding
                     root.width = Number(container.width) - widthPadding
-                }, 50)
+                }, 10)
             })
         }
     }
