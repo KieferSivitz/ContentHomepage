@@ -21,61 +21,61 @@ export default new Router({
         },
         {
             path: '/LoL',
-            name: 'homeComponent',
+            name: 'LoL',
             component: homeComponent,
             props: {game: 'LoL', twitchCategory: 'League of Legends'}
         },
         {
             path: '/PUBG',
-            name: 'homeComponent',
+            name: 'PUBG',
             component: homeComponent,
             props: {game: 'PUBG', twitchCategory: 'PLAYERUNKNOWN\'S BATTLEGROUNDS'}
         },
         {
             path: '/Hearthstone',
-            name: 'homeComponent',
+            name: 'Hearthstone',
             component: homeComponent,
             props: {game: 'Hearthstone', twitchCategory: 'Hearthstone'}
         },
         {
             path: '/CSGO',
-            name: 'homeComponent',
+            name: 'CSGO',
             component: homeComponent,
             props: {game: 'CSGO', twitchCategory: 'Counter-Strike: Global Offensive'}
         },
         {
             path: '/WoW',
-            name: 'homeComponent',
+            name: 'WoW',
             component: homeComponent,
             props: {game: 'WoW', twitchCategory: 'World of Warcraft'}
         },
         {
             path: '/DotA',
-            name: 'homeComponent',
+            name: 'DotA',
             component: homeComponent,
             props: {game: 'DotA', twitchCategory: 'Dota 2'}
         },
         {
             path: '/Overwatch',
-            name: 'homeComponent',
+            name: 'Overwatch',
             component: homeComponent,
             props: {game: 'Overwatch', twitchCategory: 'Overwatch'}
         },
         {
             path: '/StarCraft',
-            name: 'homeComponent',
+            name: 'StarCraft',
             component: homeComponent,
             props: {game: 'StarCraft', twitchCategory: 'StarCraft'}
         },
         {
             path: '/StarCraft2',
-            name: 'homeComponent',
+            name: 'StarCraft2',
             component: homeComponent,
             props: {game: 'StarCraft2', twitchCategory: 'StarCraft II'}
         },
         {
             path: '/HotS',
-            name: 'homeComponent',
+            name: 'HotS',
             component: homeComponent,
             props: {game: 'HotS', twitchCategory: 'Heroes of the Storm'}
         }
