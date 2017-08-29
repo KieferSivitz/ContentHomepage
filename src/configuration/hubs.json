@@ -1,13 +1,10 @@
 {
     "hubList": {
-        "Smash": [
+        "Melee": [
             {
                 "twitchChannel": "vgbootcamp",
-                "twitterList": "Smash"
-            },
-            {
-                "twitchChannel": "twitch_scar",
-                "twitterList": "Smash"
+                "twitterList": "Melee",
+                "game": "Super Smash Bros. Melee"
             }
 
         ],

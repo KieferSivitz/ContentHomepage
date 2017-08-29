@@ -58,10 +58,9 @@ export default {
             });
         },
         fetchStreams () {
-            let game = 'Super Smash Bros. Melee'
             $.ajax({
                 type: 'GET',
-                url: 'https://api.twitch.tv/kraken/streams?game=' + game + '&limit=6',
+                url: 'https://api.twitch.tv/kraken/streams?game=' + this.$store.state.currentTwitchCategory + '&limit=8',
                 headers: {'Client-ID': 'uo6dggojyb8d6soh92zknwmi5ej1q2'},
                 success: (data) => {
                     let tmpList = [];
@@ -80,7 +79,9 @@ export default {
         }
     },
     beforeMount () {
-        this.fetchStreams()
+        setTimeout(() => {
+            this.fetchStreams()
+        }, 40);
         setInterval(() => {
             this.fetchStreams()
         }, 60000);

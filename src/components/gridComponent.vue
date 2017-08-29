@@ -66,7 +66,6 @@ var GridItem = VueGridLayout.GridItem;
 export default {
     name: 'gridComponent',
     mixins: [resizeItem],
-    props: ['game'],
     components: {
         twitterComponent,
         twitchComponent,

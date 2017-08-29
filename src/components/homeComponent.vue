@@ -1,6 +1,6 @@
 <template>
     <div class="componentContainer"> 
-        <gridComponent :game="this.game" :my-layout="savelayout"/>
+        <gridComponent :my-layout="savelayout"/>
     </div>
 </template>
 
@@ -9,12 +9,15 @@ import gridComponent from './gridComponent'
 
 export default {
     name: 'homeComponent',
-    props: ['game'],
+    props: ['game', 'twitchCategory'],
     components: {
         gridComponent
     },
     data () {
-        this.$store.commit('storeCurrentGame', this.game)
+        this.$store.commit('storeCurrentGame', {
+            game: this.game,
+            twitchCategory: this.twitchCategory
+        })
         return {
             msg: 'Welcome to your Content Homepage!',
             savelayout: this.$store.state.gridLayout

@@ -9,6 +9,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         currentGame: 'Melee',
+        currentTwitchCategory: 'Super Smash Bros. Melee',
         componentCounts: {
             twitch: 0,
             twitter: 0,
@@ -214,8 +215,10 @@ const store = new Vuex.Store({
         },
 
         // Route
-        storeCurrentGame (state, game) {
-            state.currentGame = game
+        storeCurrentGame (state, info) {
+            state.currentGame = info.game
+            console.log(String(info.twitchCategory))
+            state.currentTwitchCategory = String(info.twitchCategory)
         }
     },
     actions: {
