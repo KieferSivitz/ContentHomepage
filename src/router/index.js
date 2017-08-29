@@ -15,7 +15,7 @@ export default new Router({
         },
         {
             path: '/Smash4',
-            name: 'homeComponent',
+            name: 'Smash4',
             component: homeComponent,
             props: {game: 'Smash4', twitchCategory: 'Super Smash Bros. for Wii U'}
         },
