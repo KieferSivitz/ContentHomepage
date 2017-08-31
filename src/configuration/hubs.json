@@ -1,37 +1,53 @@
 {
-    "hubList": {
-        "Melee": [
-            {
-                "twitchChannel": "vgbootcamp",
-                "twitterList": "Melee",
-                "game": "Super Smash Bros. Melee"
-            }
+    "games": [
+        {
+            "label": "Melee",
+            "route": "#"
+        },
+        {
+            "label": "Smash 4",
+            "route": "Smash4"
+        },
+        {
+            "label": "League of Legends",
+            "route": "LoL"
+        },
+        {
+            "label": "PUBG",
+            "route": "PUBG"
+        },
+        {
+            "label": "Hearthstone",
+            "route": "Hearthstone"
+        },
+        {
+            "label": "CS:GO",
+            "route": "CSGO"
+        },
+        {
+            "label": "World of Warcraft",
+            "route": "WoW"
+        },
+        {
+            "label": "StarCraft",
+            "route": "StarCraft"
+        },
+        {
+            "label": "StarCraft 2",
+            "route": "StarCraft2"
+        },
+        {
+            "label": "Heroes of the Storm",
+            "route": "HotS"
+        },
+        {
+            "label": "DotA 2",
+            "route": "DotA"
+        },
+        {
+            "label": "Overwatch",
+            "route": "Overwatch"
+        }
 
-        ],
-        "Custom": [   
-            {
-                "twitchChannel": "tradechat",
-                "twitterList": "WoW"
-            }
-        ],
-        "Starcraft": [
-            {
-                "twitchChannel": "day9tv",
-                "twitterList": "day9"
-            }
-        ],
-        "CSGO": [
-            {
-                "twitchChannel": "CSGO",
-                "twitterList": "CSGO"
-            }
-        ],
-        "HS": [
-            {
-                "twitchChannel": "Trump",
-                "twitterList": "HS"
-            }
-        ]
-    }
-    
+    ]
 }

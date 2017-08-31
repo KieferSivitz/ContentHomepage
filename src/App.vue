@@ -2,8 +2,18 @@
   <div id="app">
       <div class="nav" id="navbar">
           <ul>
-            <li id="iconLi"><a v-on:click="home()" class="active" id="icon"> <img src="./assets/icon.png"></img></a></li>
-            <li v-for="item in streamList" :key="item.index" :id="'navItem' + item.index">
+            <li id="iconLi">
+                <a v-on:click="home()" class="active" id="icon"> <img src="./assets/icon.png"></img></a>
+                <ul id="gamesList">
+                    <li>
+                        <h3>Games</h3>
+                    </li>
+                    <li v-for="item in gamesList" :key="item.route">
+                        <a :href="'/' + item.route">{{ item.label }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="navigationLi" v-for="item in streamList" :key="item.index" :id="'navItem' + item.index">
                 <a v-on:click="navigation(item.index)">{{ item.channel }}</a>
             </li>
         </ul>
@@ -14,12 +24,14 @@
 </template>
 
 <script>
+var gamesList = require('./configuration/hubs.json')
 
 var $ = require('jquery')
 export default {
     name: 'app',
     data () {
         return {
+            gamesList: gamesList.games,
             streamList: [{
                 channel: 'vgBootcamp'
             }]
@@ -46,8 +58,8 @@ export default {
         activeTab () {
             // Iterate through list adding listners
             $(document).ready(() => {
-                $('.nav li a').click(function (e) {
-                    $('.nav li').removeClass('active');
+                $('.nav li.navigationLi a').click(function (e) {
+                    $('.nav .navigationLi li').removeClass('active');
 
                     const $parent = $(this).parent();
                     if (!$parent.hasClass('active')) {
@@ -122,6 +134,7 @@ body {
     background-color: #334D5C;
 }
 
+
 .gridInput {
     position: inherit;
 }
@@ -178,14 +191,39 @@ li a:hover {
     width: 20px;
 }
 
-#iconLi {
-    height: 20px;
-}
-
 #icon img {
     position: absolute;
     left: 10px;
     top: 8px;
+}
+
+#iconLi {
+    height: 20px;
+}
+
+#gamesList {
+    position: absolute;
+    float: left;
+    top: 0;
+    left: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 0px;
+    transition: all 0.65s ease;
+    display: none;
+}
+
+#gamesList > li {
+    width: 100%;
+}
+
+#iconLi:hover #gamesList {
+    display: block;
+    background-color: #4A484C;
+    width: 12%;
+    transition:  width 0.65s ease;
+    height: 100%;
+    z-index: 999;
 }
 
 </style>
