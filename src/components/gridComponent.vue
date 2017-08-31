@@ -209,6 +209,8 @@ button {
     padding-left: 5px;
     padding-right: 5px;
     right: 0;
+    width: 0px;
+    transition: all 0.65s ease;
     height: 32px;
 }
 
@@ -236,6 +238,7 @@ button {
 }
 
 #addItem:hover {
+    transition:  width 0.65s ease;
     background-color: #4A484C;
     width: 12%;
     height: 100%;
