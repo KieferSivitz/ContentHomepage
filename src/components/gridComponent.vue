@@ -5,17 +5,17 @@
             <ul id="creationList">
                 <li>
                     <button class="add" v-on:click="addTwitterComponent">
-                        <img src="../assets/Twitter_Logo_Blue/Twitter_Logo_Blue.svg" type="image/svg+xml" class="addIcon"></img>
+                        <img alt="Twitter List" title="Twitter List" src="../assets/Twitter_Logo_Blue/Twitter_Logo_Blue.svg" type="image/svg+xml" class="addIcon"></img>
                     </button>
                 </li>
                 <li>
                     <button class="add" v-on:click="addTwitchComponent">
-                        <img src="../assets/twitch.svg" type="image/svg+xml" class="addIcon"></img>
+                        <img alt="Twitch Stream" title="Twitch Stream" src="../assets/Twitch_Logo_All/Screen/Purple/Twitch_Purple_RGB.svg" type="image/svg+xml" class="addIcon"></img>
                     </button>
                 </li>
                 <li>
                     <button class="add" v-on:click="addTwitchChatComponent">
-                        <img src="../assets/chat.svg" type="image/svg+xml" class="addIcon"></img>
+                        <img alt="Twitch Chat" title="Twitch Chat" src="../assets/Combo_Logo_All/Screen/Purple/Combo_Purple_RGB.svg" type="image/svg+xml" class="addIcon"></img>
                     </button>
                 </li>
                 <li>
@@ -271,6 +271,13 @@ button {
     min-width: 100%;
     height: 80px;
     border: none;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.add img {
+    max-width: 60%;
+    max-height: 90%;
 }
 
 .btnReset {
