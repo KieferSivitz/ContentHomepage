@@ -27,8 +27,8 @@ const store = new Vuex.Store({
         componentIndex: -1, // Used to generate component IDs, using current count of component causes reuse of IDs
 
         // Layout
-        // gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
-        gridLayout: defaultConfigs.defaultLayout,
+        gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
+        // gridLayout: defaultConfigs.defaultLayout,
 
         // Components
         twitchComponents: JSON.parse(localStorage.getItem('twitchComponents')) || [{
@@ -101,6 +101,9 @@ const store = new Vuex.Store({
         },
         deleteGridItem (state, itemNumber) {
             state.gridLayout.splice(Number(itemNumber), 1)
+        },
+        resetLayout (state) {
+            state.gridLayout.splice(0, state.gridLayout.length, ...defaultConfigs.defaultLayout)
         },
 
         // StreamsList

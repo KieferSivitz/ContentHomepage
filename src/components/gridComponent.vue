@@ -18,6 +18,11 @@
                         <img src="../assets/chat.svg" type="image/svg+xml" class="addIcon"></img>
                     </button>
                 </li>
+                <li>
+                    <button class="btnReset" v-on:click="resetLayout">
+                        Reset Layout
+                    </button>
+                </li>
             </ul>
         </div>
         <div class="layout">
@@ -79,7 +84,9 @@ export default {
         }
     },
     methods: {
-        // TODO: Combign the below
+        resetLayout () {
+            this.$store.commit('resetLayout')
+        },
         addTwitchComponent: function () {
             this.$store.commit('addTwitchItem', 'vgbootcamp')
 
@@ -176,9 +183,6 @@ export default {
                 break;
             }
         },
-        updateLayout: function () {
-            // defaultConfigs.smashLayout
-        },
         storeItemProperties: function () {
             this.$store.commit('saveLayout', this.layout)
         }
@@ -210,7 +214,7 @@ button {
     padding-right: 5px;
     right: 0;
     width: 0px;
-    transition: all 0.65s ease;
+    transition: all 0.5s ease;
     height: 32px;
 }
 
@@ -238,7 +242,7 @@ button {
 }
 
 #addItem:hover {
-    transition:  width 0.65s ease;
+    transition:  width 0s ease;
     background-color: #4A484C;
     width: 12%;
     height: 100%;
@@ -267,6 +271,16 @@ button {
     background-color: white;
     min-width: 100%;
     height: 80px;
+    border: none;
+}
+
+.btnReset {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    background-color: grey;
+    min-width: 100%;
+    height: 40px;
     border: none;
 }
 
