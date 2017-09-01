@@ -1,0 +1,27 @@
+I made a web site for people without twitter to spectate Melee tournaments!
+
+
+This project started as to get some practice in web development and learn a few things that we didn't cover at my university. In the last month it got pretty usable to I decided to share it with others. 
+I wanted an easier way to watch streams and follow discussions on twitter since twitch chat is too hard to follow and offers no useful discussion past a certain number of viewers.
+
+
+Let me be the first to say that I am not a designer, so it's not the prettiest site you'll ever see, but it gets the job done. It definitely has some kinks I'll be ironing out as I have the time but they should be minor.
+
+
+This past week was the final week I was able to work on it before I start my job search, so I decided to polish it up and let people here give it a try for Redbull Gods and Gatekeepers this weekend.
+I've been using it for the last few months, since mid June(ish), and rarely find myself on twitch itself anymore.
+
+
+It's set up to support other games in the future but I wanted to start with Melee because it's my favorite and I wanted to give back to the community (since Smash has one of the best communities in eSports)
+Also I also don't know who to add to the twitter lists for the other games at the moment.
+
+
+If I missed anyone's twitter who you believe should be added to the list [here](https://twitter.com/ContentHomepage/lists/melee) let me know and I can add them.
+
+
+[Link to the site](https://www.contenthomepage.com/)
+
+
+If you find any problems or think it's missing something let me know!
+
+**TL:DR** Twitter, Twitch Stream, and Twitch Chat on one page, with a twitter list made by me so you don't have to deal with it.

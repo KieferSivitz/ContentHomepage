@@ -32,7 +32,7 @@ const store = new Vuex.Store({
 
         // Components
         twitchComponents: JSON.parse(localStorage.getItem('twitchComponents')) || [{
-            twitchChannel: 'vgbootcamp',
+            twitchChannel: 'redbullesports',
             twitchPlayer: {},
             twitchElement: 'twitchPlayer0',
             UID: -1,
@@ -47,7 +47,7 @@ const store = new Vuex.Store({
         }],
 
         twitchChatComponents: [{
-            twitchChatChannel: 'vgbootcamp',
+            twitchChatChannel: 'redbullesports',
             UID: -1,
             twitchChatComponentIndex: -1
         }]
