@@ -86,8 +86,6 @@ export default {
     methods: {
         resetLayout () {
             this.$store.commit('resetLayout')
-            localStorage.setItem('layout', JSON.stringify(this.layout))
-            location.reload()
         },
         addTwitchComponent: function () {
             this.$store.commit('addTwitchItem', 'vgbootcamp')

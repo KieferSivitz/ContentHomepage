@@ -104,6 +104,8 @@ const store = new Vuex.Store({
         },
         resetLayout (state) {
             state.gridLayout.splice(0, state.gridLayout.length, ...defaultConfigs.defaultLayout)
+            localStorage.setItem('layout', JSON.stringify(state.gridLayout))
+            location.reload()
         },
 
         // StreamsList
