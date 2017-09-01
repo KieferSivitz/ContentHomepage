@@ -3,7 +3,7 @@
       <div class="nav" id="navbar">
           <ul>
             <li id="iconLi">
-                <a v-on:click="home()" class="active" id="icon"> <img src="./assets/icon.png"></img></a>
+                <a class="active" id="icon"> <img src="./assets/icon.png"></img></a>
                 <ul id="gamesList">
                     <li>
                         <h3>Games</h3>
@@ -13,7 +13,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="navigationLi" v-for="item in streamList" :key="item.index" :id="'navItem' + item.index">
+            <li class="navigationLi" v-for="item in streamList" :key="item.index" :id="'navItem' + item.index" :title="item.viewers + ' Viewers'">
                 <a v-on:click="navigation(item.index)">{{ item.channel }}</a>
             </li>
         </ul>
@@ -38,14 +38,6 @@ export default {
         }
     },
     methods: {
-        home () {
-            this.$store.dispatch('navigationActions', {
-                twitch: {
-                    channel: 'vgbootcamp',
-                    component: this.$store.state.twitchComponents[0].twitchComponentIndex
-                }
-            })
-        },
         navigation (index) {
             const hub = this.$store.state.streamList[index]
             this.$store.dispatch('navigationActions', {
@@ -93,7 +85,7 @@ export default {
     beforeMount () {
         setTimeout(() => {
             this.fetchStreams()
-        }, 40);
+        }, 10);
         setInterval(() => {
             this.fetchStreams()
         }, 60000);
