@@ -51,7 +51,7 @@ export default {
             // Iterate through list adding listners
             $(document).ready(() => {
                 $('.nav li.navigationLi a').click(function (e) {
-                    $('.nav .navigationLi li').removeClass('active');
+                    $('.nav li.navigationLi').removeClass('active');
 
                     const $parent = $(this).parent();
                     if (!$parent.hasClass('active')) {
