@@ -1,7 +1,7 @@
 <template>
     <div class="gridComponent">
         <div id="addItem">
-            <a id="addButton" href="#">+</a>
+            <a id="addButton" href="#">New Item</a>
             <ul id="creationList">
                 <li>
                     <button class="add" v-on:click="addTwitterComponent">
@@ -225,10 +225,10 @@ button {
     right: 0;
     color: white;
     text-align: center;
-    padding: 6px 16px;
+    padding: 4px 16px;
     text-decoration: none;
-    font-size: 2em;
-    font-weight: 400;
+    font-size: 1em;
+    font-weight: 700;
 }
 
 #creationList {
