@@ -3,15 +3,15 @@
       <div class="nav" id="navbar">
           <ul>
             <li id="iconLi">
-                <a class="active" id="icon"> <img src="./assets/icon.png"></img></a>
-                <ul id="gamesList">
+                <a v-on:click="home()" title="Home" class="active" id="icon"> <img src="./assets/icon.png"></img></a>
+                <!-- <ul id="gamesList">
                     <li>
                         <h3>Games</h3>
                     </li>
                     <li v-for="item in gamesList" :key="item.route">
                         <a :href="'/' + item.route">{{ item.label }}</a>
                     </li>
-                </ul>
+                </ul> -->
             </li>
             <li class="navigationLi" v-for="item in streamList" :key="item.index" :id="'navItem' + item.index" :title="item.viewers + ' Viewers'">
                 <a v-on:click="navigation(item.index)">{{ item.channel }}</a>
@@ -38,6 +38,20 @@ export default {
         }
     },
     methods: {
+        home () {
+            this.$store.dispatch('navigationActions', {
+                twitch: {
+                    channel: 'redbullesports',
+                    component: this.$store.state.twitchComponents[0].twitchComponentIndex
+                }
+            })
+            $('.nav li.navigationLi').removeClass('active');
+
+            const $parent = $(this).parent();
+            if (!$parent.hasClass('active')) {
+                $parent.addClass('active');
+            }
+        },
         navigation (index) {
             const hub = this.$store.state.streamList[index]
             this.$store.dispatch('navigationActions', {
