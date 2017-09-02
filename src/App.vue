@@ -163,6 +163,7 @@ li a {
     text-decoration: none;
     height: 100%;
     font-weight: 700;
+    cursor: pointer;
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -216,6 +217,10 @@ li a:hover {
     transition:  width 0.65s ease;
     height: 100%;
     z-index: 999;
+}
+
+button {
+    cursor: pointer;
 }
 
 </style>
