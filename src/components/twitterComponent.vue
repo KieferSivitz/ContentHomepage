@@ -70,7 +70,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .twitterComponent {
-    padding: 10px;
+    padding: 8px;
 }
 
 input {

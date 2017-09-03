@@ -3,6 +3,7 @@ import App from './App'
 import router from './router'
 import Vuex from 'vuex'
 var defaultConfigs = require('./configuration/layouts.json')
+var constants = require('./configuration/constants.json')
 
 Vue.use(Vuex)
 
@@ -178,7 +179,7 @@ const store = new Vuex.Store({
             const oldTwitter = document.querySelector('#twitter-feed-' + info.componentNumber + ' > iframe')
             const twitterContainer = document.getElementById('twitterComponent' + info.componentNumber).parentNode.getBoundingClientRect()
 
-            let twitterHeightOffset = (twitterContainer.height > 25) ? 25 : 10
+            let twitterHeightOffset = (twitterContainer.height > constants.heightPadding) ? constants.heightPadding : 10
             state.twitterComponents[twitterIndex].twitterList = info.list
             state.twitterComponents[twitterIndex].twitterUser = info.user
             if (oldTwitter) {

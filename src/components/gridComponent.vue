@@ -1,7 +1,7 @@
 <template>
     <div class="gridComponent">
         <div id="addItem">
-            <a id="addButton" href="#">New Item</a>
+            <a id="addButton" href="#">+&nbsp;&nbsp;New Item</a>
             <ul id="creationList">
                 <li>
                     <button class="add" v-on:click="addTwitterComponent">
@@ -33,7 +33,7 @@
                 :is-draggable="true"
                 :is-resizable="true"
                 :vertical-compact="true"
-                :margin="[10, 10]"
+                :margin="[5, 5]"
                 :use-css-transforms="true">
                 <grid-item class="gridItems"
                             v-for="item in layout"
@@ -67,6 +67,7 @@ import twitchChatComponent from './twitchChatComponent'
 
 var GridLayout = VueGridLayout.GridLayout;
 var GridItem = VueGridLayout.GridItem;
+var constants = require('../configuration/constants.json')
 
 export default {
     name: 'gridComponent',
@@ -161,20 +162,20 @@ export default {
             switch (true) {
             case i.includes('twitchChat'):
                 const chatNumber = i.charAt(i.length - 1)
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChatWindow' + chatNumber, 20, 25)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChatWindow' + chatNumber, constants.widthPadding, constants.heightPadding)
                 break;
 
             case i.includes('twitch'):
                 const streamNumber = Number(i.charAt(i.length - 1))
                 const twitchIndex = this.$store.state.twitchComponents.findIndex(it => it.twitchComponentIndex === streamNumber)
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[twitchIndex].twitchElement, 20, 25)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[twitchIndex].twitchElement, constants.widthPadding, constants.heightPadding)
                 break;
 
             case i.includes('twitter'):
                 // const twitterElement = document.querySelectorAll('#twitter-feed-0 > iframe')[0].id
                 const twitterNumber = i.charAt(i.length - 1)
                 const twitterWindow = document.querySelector('#twitter-feed-' + twitterNumber + ' > iframe')
-                let twitterHeightOffset = 25
+                let twitterHeightOffset = constants.heightPadding
                 twitterWindow.style.height = String((newHPx - twitterHeightOffset) + 'px')
                 break;
 
@@ -194,8 +195,9 @@ export default {
 <style scoped>
 
 .gridItems {
-    background: #4A484C;
+    background: transparent;
     border-radius: 5px;
+    margin: 0;
 }
 
 button {
@@ -205,7 +207,11 @@ button {
     border: none;
 }
 
-.gridItems:hover .delete {
+.gridItems:hover {
+    background: #4A484C;
+}
+
+.gridItems:hover .delete{
     display: block;
 }
 .gridItems:hover .expandInput {
@@ -225,6 +231,7 @@ button {
 }
 
 #addButton {
+    width: 150px;
     z-index: 999;
     position: absolute;
     float: right;
@@ -233,10 +240,14 @@ button {
     color: white;
     text-align: center;
     padding: 4px 16px;
+    height: 38px;
+    padding-top: 12px;
+
     text-decoration: none;
-    font-size: 1em;
+    font-size: 1.2em;
     font-weight: 700;
 }
+
 
 #creationList {
     margin-top: 38px;
