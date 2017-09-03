@@ -3,11 +3,14 @@ import App from './App'
 import router from './router'
 import Vuex from 'vuex'
 var defaultConfigs = require('./configuration/layouts.json')
+var constants = require('./configuration/constants.json')
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
+        currentGame: 'Melee',
+        currentTwitchCategory: 'Super Smash Bros. Melee',
         componentCounts: {
             twitch: 0,
             twitter: 0,
@@ -27,12 +30,12 @@ const store = new Vuex.Store({
         componentIndex: -1, // Used to generate component IDs, using current count of component causes reuse of IDs
 
         // Layout
-        // gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
-        gridLayout: defaultConfigs.defaultLayout,
+        gridLayout: JSON.parse(localStorage.getItem('layout')) || defaultConfigs.defaultLayout,
+        // gridLayout: defaultConfigs.defaultLayout,
 
         // Components
         twitchComponents: JSON.parse(localStorage.getItem('twitchComponents')) || [{
-            twitchChannel: 'vgbootcamp',
+            twitchChannel: 'redbullesports',
             twitchPlayer: {},
             twitchElement: 'twitchPlayer0',
             UID: -1,
@@ -41,13 +44,13 @@ const store = new Vuex.Store({
         }],
 
         twitterComponents: [{
-            twitterUser: 'KieferSivitz',
-            twitterList: 'Smash',
+            twitterUser: 'ContentHomepage',
+            twitterList: 'Melee',
             UID: -1
         }],
 
         twitchChatComponents: [{
-            twitchChatChannel: 'vgbootcamp',
+            twitchChatChannel: 'redbullesports',
             UID: -1,
             twitchChatComponentIndex: -1
         }],
@@ -122,6 +125,11 @@ const store = new Vuex.Store({
         deleteGridItem (state, itemNumber) {
             state.gridLayout.splice(Number(itemNumber), 1)
         },
+        resetLayout (state) {
+            state.gridLayout.splice(0, state.gridLayout.length, ...defaultConfigs.defaultLayout)
+            localStorage.setItem('layout', JSON.stringify(state.gridLayout))
+            location.reload()
+        },
 
         // StreamsList
         saveStreamsList (state, streams) {
@@ -193,7 +201,7 @@ const store = new Vuex.Store({
             const oldTwitter = document.querySelector('#twitter-feed-' + info.componentNumber + ' > iframe')
             const twitterContainer = document.getElementById('twitterComponent' + info.componentNumber).parentNode.getBoundingClientRect()
 
-            let twitterHeightOffset = (twitterContainer.height > 50) ? 50 : 10
+            let twitterHeightOffset = (twitterContainer.height > constants.heightPadding) ? constants.heightPadding : 10
             state.twitterComponents[twitterIndex].twitterList = info.list
             state.twitterComponents[twitterIndex].twitterUser = info.user
             if (oldTwitter) {
@@ -209,7 +217,8 @@ const store = new Vuex.Store({
                 {
                     theme: 'dark',
                     dnt: true,
-                    height: twitterContainer.height - twitterHeightOffset
+                    height: twitterContainer.height - twitterHeightOffset,
+                    linkColor: '#45B29D'
                 }
             )
         },
@@ -254,6 +263,12 @@ const store = new Vuex.Store({
                 }
             )
             // localStorage.setItem('twitchComponents', JSON.stringify(newTwitchComponentsList))
+        // Route
+        },
+        storeCurrentGame (state, info) {
+            state.currentGame = info.game
+            console.log(String(info.twitchCategory))
+            state.currentTwitchCategory = String(info.twitchCategory)
         }
     },
     actions: {

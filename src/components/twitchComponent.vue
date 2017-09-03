@@ -10,6 +10,7 @@
 import 'twitch-embed'; // eslint-disable-line
 import resizeItem from '../mixins/resizeItem.js'
 import inputListener from '../mixins/inputListener.js'
+var constants = require('../configuration/constants.json')
 
 export default {
     name: 'twitchComponent',
@@ -26,8 +27,8 @@ export default {
     },
     methods: {
         renderPlayer (channelID) {
-            const heightOffset = 60
-            const widthOffset = 20
+            const heightOffset = constants.heightPadding
+            const widthOffset = constants.widthPadding
             const windowWidth = document.getElementById('twitchComponent' + this.componentNumber).style.width - widthOffset
             const windowHeight = document.getElementById('twitchComponent' + this.componentNumber).style.height - heightOffset
 
@@ -61,7 +62,7 @@ export default {
 
         $('#streamWindow' + this.componentNumber).firstChild.id = ('twitchPlayer' + this.componentNumber)
         // Initialize window resize listener
-        resizeItem.methods.parentSize(('twitchPlayer' + this.componentNumber), 'twitchComponent' + this.componentNumber, 50, 20)
+        resizeItem.methods.parentSize(('twitchPlayer' + this.componentNumber), 'twitchComponent' + this.componentNumber, constants.heightPadding, constants.widthPadding)
 
         const input = $('#twitchInput' + this.componentNumber)
         input.addEventListener('keyup', (e) => {
@@ -78,7 +79,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .twitchComponent {
-    padding: 10px;
+    padding: 8px;
 }
 
 input {

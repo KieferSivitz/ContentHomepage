@@ -2,12 +2,14 @@
 <html>
   <head>
     <!-- Google Adsense -->
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-5553008361591720",
-        enable_page_level_ads: true
-      });
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
     </script>
     <!-- Google Tag Manager -->
     <script>

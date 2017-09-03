@@ -1,21 +1,26 @@
 <template>
     <div class="gridComponent">
         <div id="addItem">
-            <a id="addButton" href="#">+</a>
+            <a id="addButton" href="#">+&nbsp;&nbsp;New Item</a>
             <ul id="creationList">
                 <li>
                     <button class="add" v-on:click="addTwitterComponent">
-                        <img src="../assets/Twitter_Logo_Blue/Twitter_Logo_Blue.svg" type="image/svg+xml" class="addIcon"></img>
+                        <img alt="Twitter List" title="Twitter List" src="../assets/Twitter_Logo_Blue/Twitter_Logo_Blue.svg" type="image/svg+xml" class="addIcon"></img>
                     </button>
                 </li>
                 <li>
                     <button class="add" v-on:click="addTwitchComponent">
-                        <img src="../assets/twitch.svg" type="image/svg+xml" class="addIcon"></img>
+                        <img alt="Twitch Stream" title="Twitch Stream" src="../assets/Twitch_Logo_All/Screen/Purple/Twitch_Purple_RGB.svg" type="image/svg+xml" class="addIcon"></img>
                     </button>
                 </li>
                 <li>
                     <button class="add" v-on:click="addTwitchChatComponent">
-                        <img src="../assets/chat.svg" type="image/svg+xml" class="addIcon"></img>
+                        <img alt="Twitch Chat" title="Twitch Chat" src="../assets/Combo_Logo_All/Screen/Purple/Combo_Purple_RGB.svg" type="image/svg+xml" class="addIcon"></img>
+                    </button>
+                </li>
+                <li>
+                    <button class="btnReset" v-on:click="resetLayout">
+                        Reset Layout
                     </button>
                 </li>
                 <li>
@@ -33,7 +38,7 @@
                 :is-draggable="true"
                 :is-resizable="true"
                 :vertical-compact="true"
-                :margin="[10, 10]"
+                :margin="[2, 5]"
                 :use-css-transforms="true">
                 <grid-item class="gridItems"
                             v-for="item in layout"
@@ -68,6 +73,7 @@ import twitchChatComponent from './twitchChatComponent'
 
 var GridLayout = VueGridLayout.GridLayout;
 var GridItem = VueGridLayout.GridItem;
+var constants = require('../configuration/constants.json')
 
 export default {
     name: 'gridComponent',
@@ -82,15 +88,15 @@ export default {
     },
     data () {
         return {
-            msg: 'Welcome to the social media aggregator!',
             layout: this.$store.state.gridLayout
         }
     },
     methods: {
-        // TODO: Combign the below
+        resetLayout () {
+            this.$store.commit('resetLayout')
+        },
         addTwitchComponent: function () {
             this.$store.commit('addTwitchItem', 'vgbootcamp')
-
             this.layout = this.$store.state.gridLayout
             localStorage.setItem('layout', JSON.stringify(this.layout))
         },
@@ -108,8 +114,8 @@ export default {
         },
         addTwitterComponent: function () {
             this.$store.commit('addTwitterItem', {
-                user: 'KieferSivitz',
-                list: 'smash'
+                user: 'ContentHomepage',
+                list: 'Melee'
             })
 
             this.layout = this.$store.state.gridLayout
@@ -174,29 +180,26 @@ export default {
             switch (true) {
             case i.includes('twitchChat'):
                 const chatNumber = i.charAt(i.length - 1)
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChatWindow' + chatNumber, 20, 55)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChatWindow' + chatNumber, constants.widthPadding, constants.heightPadding)
                 break;
 
             case i.includes('twitch'):
                 const streamNumber = Number(i.charAt(i.length - 1))
                 const twitchIndex = this.$store.state.twitchComponents.findIndex(it => it.twitchComponentIndex === streamNumber)
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[twitchIndex].twitchElement, 20, 50)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[twitchIndex].twitchElement, constants.widthPadding, constants.heightPadding)
                 break;
 
             case i.includes('twitter'):
                 // const twitterElement = document.querySelectorAll('#twitter-feed-0 > iframe')[0].id
                 const twitterNumber = i.charAt(i.length - 1)
-                const twitterWindow = document.getElementById('twitter-widget-' + twitterNumber)
-                let twitterHeightOffset = 50
+                const twitterWindow = document.querySelector('#twitter-feed-' + twitterNumber + ' > iframe')
+                let twitterHeightOffset = constants.heightPadding
                 twitterWindow.style.height = String((newHPx - twitterHeightOffset) + 'px')
                 break;
 
             default:
                 break;
             }
-        },
-        updateLayout: function () {
-            // defaultConfigs.smashLayout
         },
         storeItemProperties: function () {
             this.$store.commit('saveLayout', this.layout)
@@ -210,15 +213,27 @@ export default {
 <style scoped>
 
 .gridItems {
-    background: #4A484C;
-    border-radius: 5px
+    background: transparent;
+    border-radius: 5px;
+    margin: 0;
 }
 
 button {
+    border-radius: 5px;
     width: 32px;
     height: 32px;
     border: none;
+}
+
+.gridItems:hover {
     background: #4A484C;
+}
+
+.gridItems:hover .delete{
+    display: block;
+}
+.gridItems:hover .expandInput {
+    display: block;
 }
 
 #addItem {
@@ -228,10 +243,13 @@ button {
     padding-left: 5px;
     padding-right: 5px;
     right: 0;
+    width: 0px;
+    transition: all 0.5s ease;
     height: 32px;
 }
 
 #addButton {
+    width: 150px;
     z-index: 999;
     position: absolute;
     float: right;
@@ -239,11 +257,15 @@ button {
     right: 0;
     color: white;
     text-align: center;
-    padding: 6px 16px;
+    padding: 4px 16px;
+    height: 38px;
+    padding-top: 12px;
+
     text-decoration: none;
-    font-size: 2em;
-    font-weight: 400;
+    font-size: 1.2em;
+    font-weight: 700;
 }
+
 
 #creationList {
     margin-top: 38px;
@@ -255,6 +277,7 @@ button {
 }
 
 #addItem:hover {
+    transition:  width 0s ease;
     background-color: #4A484C;
     width: 12%;
     height: 100%;
@@ -262,13 +285,20 @@ button {
 }
 
 .delete {
-    float: right;
+    z-index: 999;
+    position: absolute;
+    right: 0;
     max-width: 100%;
+    top: 0;
+    display: none;
 }
 
 .expandInput {
     z-index: 999;
-    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
 }
 
 .expandImg {
@@ -284,6 +314,23 @@ button {
     min-width: 100%;
     height: 80px;
     border: none;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.add img {
+    max-width: 60%;
+    max-height: 90%;
+}
+
+.btnReset {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    background-color: grey;
+    min-width: 100%;
+    height: 40px;
+    border: none;
 }
 
 ul {
@@ -294,6 +341,5 @@ ul {
 li {
     min-width: 100%;
 }
-
 
 </style>

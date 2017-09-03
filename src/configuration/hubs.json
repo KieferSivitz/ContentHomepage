@@ -1,36 +1,65 @@
 {
-    "hubList": {
-        "Smash": [
-            {
-                "twitchChannel": "Super Smash Bros. Melee",
-                "twitterList": "Smash"
-            }
+    "games": [
+        {
+            "label": "Melee",
+            "route": "#",
+            "twitchCategory": "Super Smash Bros. Melee"
+        },
+        {
+            "label": "Smash 4",
+            "route": "Smash4",
+            "twitchCategory": "Super Smash Bros. for Wii U"
+        },
+        {
+            "label": "League of Legends",
+            "route": "LoL",
+            "twitchCategory": "League of Legends"
+        },
+        {
+            "label": "PUBG",
+            "route": "PUBG",
+            "twitchCategory": "PLAYERUNKNOWN'S BATTLEGROUNDS"
+        },
+        {
+            "label": "Hearthstone",
+            "route": "Hearthstone",
+            "twitchCategory": "Hearthstone"
+        },
+        {
+            "label": "CS:GO",
+            "route": "CSGO",
+            "twitchCategory": "Counter-Strike: Global Offensive"
+        },
+        {
+            "label": "World of Warcraft",
+            "route": "WoW",
+            "twitchCategory": "World of Warcraft"
+        },
+        {
+            "label": "StarCraft",
+            "route": "StarCraft",
+            "twitchCategory": "StarCraft"
+        },
+        {
+            "label": "StarCraft 2",
+            "route": "StarCraft2",
+            "twitchCategory": "StarCraft II"
+        },
+        {
+            "label": "Heroes of the Storm",
+            "route": "HotS",
+            "twitchCategory": "Heroes of the Storm"
+        },
+        {
+            "label": "DotA 2",
+            "route": "DotA",
+            "twitchCategory": "Dota 2"
+        },
+        {
+            "label": "Overwatch",
+            "route": "Overwatch",
+            "twitchCategory": "Overwatch"
+        }
 
-        ],
-        "Custom": [   
-            {
-                "twitchChannel": "tradechat",
-                "twitterList": "WoW"
-            }
-        ],
-        "Starcraft": [
-            {
-                "twitchChannel": "day9tv",
-                "twitterList": "day9"
-            }
-        ],
-        "CSGO": [
-            {
-                "twitchChannel": "CSGO",
-                "twitterList": "CSGO"
-            }
-        ],
-        "HS": [
-            {
-                "twitchChannel": "Trump",
-                "twitterList": "HS"
-            }
-        ]
-    }
-    
+    ]
 }

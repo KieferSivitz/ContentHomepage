@@ -18,7 +18,7 @@ export default {
         this.$store.commit('addTwitterComponent', this._uid)
         return {
             initialized: 0,
-            twitterUser: 'KieferSivitz',
+            twitterUser: 'ContentHomepage',
             twitterList: '',
             componentNumber: index,
             twitterNumber: this.$store.state.twitterComponents.length - 1
@@ -55,7 +55,7 @@ export default {
             document.getElementById('twitter-wjs').addEventListener('load', () => {
                 this.$store.commit('changeTwitterFeed', {
                     user: this.$store.state.twitterComponents[this.twitterNumber].twitterUser,
-                    list: this.$store.state.twitterComponents[this.twitterNumber].twitterList,
+                    list: this.$store.state.currentGame,
                     componentID: this._uid,
                     componentNumber: this.componentNumber
                 })
@@ -70,7 +70,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .twitterComponent {
-    padding: 10px;
+    padding: 8px;
 }
 
 input {

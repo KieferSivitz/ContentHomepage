@@ -2,8 +2,21 @@
   <div id="app">
       <div class="nav" id="navbar">
           <ul>
-            <li id="iconLi"><a v-on:click="home()" class="active" id="icon"> <img src="./assets/icon.png"></img></a></li>
-            <li v-for="item in streamList" :key="item.index" :id="'navItem' + item.index">
+            <li id="iconLi">
+                <a class="active" id="icon"> <img src="./assets/icon.png"></img></a>
+                <ul id="gamesList">
+                    <li>
+                        <h3>Games</h3>
+                    </li>
+                    <li v-for="item in gamesList" :key="item.route">
+                        <a :href="'/' + item.route">{{ item.label }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="navigationLi">
+                <a v-on:click="home()" id="btnHome" title="Home">Home</img></a>
+            </li>
+            <li class="navigationLi" v-for="item in streamList" :key="item.index" :id="'navItem' + item.index" :title="item.viewers + ' Viewers'">
                 <a v-on:click="navigation(item.index)">{{ item.channel }}</a>
             </li>
         </ul>
@@ -14,12 +27,14 @@
 </template>
 
 <script>
+var gamesList = require('./configuration/hubs.json')
 
 var $ = require('jquery')
 export default {
     name: 'app',
     data () {
         return {
+            gamesList: gamesList.games,
             streamList: [{
                 channel: 'vgBootcamp'
             }]
@@ -29,10 +44,16 @@ export default {
         home () {
             this.$store.dispatch('navigationActions', {
                 twitch: {
-                    channel: 'vgbootcamp',
+                    channel: 'redbullesports',
                     component: this.$store.state.twitchComponents[0].twitchComponentIndex
                 }
             })
+            $('.nav li.navigationLi').removeClass('active');
+
+            const $parent = $(this).parent();
+            if (!$parent.hasClass('active')) {
+                $parent.addClass('active');
+            }
         },
         navigation (index) {
             const hub = this.$store.state.streamList[index]
@@ -46,8 +67,8 @@ export default {
         activeTab () {
             // Iterate through list adding listners
             $(document).ready(() => {
-                $('.nav li a').click(function (e) {
-                    $('.nav li').removeClass('active');
+                $('.nav li.navigationLi a').click(function (e) {
+                    $('.nav li.navigationLi').removeClass('active');
 
                     const $parent = $(this).parent();
                     if (!$parent.hasClass('active')) {
@@ -56,28 +77,35 @@ export default {
                     e.preventDefault();
                 });
             });
+        },
+        fetchStreams () {
+            $.ajax({
+                type: 'GET',
+                url: 'https://api.twitch.tv/kraken/streams?game=' + this.$store.state.currentTwitchCategory + '&limit=8',
+                headers: {'Client-ID': 'uo6dggojyb8d6soh92zknwmi5ej1q2'},
+                success: (data) => {
+                    let tmpList = [];
+                    [...data.streams].forEach((item, index) => {
+                        tmpList[index] = {
+                            channel: item.channel.display_name,
+                            viewers: item.viewers,
+                            index: index
+                        }
+                    })
+                    this.$store.commit('saveStreamsList', tmpList)
+                    this.streamList = tmpList
+                    this.activeTab()
+                }
+            });
         }
     },
     beforeMount () {
-        let game = 'Super Smash Bros. Melee'
-        $.ajax({
-            type: 'GET',
-            url: 'https://api.twitch.tv/kraken/streams?game=' + game + '&limit=10',
-            headers: {'Client-ID': 'uo6dggojyb8d6soh92zknwmi5ej1q2'},
-            success: (data) => {
-                let tmpList = [];
-                [...data.streams].forEach((item, index) => {
-                    tmpList[index] = {
-                        channel: item.channel.display_name,
-                        viewers: item.viewers,
-                        index: index
-                    }
-                })
-                this.$store.commit('saveStreamsList', tmpList)
-                this.streamList = tmpList
-                this.activeTab()
-            }
-        });
+        setTimeout(() => {
+            this.fetchStreams()
+        }, 10);
+        setInterval(() => {
+            this.fetchStreams()
+        }, 60000);
     }
 
 
@@ -115,6 +143,7 @@ body {
     background-color: #334D5C;
 }
 
+
 .gridInput {
     position: inherit;
 }
@@ -151,6 +180,7 @@ li a {
     text-decoration: none;
     height: 100%;
     font-weight: 700;
+    cursor: pointer;
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -171,14 +201,43 @@ li a:hover {
     width: 20px;
 }
 
-#iconLi {
-    height: 20px;
-}
-
 #icon img {
     position: absolute;
     left: 10px;
     top: 8px;
+}
+
+#iconLi {
+    height: 20px;
+}
+
+#gamesList {
+    position: absolute;
+    float: left;
+    top: 0;
+    left: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 0px;
+    transition: all 0.65s ease;
+    display: none;
+}
+
+#gamesList > li {
+    width: 100%;
+}
+
+#iconLi:hover #gamesList {
+    display: block;
+    background-color: #4A484C;
+    width: 12%;
+    transition:  width 0.65s ease;
+    height: 100%;
+    z-index: 999;
+}
+
+button {
+    cursor: pointer;
 }
 
 </style>
