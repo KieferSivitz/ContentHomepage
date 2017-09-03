@@ -16,6 +16,7 @@
 <script>
 import inputListener from '../mixins/inputListener.js'
 import resizeItem from '../mixins/resizeItem.js'
+var constants = require('../configuration/constants.json')
 
 
 export default {
@@ -41,7 +42,7 @@ export default {
             if (!document.getElementById(element)) {
                 window.requestAnimationFrame(registerListener)
             } else {
-                resizeItem.methods.parentSize('twitchChatWindow' + this.componentNumber, 'twitchChat' + this.componentNumber, 25, 20)
+                resizeItem.methods.parentSize('twitchChatWindow' + this.componentNumber, 'twitchChat' + this.componentNumber, constants.heightPadding, constants.widthPadding)
                 inputListener.methods.createListener('twitchChatInput' + this.componentNumber, this, this.componentNumber)
             }
         }
@@ -54,7 +55,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .twitchChatComponent {
-    margin: 10px;
+    margin: 8px;
 }
 
 .input-descriptor {

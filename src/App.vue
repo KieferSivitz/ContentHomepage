@@ -3,15 +3,18 @@
       <div class="nav" id="navbar">
           <ul>
             <li id="iconLi">
-                <a v-on:click="home()" title="Home" class="active" id="icon"> <img src="./assets/icon.png"></img></a>
-                <!-- <ul id="gamesList">
+                <a class="active" id="icon"> <img src="./assets/icon.png"></img></a>
+                <ul id="gamesList">
                     <li>
                         <h3>Games</h3>
                     </li>
                     <li v-for="item in gamesList" :key="item.route">
                         <a :href="'/' + item.route">{{ item.label }}</a>
                     </li>
-                </ul> -->
+                </ul>
+            </li>
+            <li class="navigationLi">
+                <a v-on:click="home()" id="btnHome" title="Home">Home</img></a>
             </li>
             <li class="navigationLi" v-for="item in streamList" :key="item.index" :id="'navItem' + item.index" :title="item.viewers + ' Viewers'">
                 <a v-on:click="navigation(item.index)">{{ item.channel }}</a>
