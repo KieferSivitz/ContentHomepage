@@ -161,20 +161,20 @@ export default {
             switch (true) {
             case i.includes('twitchChat'):
                 const chatNumber = i.charAt(i.length - 1)
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChatWindow' + chatNumber, 20, 55)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, 'twitchChatWindow' + chatNumber, 20, 25)
                 break;
 
             case i.includes('twitch'):
                 const streamNumber = Number(i.charAt(i.length - 1))
                 const twitchIndex = this.$store.state.twitchComponents.findIndex(it => it.twitchComponentIndex === streamNumber)
-                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[twitchIndex].twitchElement, 20, 50)
+                this.resizeWithContainer(newH, newW, newWPx, newHPx, this.$store.state.twitchComponents[twitchIndex].twitchElement, 20, 25)
                 break;
 
             case i.includes('twitter'):
                 // const twitterElement = document.querySelectorAll('#twitter-feed-0 > iframe')[0].id
                 const twitterNumber = i.charAt(i.length - 1)
                 const twitterWindow = document.querySelector('#twitter-feed-' + twitterNumber + ' > iframe')
-                let twitterHeightOffset = 50
+                let twitterHeightOffset = 25
                 twitterWindow.style.height = String((newHPx - twitterHeightOffset) + 'px')
                 break;
 
@@ -195,14 +195,21 @@ export default {
 
 .gridItems {
     background: #4A484C;
-    border-radius: 5px
+    border-radius: 5px;
 }
 
 button {
+    border-radius: 5px;
     width: 32px;
     height: 32px;
     border: none;
-    background: #4A484C;
+}
+
+.gridItems:hover .delete {
+    display: block;
+}
+.gridItems:hover .expandInput {
+    display: block;
 }
 
 #addItem {
@@ -249,13 +256,20 @@ button {
 }
 
 .delete {
-    float: right;
+    z-index: 999;
+    position: absolute;
+    right: 0;
     max-width: 100%;
+    top: 0;
+    display: none;
 }
 
 .expandInput {
     z-index: 999;
-    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
 }
 
 .expandImg {

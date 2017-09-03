@@ -178,7 +178,7 @@ const store = new Vuex.Store({
             const oldTwitter = document.querySelector('#twitter-feed-' + info.componentNumber + ' > iframe')
             const twitterContainer = document.getElementById('twitterComponent' + info.componentNumber).parentNode.getBoundingClientRect()
 
-            let twitterHeightOffset = (twitterContainer.height > 50) ? 50 : 10
+            let twitterHeightOffset = (twitterContainer.height > 25) ? 25 : 10
             state.twitterComponents[twitterIndex].twitterList = info.list
             state.twitterComponents[twitterIndex].twitterUser = info.user
             if (oldTwitter) {

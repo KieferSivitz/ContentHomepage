@@ -41,7 +41,7 @@ export default {
             if (!document.getElementById(element)) {
                 window.requestAnimationFrame(registerListener)
             } else {
-                resizeItem.methods.parentSize('twitchChatWindow' + this.componentNumber, 'twitchChat' + this.componentNumber, 50, 20)
+                resizeItem.methods.parentSize('twitchChatWindow' + this.componentNumber, 'twitchChat' + this.componentNumber, 25, 20)
                 inputListener.methods.createListener('twitchChatInput' + this.componentNumber, this, this.componentNumber)
             }
         }
