@@ -267,7 +267,6 @@ const store = new Vuex.Store({
         },
         storeCurrentGame (state, info) {
             state.currentGame = info.game
-            console.log(String(info.twitchCategory))
             state.currentTwitchCategory = String(info.twitchCategory)
         }
     },

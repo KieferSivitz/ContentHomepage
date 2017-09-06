@@ -19,13 +19,13 @@
                     </button>
                 </li>
                 <li>
-                    <button class="btnReset" v-on:click="resetLayout">
-                        Reset Layout
+                    <button class="add" v-on:click="addSmashggComponent">
+                        <img src="../assets/gg-app-icon.png" type="image/svg+xml" class="addIcon"></img>
                     </button>
                 </li>
                 <li>
-                    <button class="add" v-on:click="addSmashggComponent">
-                        <img src="../assets/chat.svg" type="image/svg+xml" class="addIcon"></img>
+                    <button class="btnReset" v-on:click="resetLayout">
+                        Reset Layout
                     </button>
                 </li>
             </ul>

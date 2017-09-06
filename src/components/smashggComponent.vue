@@ -1,12 +1,14 @@
 <template>
     <div class="smashggComponent" :id="'smashgg' + componentNumber">
         <input type="text" class="gridInput smashggInput" :id="'smashggInput' + componentNumber" placeholder="Chat Channel" v-model="chatChannel"></input>
-        <div>
+        <div class="smashggContainer">
+            {{ this.smashggData }}
         </div>
     </div>
 </template>
 
 <script>
+var $ = require('jquery')
 export default {
     name: 'smashggComponent',
     data () {
@@ -14,20 +16,22 @@ export default {
         this.$store.commit('addSmashggComponent', this._uid)
         return {
             chatChannel: '',
-            componentNumber: index
+            componentNumber: index,
+            smashggData: ''
         }
     },
-
+    beforeMount () {
+    },
     mounted () {
-        const registerListener = (element) => {
-            if (!document.getElementById(element)) {
-                window.requestAnimationFrame(registerListener)
-            } else {
-                // Initialize
+        console.log('hi')
+        $.ajax({
+            type: 'GET',
+            url: 'https://api.smash.gg/phase_group/178064?expand%5B%5D=sets&expand%5B%5D=standings&expand%5B%5D=selections',
+            success: (data) => {
+                console.log(data)
+                this.smashggData = JSON.stringify(data)
             }
-        }
-
-        // registerListener('smashgg' + this.componentNumber)
+        });
     }
 }
 </script>
@@ -47,5 +51,16 @@ input {
     position: absolute;
     left: 25%;
     width: 50%
+}
+
+.smashggContainer {
+    background: white;
+}
+
+.smashggComponent {
+    background: white;
+    min-height: 90%;
+    max-height: 100%;
+    max-width: 100%;
 }
 </style>

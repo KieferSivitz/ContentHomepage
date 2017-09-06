@@ -35,9 +35,7 @@ export default {
     data () {
         return {
             gamesList: gamesList.games,
-            streamList: [{
-                channel: 'vgBootcamp'
-            }]
+            streamList: []
         }
     },
     methods: {
