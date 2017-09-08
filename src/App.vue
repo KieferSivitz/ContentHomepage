@@ -4,14 +4,14 @@
           <ul>
             <li id="iconLi">
                 <a class="active" id="icon"> <img src="./assets/icon.png"></img></a>
-                <ul id="gamesList">
+                <!-- <ul id="gamesList">
                     <li>
                         <h3>Games</h3>
                     </li>
                     <li v-for="item in gamesList" :key="item.route">
                         <a :href="'/' + item.route">{{ item.label }}</a>
                     </li>
-                </ul>
+                </ul> -->
             </li>
             <li class="navigationLi">
                 <a v-on:click="home()" id="btnHome" title="Home">Home</img></a>
