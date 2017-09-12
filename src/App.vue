@@ -173,6 +173,10 @@ li {
     float: left;
 }
 
+.navigationLi {
+    height: 48px;
+}
+
 li a {
     display: block;
     color: white;
