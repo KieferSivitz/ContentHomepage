@@ -23,13 +23,16 @@ export default {
     beforeMount () {
     },
     mounted () {
-        console.log('hi')
         $.ajax({
+            url: 'https://api.smash.gg/tournament/pulsar-premier-league?expand[]=event&expand[]=phase',
+            dataType: 'JSONP',
             type: 'GET',
-            url: 'https://api.smash.gg/phase_group/178064?expand%5B%5D=sets&expand%5B%5D=standings&expand%5B%5D=selections',
             success: (data) => {
+                console.log('hi')
                 console.log(data)
-                this.smashggData = JSON.stringify(data)
+            },
+            error: function () {
+                console.log('Error')
             }
         });
     }
