@@ -12,11 +12,11 @@ module.exports = {
             .url(devServer)
             .waitForElementVisible('#app', 5000)
             .assert.elementPresent('.gridComponent')
-            .waitForElementVisible('#gridComponent0', 1000)
-            .waitForElementVisible('#gridComponent1', 1000)
-            .waitForElementVisible('#gridComponent2', 1000)
-            .waitForElementVisible('#twitchPlayer', 1000)
-            .waitForElementVisible('#twitchChat', 1000)
+            .waitForElementVisible('#twitterComponent0', 1000)
+            .waitForElementVisible('#twitterComponent0', 1000)
+            .waitForElementVisible('#twitterComponent0', 1000)
+            .waitForElementVisible('#twitchPlayer0', 1000)
+            .waitForElementVisible('#twitchChat0', 1000)
             .waitForElementVisible('#twitter-widget-0', 1000)
             .end();
     }
