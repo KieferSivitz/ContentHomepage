@@ -35,16 +35,14 @@ export default {
     data () {
         return {
             gamesList: gamesList.games,
-            streamList: [{
-                channel: 'vgBootcamp'
-            }]
+            streamList: []
         }
     },
     methods: {
         home () {
             this.$store.dispatch('navigationActions', {
                 twitch: {
-                    channel: 'redbullesports',
+                    channel: 'vgbootcamp',
                     component: this.$store.state.twitchComponents[0].twitchComponentIndex
                 }
             })
