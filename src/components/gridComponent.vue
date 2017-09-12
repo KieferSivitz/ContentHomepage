@@ -264,6 +264,7 @@ button {
     width: 12%;
     height: 100%;
     z-index: 999;
+    transition: all 0.5s ease;
 }
 
 .delete {

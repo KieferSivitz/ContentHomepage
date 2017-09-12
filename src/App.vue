@@ -114,6 +114,7 @@ export default {
 
 <style>
 html {
+    overflow-x: hidden;
     background-color: #334D5C;
     height: 100%;
     margin: 0;
