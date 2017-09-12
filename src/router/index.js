@@ -14,12 +14,6 @@ export default new Router({
             props: {game: 'Melee', twitchCategory: 'Super Smash Bros. Melee'}
         },
         {
-            path: '/Melee',
-            name: 'homeComponent',
-            component: homeComponent,
-            props: {game: 'Melee', twitchCategory: 'Super Smash Bros. Melee'}
-        },
-        {
             path: '/Smash4',
             name: 'Smash4',
             component: homeComponent,

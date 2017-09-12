@@ -201,7 +201,7 @@ export default {
 }
 
 button {
-    border-radius: 5px;
+    border-radius: 10px;
     width: 32px;
     height: 32px;
     border: none;
@@ -276,6 +276,7 @@ button {
 }
 
 .expandInput {
+    background-color: #ccc;
     z-index: 999;
     position: absolute;
     left: 0;
@@ -292,7 +293,7 @@ button {
 }
 
 .add {
-    background-color: white;
+    background-color: #ccc;
     min-width: 100%;
     height: 80px;
     border: none;

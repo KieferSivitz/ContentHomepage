@@ -45,6 +45,7 @@ export default {
         },
         updatePlayer (text) {
             this.$store.commit('changeTwitchChannel', {channel: text, component: this.componentNumber})
+            document.getElementById('twitchInput' + this.componentNumber).style.display = 'none'
         },
         registerListener () {
             const text = document.getElementById('twitchInput' + this.componentNumber).value

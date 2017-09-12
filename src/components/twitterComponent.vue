@@ -35,6 +35,8 @@ export default {
                 componentID: this._uid,
                 componentNumber: this.componentNumber
             })
+
+            document.getElementById('twitterListInput' + this.componentNumber).style.display = 'none'
         }
     },
     mounted () { // For dynamically created components
