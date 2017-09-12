@@ -6,7 +6,7 @@ var defaultConfigs = require('./configuration/layouts.json')
 var constants = require('./configuration/constants.json')
 
 Vue.use(Vuex)
-
+const defaultStream = 'vgbootcamp'
 const store = new Vuex.Store({
     state: {
         currentGame: 'Melee',
@@ -33,7 +33,7 @@ const store = new Vuex.Store({
 
         // Components
         twitchComponents: JSON.parse(localStorage.getItem('twitchComponents')) || [{
-            twitchChannel: 'redbullesports',
+            twitchChannel: defaultStream,
             twitchPlayer: {},
             twitchElement: 'twitchPlayer0',
             UID: -1,
@@ -48,7 +48,7 @@ const store = new Vuex.Store({
         }],
 
         twitchChatComponents: [{
-            twitchChatChannel: 'redbullesports',
+            twitchChatChannel: defaultStream,
             UID: -1,
             twitchChatComponentIndex: -1
         }]

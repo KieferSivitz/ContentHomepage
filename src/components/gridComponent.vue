@@ -267,6 +267,7 @@ button {
 }
 
 .delete {
+    background-color: #ccc;
     z-index: 999;
     position: absolute;
     right: 0;
@@ -293,7 +294,7 @@ button {
 }
 
 .add {
-    background-color: #ccc;
+    background-color: white;
     min-width: 100%;
     height: 80px;
     border: none;
