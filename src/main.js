@@ -6,7 +6,7 @@ var defaultConfigs = require('./configuration/layouts.json')
 var constants = require('./configuration/constants.json')
 
 Vue.use(Vuex)
-const defaultStream = 'vgbootcamp'
+const defaultStream = 'smashtherecord'
 const store = new Vuex.Store({
     state: {
         currentGame: 'Melee',

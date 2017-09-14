@@ -42,7 +42,7 @@ export default {
         home () {
             this.$store.dispatch('navigationActions', {
                 twitch: {
-                    channel: 'vgbootcamp',
+                    channel: 'smashtherecord',
                     component: this.$store.state.twitchComponents[0].twitchComponentIndex
                 }
             })
