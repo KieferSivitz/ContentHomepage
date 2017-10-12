@@ -80,7 +80,7 @@ export default {
             $.ajax({
                 type: 'GET',
                 url: 'https://api.twitch.tv/kraken/streams?game=' + this.$store.state.currentTwitchCategory + '&limit=8',
-                headers: {'Client-ID': 'uo6dggojyb8d6soh92zknwmi5ej1q2'},
+                headers: {'Client-ID': 'qo4oiog7aylotzvctwy2xm8gt0i83q'},
                 success: (data) => {
                     let tmpList = [];
                     [...data.streams].forEach((item, index) => {
@@ -93,6 +93,9 @@ export default {
                     this.$store.commit('saveStreamsList', tmpList)
                     this.streamList = tmpList
                     this.activeTab()
+                },
+                failure: (data) => {
+                    console.log('Twitch Response: ', data)
                 }
             });
         }
