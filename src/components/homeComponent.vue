@@ -1,9 +1,6 @@
 <template>
     <div class="componentContainer"> 
         <gridComponent :my-layout="savelayout"/>
-        <div>
-            If you'd like to contribute to this project or report a bug check it out on <a href="https://github.com/KieferSivitz/ContentHomepage">Github!</a>
-        </div>
     </div>
 </template>
 
