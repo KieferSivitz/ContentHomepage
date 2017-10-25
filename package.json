@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Social media aggregator focused on integrating streaming channels with communities",
   "author": "Kiefer Sivitz",
-  "homepage": "www.contenthomepage.com",
+  "homepage": "https://kiefersivitz.github.io/ContentHomepage",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "async": "^2.5.0",
+    "gh-pages": "^1.0.0",
     "jquery": "^3.2.1",
     "replace-in-file": "^2.5.0",
     "twitch-embed": "^1.1.4",
