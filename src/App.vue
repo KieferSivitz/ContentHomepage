@@ -79,7 +79,8 @@ export default {
         fetchStreams () {
             $.ajax({
                 type: 'GET',
-                url: 'https://api.twitch.tv/kraken/streams?game=' + this.$store.state.currentTwitchCategory + '&limit=' + 7,
+                url: 'https://api.twitch.tv/kraken/streams?game=' + 
+                    this.$store.state.currentTwitchCategory + '&limit=' + 7,
                 headers: {'Client-ID': 'qo4oiog7aylotzvctwy2xm8gt0i83q'},
                 success: (data) => {
                     let tmpList = [];

@@ -2,7 +2,7 @@
     <div class="componentContainer"> 
         <gridComponent :my-layout="savelayout"/>
         <div>
-            If you'd like to contribute to this project or report a bug check it out on <a href="https://github.com/KieferSivitz/ContentHomepage">Github</a>.
+            <a href="https://github.com/KieferSivitz/ContentHomepage">Github Link to this Site.</a>
         </div>
     </div>
 </template>
