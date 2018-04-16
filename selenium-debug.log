@@ -1,0 +1,56 @@
+14:23:57.578 INFO - Selenium build info: version: '3.4.0', revision: 'unknown'
+14:23:57.578 INFO - Launching a standalone Selenium Server
+2017-09-12 14:23:57.593:INFO::main: Logging initialized @210ms to org.seleniumhq.jetty9.util.log.StdErrLog
+14:23:57.637 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+14:23:57.638 INFO - Driver provider com.opera.core.systems.OperaDriver registration is skipped:
+Unable to create new instances on this machine.
+14:23:57.638 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+14:23:57.638 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+14:23:57.642 INFO - Driver provider org.openqa.selenium.safari.SafariDriver registration is skipped:
+ registration capabilities Capabilities [{browserName=safari, version=, platform=MAC}] does not match the current platform WIN10
+2017-09-12 14:23:57.675:INFO:osjs.Server:main: jetty-9.4.3.v20170317
+2017-09-12 14:23:57.699:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@18355a8{/,null,AVAILABLE}
+2017-09-12 14:23:57.769:INFO:osjs.AbstractConnector:main: Started ServerConnector@12108b5{HTTP/1.1,[http/1.1]}{0.0.0.0:4444}
+2017-09-12 14:23:57.770:INFO:osjs.Server:main: Started @387ms
+14:23:57.770 INFO - Selenium Server is up and running
+14:23:58.131 INFO - SessionCleaner initialized with insideBrowserTimeout 0 and clientGoneTimeout 1800000 polling every 180000
+14:23:58.155 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=Test, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+14:23:58.164 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=Test, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.29.461591 (62ebf098771772160f391d75e589dc567915b233) on port 19609
+Only local connections are allowed.
+14:24:00.421 INFO - Detected dialect: OSS
+14:24:00.443 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=Test, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+14:24:00.465 INFO - Executing: [get: http://localhost:8080])
+14:24:06.184 INFO - Done: [get: http://localhost:8080]
+14:24:06.196 INFO - Executing: [find elements: By.cssSelector: #app])
+14:24:06.231 INFO - Done: [find elements: By.cssSelector: #app]
+14:24:06.235 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #app]])
+14:24:06.252 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #app]]
+14:24:06.259 INFO - Executing: [find elements: By.cssSelector: .gridComponent])
+14:24:06.281 INFO - Done: [find elements: By.cssSelector: .gridComponent]
+14:24:06.286 INFO - Executing: [find elements: By.cssSelector: #twitterComponent0])
+14:24:06.310 INFO - Done: [find elements: By.cssSelector: #twitterComponent0]
+14:24:06.314 INFO - Executing: [is displayed: 2 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #twitterComponent0]])
+14:24:06.334 INFO - Done: [is displayed: 2 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #twitterComponent0]]
+14:24:06.338 INFO - Executing: [find elements: By.cssSelector: #twitterComponent0])
+14:24:06.346 INFO - Done: [find elements: By.cssSelector: #twitterComponent0]
+14:24:06.349 INFO - Executing: [is displayed: 2 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #twitterComponent0]])
+14:24:06.357 INFO - Done: [is displayed: 2 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #twitterComponent0]]
+14:24:06.361 INFO - Executing: [find elements: By.cssSelector: #twitterComponent0])
+14:24:06.374 INFO - Done: [find elements: By.cssSelector: #twitterComponent0]
+14:24:06.378 INFO - Executing: [is displayed: 2 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #twitterComponent0]])
+14:24:06.388 INFO - Done: [is displayed: 2 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #twitterComponent0]]
+14:24:06.391 INFO - Executing: [find elements: By.cssSelector: #twitchPlayer0])
+14:24:06.409 INFO - Done: [find elements: By.cssSelector: #twitchPlayer0]
+14:24:06.414 INFO - Executing: [is displayed: 3 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #twitchPlayer0]])
+14:24:06.433 INFO - Done: [is displayed: 3 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #twitchPlayer0]]
+14:24:06.439 INFO - Executing: [find elements: By.cssSelector: #twitchChat0])
+14:24:06.457 INFO - Done: [find elements: By.cssSelector: #twitchChat0]
+14:24:06.460 INFO - Executing: [is displayed: 4 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #twitchChat0]])
+14:24:06.478 INFO - Done: [is displayed: 4 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #twitchChat0]]
+14:24:06.482 INFO - Executing: [find elements: By.cssSelector: #twitter-widget-0])
+14:24:06.501 INFO - Done: [find elements: By.cssSelector: #twitter-widget-0]
+14:24:06.505 INFO - Executing: [is displayed: 5 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #twitter-widget-0]])
+14:24:06.521 INFO - Done: [is displayed: 5 [[ChromeDriver: chrome on XP (b19e59d398d31e3eb2752fa8fa5015b6)] -> css selector: #twitter-widget-0]]
+14:24:06.528 INFO - Executing: [delete session: b10813d5-b974-4919-b8b7-58854e600767])
+14:24:07.423 INFO - Done: [delete session: b10813d5-b974-4919-b8b7-58854e600767]
