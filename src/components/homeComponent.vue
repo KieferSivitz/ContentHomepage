@@ -2,7 +2,7 @@
     <div class="componentContainer"> 
         <gridComponent :my-layout="savelayout"/>
         <div>
-            <a href="https://github.com/KieferSivitz/ContentHomepage">Git Link to tis Site</a>.13`99155`
+            <a href="https://github.com/KieferSivitz/ContentHomepage">Github Link to tis Site</a>.13`99155`
         </div>
     </div>
 </template>

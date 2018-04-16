@@ -16,7 +16,7 @@ console.time('Deployment Time');
 
 function pushToGhPages() {
     ghpages.publish(outputDirectory, {
-            'branch': branch,
+            'branch': (branch === 'master') ? '' : branch,
             'dest': (branch === 'master') ? 'docs' : branch,
             'repo': repository + '.git'
         },
