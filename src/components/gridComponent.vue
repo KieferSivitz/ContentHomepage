@@ -1,7 +1,7 @@
 <template>
     <div class="gridComponent">
         <div id="addItem">
-            <a id="addButton" href="#">+&nbsp;&nbsp;New Item</a>
+            <a id="addButton" href="#">+&nbsp;&nbsp;New Items</a>
             <ul id="creationList">
                 <li>
                     <button class="add" v-on:click="addTwitterComponent">
@@ -20,7 +20,7 @@
                 </li>
                 <li>
                     <button class="btnReset" v-on:click="resetLayout">
-                        Reset Layout
+                        Reset Layouts
                     </button>
                 </li>
             </ul>
