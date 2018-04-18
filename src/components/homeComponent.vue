@@ -2,7 +2,7 @@
     <div class="componentContainer"> 
         <gridComponent :my-layout="savelayout"/>
         <div>
-            <h1>Master branch, delete me folder</h1>
+            <h1>Gh-pages branch, same directory</h1>
         </div>
     </div>
 </template>
