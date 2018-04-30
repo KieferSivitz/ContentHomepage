@@ -2,7 +2,7 @@
     <div class="componentContainer"> 
         <gridComponent :my-layout="savelayout"/>
         <div>
-            <h1>Gh-pages branch, same directory</h1>
+            <h1>Testing 1.15.4 - gh-pages</h1>
         </div>
     </div>
 </template>
