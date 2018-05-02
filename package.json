@@ -13,7 +13,7 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "deploy": "node ./index.js -p -b gh-pages"
+    "deploy": "node ./node_modules/vue-gh-pages/index.js -p -r"
   },
   "dependencies": {
     "async": "^2.5.0",
@@ -22,7 +22,7 @@
     "replace-in-file": "^2.5.0",
     "twitch-embed": "^1.1.4",
     "vue": "^2.2.6",
-    "vue-gh-pages": "^40.0.1",
+    "vue-gh-pages": "^40.0.3",
     "vue-grid-layout": "^2.1.6",
     "vue-router": "^2.3.1",
     "vuex": "^2.3.1"

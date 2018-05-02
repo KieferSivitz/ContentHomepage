@@ -2,7 +2,8 @@
     <div class="componentContainer"> 
         <gridComponent :my-layout="savelayout"/>
         <div>
-            <h1>Testing 1.15.4 - gh-pages</h1>
+            <h1>Testing 1.16.0 - master</h1>
+            <a href="/404">Test</a>
         </div>
     </div>
 </template>
